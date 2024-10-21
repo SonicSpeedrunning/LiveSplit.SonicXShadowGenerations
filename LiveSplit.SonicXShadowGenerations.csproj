@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net481</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>LiveSplit.SonicXShadowGenerations</RootNamespace>
+    <Nullable>enable</Nullable>
+    <Version></Version>
+    <AssemblyVersion>0.0.9</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IndexRange" Version="1.0.3" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="MSBuild.ILMerge.Task" Version="1.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LiveSplit.Core">
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\LiveSplit.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Buffers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="UpdateManager">
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\UpdateManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
