@@ -56,15 +56,14 @@ public partial class ProcessMemory : IDisposable
         if (!IsNativePtr<T>())
             return WinAPI.ReadProcessMemory(pHandle, address, out value);
 
-        value = default;
-
         // Handle pointer reading in an unsafe block for unmanaged memory access.
+        value = default;
         unsafe
         {
             fixed (void* ptr = &value)
             {
                 Span<byte> bytes = new Span<byte>(ptr, PointerSize);
-                return ReadArray(pHandle, bytes);
+                return ReadArray(address, bytes);
             }
         }
     }

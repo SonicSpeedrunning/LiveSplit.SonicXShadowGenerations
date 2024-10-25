@@ -28,177 +28,1801 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkBossRushStart = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chkArcade1_1 = new System.Windows.Forms.CheckBox();
-            this.chkArcadeStart = new System.Windows.Forms.CheckBox();
-            this.chkStoryStart = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.autosplitterVersion = new System.Windows.Forms.Label();
-            this.chkFocus = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkDeathEgg = new System.Windows.Forms.CheckBox();
+            this.chkMetalSonic = new System.Windows.Forms.CheckBox();
+            this.ClassicButton = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkSkySanctuary2_5 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary2_4 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary2_3 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary2_2 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary2_1 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary1_5 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary1_4 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary1_3 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary1_2 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary1_1 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary2 = new System.Windows.Forms.CheckBox();
+            this.chkSkySanctuary1 = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkChemicalPlant2_5 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant2_4 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant2_3 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant2_2 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant2_1 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant1_5 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant1_4 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant1_3 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant1_2 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant1_1 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant2 = new System.Windows.Forms.CheckBox();
+            this.chkChemicalPlant1 = new System.Windows.Forms.CheckBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.chkGreenHill2_5 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill2_4 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill2_3 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill2_2 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill2_1 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill1_5 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill1_4 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill1_3 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill1_2 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill1_1 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill2 = new System.Windows.Forms.CheckBox();
+            this.chkGreenHill1 = new System.Windows.Forms.CheckBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chkPerfectChaos = new System.Windows.Forms.CheckBox();
+            this.chkShadow = new System.Windows.Forms.CheckBox();
+            this.AdventureButton = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.DiscordLink = new System.Windows.Forms.LinkLabel();
+            this.chkSeasideHill2_5 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill2_4 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill2_3 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill2_2 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill2_1 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill1_5 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill1_4 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill1_3 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill1_2 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill1_1 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill2 = new System.Windows.Forms.CheckBox();
+            this.chkSeasideHill1 = new System.Windows.Forms.CheckBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.chkCityEscape2_5 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape2_4 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape2_3 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape2_2 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape2_1 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape1_5 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape1_4 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape1_3 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape1_2 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape1_1 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape2 = new System.Windows.Forms.CheckBox();
+            this.chkCityEscape1 = new System.Windows.Forms.CheckBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.chkSpeedHighway2_5 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway2_4 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway2_3 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway2_2 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway2_1 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway1_5 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway1_4 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway1_3 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway1_2 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway1_1 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway2 = new System.Windows.Forms.CheckBox();
+            this.chkSpeedHighway1 = new System.Windows.Forms.CheckBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.chkTimeEater = new System.Windows.Forms.CheckBox();
+            this.chkEggDragoon = new System.Windows.Forms.CheckBox();
+            this.chkSilver = new System.Windows.Forms.CheckBox();
+            this.ModernButton = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.chkPlanetWisp2_5 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp2_4 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp2_3 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp2_2 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp2_1 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp1_5 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp1_4 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp1_3 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp1_2 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp1_1 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp2 = new System.Windows.Forms.CheckBox();
+            this.chkPlanetWisp1 = new System.Windows.Forms.CheckBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.chkRooftopRun2_5 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun2_4 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun2_3 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun2_2 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun2_1 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun1_5 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun1_4 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun1_3 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun1_2 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun1_1 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun2 = new System.Windows.Forms.CheckBox();
+            this.chkRooftopRun1 = new System.Windows.Forms.CheckBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.chkCrisisCity2_5 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity2_4 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity2_3 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity2_2 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity2_1 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity1_5 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity1_4 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity1_3 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity1_2 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity1_1 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity2 = new System.Windows.Forms.CheckBox();
+            this.chkCrisisCity1 = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
-            this.chkAres_Knuckles = new System.Windows.Forms.CheckBox();
-            this.chkAres_WyvernFirst = new System.Windows.Forms.CheckBox();
-            this.chkAres_Water = new System.Windows.Forms.CheckBox();
-            this.chkAres_Crane = new System.Windows.Forms.CheckBox();
-            this.chkAres_WyvernStart = new System.Windows.Forms.CheckBox();
-            this.chkAres_WyvernRun = new System.Windows.Forms.CheckBox();
-            this.chkAres_SuperSonic = new System.Windows.Forms.CheckBox();
-            this.chk51_story = new System.Windows.Forms.CheckBox();
-            this.groupBox23 = new System.Windows.Forms.GroupBox();
-            this.chkAres_BlueCE = new System.Windows.Forms.CheckBox();
-            this.chkAres_RedCE = new System.Windows.Forms.CheckBox();
-            this.chkAres_YellowCE = new System.Windows.Forms.CheckBox();
-            this.chkAres_WhiteCE = new System.Windows.Forms.CheckBox();
-            this.chkAres_GreenCE = new System.Windows.Forms.CheckBox();
-            this.chkAres_CyanCE = new System.Windows.Forms.CheckBox();
-            this.groupBox22 = new System.Windows.Forms.GroupBox();
-            this.chk7_story = new System.Windows.Forms.CheckBox();
-            this.chk8_story = new System.Windows.Forms.CheckBox();
-            this.chk9_story = new System.Windows.Forms.CheckBox();
-            this.chk10_story = new System.Windows.Forms.CheckBox();
-            this.chk11_story = new System.Windows.Forms.CheckBox();
-            this.chk12_story = new System.Windows.Forms.CheckBox();
-            this.chk13_story = new System.Windows.Forms.CheckBox();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.chk51_fishing = new System.Windows.Forms.CheckBox();
-            this.AresButton = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.chkKronos_Ninja = new System.Windows.Forms.CheckBox();
-            this.chkKronos_Door = new System.Windows.Forms.CheckBox();
-            this.chkKronos_Amy = new System.Windows.Forms.CheckBox();
-            this.chkKronos_GigantosFirst = new System.Windows.Forms.CheckBox();
-            this.chkKronos_Tombstones = new System.Windows.Forms.CheckBox();
-            this.chkKronos_GigantosStart = new System.Windows.Forms.CheckBox();
-            this.chkKronos_SuperSonic = new System.Windows.Forms.CheckBox();
-            this.chk50_story = new System.Windows.Forms.CheckBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.chkKronos_BlueCE = new System.Windows.Forms.CheckBox();
-            this.chkKronos_RedCE = new System.Windows.Forms.CheckBox();
-            this.chkKronos_YellowCE = new System.Windows.Forms.CheckBox();
-            this.chkKronos_WhiteCE = new System.Windows.Forms.CheckBox();
-            this.chkKronos_GreenCE = new System.Windows.Forms.CheckBox();
-            this.chkKronos_CyanCE = new System.Windows.Forms.CheckBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.chk0_story = new System.Windows.Forms.CheckBox();
-            this.chk1_story = new System.Windows.Forms.CheckBox();
-            this.chk2_story = new System.Windows.Forms.CheckBox();
-            this.chk3_story = new System.Windows.Forms.CheckBox();
-            this.chk4_story = new System.Windows.Forms.CheckBox();
-            this.chk5_story = new System.Windows.Forms.CheckBox();
-            this.chk6_story = new System.Windows.Forms.CheckBox();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.chk50_fishing = new System.Windows.Forms.CheckBox();
-            this.KronosButton = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.groupBox1.SuspendLayout();
+            this.chkShadowLoadless = new System.Windows.Forms.CheckBox();
+            this.autosplitterVersion = new System.Windows.Forms.Label();
+            this.DiscordLink = new System.Windows.Forms.LinkLabel();
+            this.chkSonicStart = new System.Windows.Forms.CheckBox();
+            this.chkSonicLoadless = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox24.SuspendLayout();
-            this.groupBox23.SuspendLayout();
-            this.groupBox22.SuspendLayout();
-            this.groupBox21.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.groupBox14.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkBossRushStart);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.chkArcade1_1);
-            this.groupBox1.Controls.Add(this.chkArcadeStart);
-            this.groupBox1.Controls.Add(this.chkStoryStart);
-            this.groupBox1.Location = new System.Drawing.Point(10, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(248, 67);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Auto start settings";
-            // 
-            // chkBossRushStart
-            // 
-            this.chkBossRushStart.AutoSize = true;
-            this.chkBossRushStart.Checked = true;
-            this.chkBossRushStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBossRushStart.Location = new System.Drawing.Point(95, 23);
-            this.chkBossRushStart.Name = "chkBossRushStart";
-            this.chkBossRushStart.Size = new System.Drawing.Size(72, 17);
-            this.chkBossRushStart.TabIndex = 6;
-            this.chkBossRushStart.Text = "Boss rush";
-            this.chkBossRushStart.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "--->";
-            // 
-            // chkArcade1_1
-            // 
-            this.chkArcade1_1.AutoSize = true;
-            this.chkArcade1_1.Checked = true;
-            this.chkArcade1_1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkArcade1_1.Location = new System.Drawing.Point(158, 40);
-            this.chkArcade1_1.Margin = new System.Windows.Forms.Padding(0);
-            this.chkArcade1_1.Name = "chkArcade1_1";
-            this.chkArcade1_1.Size = new System.Drawing.Size(80, 17);
-            this.chkArcade1_1.TabIndex = 4;
-            this.chkArcade1_1.Text = "Only for 1-1";
-            this.chkArcade1_1.UseVisualStyleBackColor = true;
-            // 
-            // chkArcadeStart
-            // 
-            this.chkArcadeStart.AutoSize = true;
-            this.chkArcadeStart.Checked = true;
-            this.chkArcadeStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkArcadeStart.Location = new System.Drawing.Point(10, 40);
-            this.chkArcadeStart.Name = "chkArcadeStart";
-            this.chkArcadeStart.Size = new System.Drawing.Size(124, 17);
-            this.chkArcadeStart.TabIndex = 3;
-            this.chkArcadeStart.Text = "Arcade / Cyberstage";
-            this.chkArcadeStart.UseVisualStyleBackColor = true;
-            this.chkArcadeStart.CheckedChanged += new System.EventHandler(this.ChkArcadeStart_CheckedChanged);
-            // 
-            // chkStoryStart
-            // 
-            this.chkStoryStart.AutoSize = true;
-            this.chkStoryStart.Checked = true;
-            this.chkStoryStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkStoryStart.Location = new System.Drawing.Point(10, 23);
-            this.chkStoryStart.Name = "chkStoryStart";
-            this.chkStoryStart.Size = new System.Drawing.Size(79, 17);
-            this.chkStoryStart.TabIndex = 0;
-            this.chkStoryStart.Text = "Story mode";
-            this.chkStoryStart.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.tabControl1);
-            this.groupBox2.Location = new System.Drawing.Point(10, 78);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.groupBox2.Location = new System.Drawing.Point(10, 10);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(455, 400);
+            this.groupBox2.Size = new System.Drawing.Size(455, 468);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Autosplitting options";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tabControl1.Location = new System.Drawing.Point(10, 23);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(435, 435);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.chkSonicLoadless);
+            this.tabPage4.Controls.Add(this.groupBox4);
+            this.tabPage4.Controls.Add(this.ClassicButton);
+            this.tabPage4.Controls.Add(this.chkSonicStart);
+            this.tabPage4.Controls.Add(this.groupBox3);
+            this.tabPage4.Controls.Add(this.groupBox1);
+            this.tabPage4.Controls.Add(this.groupBox9);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(427, 409);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Sonic Generations (Classic Era)";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkDeathEgg);
+            this.groupBox4.Controls.Add(this.chkMetalSonic);
+            this.groupBox4.Location = new System.Drawing.Point(297, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox4.Size = new System.Drawing.Size(126, 132);
+            this.groupBox4.TabIndex = 24;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Bosses";
+            // 
+            // chkDeathEgg
+            // 
+            this.chkDeathEgg.AutoSize = true;
+            this.chkDeathEgg.Location = new System.Drawing.Point(10, 40);
+            this.chkDeathEgg.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkDeathEgg.Name = "chkDeathEgg";
+            this.chkDeathEgg.Size = new System.Drawing.Size(106, 17);
+            this.chkDeathEgg.TabIndex = 10;
+            this.chkDeathEgg.Text = "Death Egg Robo";
+            this.chkDeathEgg.UseVisualStyleBackColor = true;
+            // 
+            // chkMetalSonic
+            // 
+            this.chkMetalSonic.AutoSize = true;
+            this.chkMetalSonic.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkMetalSonic.Location = new System.Drawing.Point(10, 23);
+            this.chkMetalSonic.Name = "chkMetalSonic";
+            this.chkMetalSonic.Size = new System.Drawing.Size(106, 17);
+            this.chkMetalSonic.TabIndex = 8;
+            this.chkMetalSonic.Text = "Metal Sonic";
+            this.chkMetalSonic.UseVisualStyleBackColor = true;
+            // 
+            // ClassicButton
+            // 
+            this.ClassicButton.Location = new System.Drawing.Point(317, 343);
+            this.ClassicButton.Name = "ClassicButton";
+            this.ClassicButton.Size = new System.Drawing.Size(93, 23);
+            this.ClassicButton.TabIndex = 5;
+            this.ClassicButton.Text = "Reset to Default";
+            this.ClassicButton.UseVisualStyleBackColor = true;
+            this.ClassicButton.Click += new System.EventHandler(this.ClassicButton_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.chkSkySanctuary2_5);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary2_4);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary2_3);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary2_2);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary2_1);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary1_5);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary1_4);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary1_3);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary1_2);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary1_1);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary2);
+            this.groupBox3.Controls.Add(this.chkSkySanctuary1);
+            this.groupBox3.Location = new System.Drawing.Point(3, 273);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox3.Size = new System.Drawing.Size(288, 132);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Sky Sanctuary";
+            // 
+            // chkSkySanctuary2_5
+            // 
+            this.chkSkySanctuary2_5.AutoSize = true;
+            this.chkSkySanctuary2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkSkySanctuary2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary2_5.Name = "chkSkySanctuary2_5";
+            this.chkSkySanctuary2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary2_5.TabIndex = 19;
+            this.chkSkySanctuary2_5.Text = "Challenge 5";
+            this.chkSkySanctuary2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary2_4
+            // 
+            this.chkSkySanctuary2_4.AutoSize = true;
+            this.chkSkySanctuary2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkSkySanctuary2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary2_4.Name = "chkSkySanctuary2_4";
+            this.chkSkySanctuary2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary2_4.TabIndex = 18;
+            this.chkSkySanctuary2_4.Text = "Challenge 4";
+            this.chkSkySanctuary2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary2_3
+            // 
+            this.chkSkySanctuary2_3.AutoSize = true;
+            this.chkSkySanctuary2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkSkySanctuary2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary2_3.Name = "chkSkySanctuary2_3";
+            this.chkSkySanctuary2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary2_3.TabIndex = 17;
+            this.chkSkySanctuary2_3.Text = "Challenge 3";
+            this.chkSkySanctuary2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary2_2
+            // 
+            this.chkSkySanctuary2_2.AutoSize = true;
+            this.chkSkySanctuary2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkSkySanctuary2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary2_2.Name = "chkSkySanctuary2_2";
+            this.chkSkySanctuary2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary2_2.TabIndex = 16;
+            this.chkSkySanctuary2_2.Text = "Challenge 2";
+            this.chkSkySanctuary2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary2_1
+            // 
+            this.chkSkySanctuary2_1.AutoSize = true;
+            this.chkSkySanctuary2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkSkySanctuary2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary2_1.Name = "chkSkySanctuary2_1";
+            this.chkSkySanctuary2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary2_1.TabIndex = 15;
+            this.chkSkySanctuary2_1.Text = "Challenge 1";
+            this.chkSkySanctuary2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary1_5
+            // 
+            this.chkSkySanctuary1_5.AutoSize = true;
+            this.chkSkySanctuary1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkSkySanctuary1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary1_5.Name = "chkSkySanctuary1_5";
+            this.chkSkySanctuary1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary1_5.TabIndex = 14;
+            this.chkSkySanctuary1_5.Text = "Challenge 5";
+            this.chkSkySanctuary1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary1_4
+            // 
+            this.chkSkySanctuary1_4.AutoSize = true;
+            this.chkSkySanctuary1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkSkySanctuary1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary1_4.Name = "chkSkySanctuary1_4";
+            this.chkSkySanctuary1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary1_4.TabIndex = 13;
+            this.chkSkySanctuary1_4.Text = "Challenge 4";
+            this.chkSkySanctuary1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary1_3
+            // 
+            this.chkSkySanctuary1_3.AutoSize = true;
+            this.chkSkySanctuary1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkSkySanctuary1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary1_3.Name = "chkSkySanctuary1_3";
+            this.chkSkySanctuary1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary1_3.TabIndex = 12;
+            this.chkSkySanctuary1_3.Text = "Challenge 3";
+            this.chkSkySanctuary1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary1_2
+            // 
+            this.chkSkySanctuary1_2.AutoSize = true;
+            this.chkSkySanctuary1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkSkySanctuary1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary1_2.Name = "chkSkySanctuary1_2";
+            this.chkSkySanctuary1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary1_2.TabIndex = 11;
+            this.chkSkySanctuary1_2.Text = "Challenge 2";
+            this.chkSkySanctuary1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary1_1
+            // 
+            this.chkSkySanctuary1_1.AutoSize = true;
+            this.chkSkySanctuary1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkSkySanctuary1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary1_1.Name = "chkSkySanctuary1_1";
+            this.chkSkySanctuary1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkSkySanctuary1_1.TabIndex = 10;
+            this.chkSkySanctuary1_1.Text = "Challenge 1";
+            this.chkSkySanctuary1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary2
+            // 
+            this.chkSkySanctuary2.AutoSize = true;
+            this.chkSkySanctuary2.Location = new System.Drawing.Point(152, 23);
+            this.chkSkySanctuary2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSkySanctuary2.Name = "chkSkySanctuary2";
+            this.chkSkySanctuary2.Size = new System.Drawing.Size(129, 17);
+            this.chkSkySanctuary2.TabIndex = 9;
+            this.chkSkySanctuary2.Text = "Sky Sanctuary - Act 2";
+            this.chkSkySanctuary2.UseVisualStyleBackColor = true;
+            // 
+            // chkSkySanctuary1
+            // 
+            this.chkSkySanctuary1.AutoSize = true;
+            this.chkSkySanctuary1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkSkySanctuary1.Location = new System.Drawing.Point(10, 23);
+            this.chkSkySanctuary1.Name = "chkSkySanctuary1";
+            this.chkSkySanctuary1.Size = new System.Drawing.Size(268, 17);
+            this.chkSkySanctuary1.TabIndex = 8;
+            this.chkSkySanctuary1.Text = "Sky Sanctuary - Act 1";
+            this.chkSkySanctuary1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkChemicalPlant2_5);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant2_4);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant2_3);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant2_2);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant2_1);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant1_5);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant1_4);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant1_3);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant1_2);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant1_1);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant2);
+            this.groupBox1.Controls.Add(this.chkChemicalPlant1);
+            this.groupBox1.Location = new System.Drawing.Point(3, 138);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox1.Size = new System.Drawing.Size(288, 132);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Chemical Plant";
+            // 
+            // chkChemicalPlant2_5
+            // 
+            this.chkChemicalPlant2_5.AutoSize = true;
+            this.chkChemicalPlant2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkChemicalPlant2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant2_5.Name = "chkChemicalPlant2_5";
+            this.chkChemicalPlant2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant2_5.TabIndex = 19;
+            this.chkChemicalPlant2_5.Text = "Challenge 5";
+            this.chkChemicalPlant2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant2_4
+            // 
+            this.chkChemicalPlant2_4.AutoSize = true;
+            this.chkChemicalPlant2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkChemicalPlant2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant2_4.Name = "chkChemicalPlant2_4";
+            this.chkChemicalPlant2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant2_4.TabIndex = 18;
+            this.chkChemicalPlant2_4.Text = "Challenge 4";
+            this.chkChemicalPlant2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant2_3
+            // 
+            this.chkChemicalPlant2_3.AutoSize = true;
+            this.chkChemicalPlant2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkChemicalPlant2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant2_3.Name = "chkChemicalPlant2_3";
+            this.chkChemicalPlant2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant2_3.TabIndex = 17;
+            this.chkChemicalPlant2_3.Text = "Challenge 3";
+            this.chkChemicalPlant2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant2_2
+            // 
+            this.chkChemicalPlant2_2.AutoSize = true;
+            this.chkChemicalPlant2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkChemicalPlant2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant2_2.Name = "chkChemicalPlant2_2";
+            this.chkChemicalPlant2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant2_2.TabIndex = 16;
+            this.chkChemicalPlant2_2.Text = "Challenge 2";
+            this.chkChemicalPlant2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant2_1
+            // 
+            this.chkChemicalPlant2_1.AutoSize = true;
+            this.chkChemicalPlant2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkChemicalPlant2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant2_1.Name = "chkChemicalPlant2_1";
+            this.chkChemicalPlant2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant2_1.TabIndex = 15;
+            this.chkChemicalPlant2_1.Text = "Challenge 1";
+            this.chkChemicalPlant2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant1_5
+            // 
+            this.chkChemicalPlant1_5.AutoSize = true;
+            this.chkChemicalPlant1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkChemicalPlant1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant1_5.Name = "chkChemicalPlant1_5";
+            this.chkChemicalPlant1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant1_5.TabIndex = 14;
+            this.chkChemicalPlant1_5.Text = "Challenge 5";
+            this.chkChemicalPlant1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant1_4
+            // 
+            this.chkChemicalPlant1_4.AutoSize = true;
+            this.chkChemicalPlant1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkChemicalPlant1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant1_4.Name = "chkChemicalPlant1_4";
+            this.chkChemicalPlant1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant1_4.TabIndex = 13;
+            this.chkChemicalPlant1_4.Text = "Challenge 4";
+            this.chkChemicalPlant1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant1_3
+            // 
+            this.chkChemicalPlant1_3.AutoSize = true;
+            this.chkChemicalPlant1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkChemicalPlant1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant1_3.Name = "chkChemicalPlant1_3";
+            this.chkChemicalPlant1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant1_3.TabIndex = 12;
+            this.chkChemicalPlant1_3.Text = "Challenge 3";
+            this.chkChemicalPlant1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant1_2
+            // 
+            this.chkChemicalPlant1_2.AutoSize = true;
+            this.chkChemicalPlant1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkChemicalPlant1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant1_2.Name = "chkChemicalPlant1_2";
+            this.chkChemicalPlant1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant1_2.TabIndex = 11;
+            this.chkChemicalPlant1_2.Text = "Challenge 2";
+            this.chkChemicalPlant1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant1_1
+            // 
+            this.chkChemicalPlant1_1.AutoSize = true;
+            this.chkChemicalPlant1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkChemicalPlant1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant1_1.Name = "chkChemicalPlant1_1";
+            this.chkChemicalPlant1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkChemicalPlant1_1.TabIndex = 10;
+            this.chkChemicalPlant1_1.Text = "Challenge 1";
+            this.chkChemicalPlant1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant2
+            // 
+            this.chkChemicalPlant2.AutoSize = true;
+            this.chkChemicalPlant2.Location = new System.Drawing.Point(152, 23);
+            this.chkChemicalPlant2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkChemicalPlant2.Name = "chkChemicalPlant2";
+            this.chkChemicalPlant2.Size = new System.Drawing.Size(130, 17);
+            this.chkChemicalPlant2.TabIndex = 9;
+            this.chkChemicalPlant2.Text = "Chemical Plant - Act 2";
+            this.chkChemicalPlant2.UseVisualStyleBackColor = true;
+            // 
+            // chkChemicalPlant1
+            // 
+            this.chkChemicalPlant1.AutoSize = true;
+            this.chkChemicalPlant1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkChemicalPlant1.Location = new System.Drawing.Point(10, 23);
+            this.chkChemicalPlant1.Name = "chkChemicalPlant1";
+            this.chkChemicalPlant1.Size = new System.Drawing.Size(268, 17);
+            this.chkChemicalPlant1.TabIndex = 8;
+            this.chkChemicalPlant1.Text = "Chemical Plant - Act 1";
+            this.chkChemicalPlant1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.chkGreenHill2_5);
+            this.groupBox9.Controls.Add(this.chkGreenHill2_4);
+            this.groupBox9.Controls.Add(this.chkGreenHill2_3);
+            this.groupBox9.Controls.Add(this.chkGreenHill2_2);
+            this.groupBox9.Controls.Add(this.chkGreenHill2_1);
+            this.groupBox9.Controls.Add(this.chkGreenHill1_5);
+            this.groupBox9.Controls.Add(this.chkGreenHill1_4);
+            this.groupBox9.Controls.Add(this.chkGreenHill1_3);
+            this.groupBox9.Controls.Add(this.chkGreenHill1_2);
+            this.groupBox9.Controls.Add(this.chkGreenHill1_1);
+            this.groupBox9.Controls.Add(this.chkGreenHill2);
+            this.groupBox9.Controls.Add(this.chkGreenHill1);
+            this.groupBox9.Location = new System.Drawing.Point(3, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox9.Size = new System.Drawing.Size(288, 132);
+            this.groupBox9.TabIndex = 3;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Green Hill";
+            // 
+            // chkGreenHill2_5
+            // 
+            this.chkGreenHill2_5.AutoSize = true;
+            this.chkGreenHill2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkGreenHill2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill2_5.Name = "chkGreenHill2_5";
+            this.chkGreenHill2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill2_5.TabIndex = 19;
+            this.chkGreenHill2_5.Text = "Challenge 5";
+            this.chkGreenHill2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill2_4
+            // 
+            this.chkGreenHill2_4.AutoSize = true;
+            this.chkGreenHill2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkGreenHill2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill2_4.Name = "chkGreenHill2_4";
+            this.chkGreenHill2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill2_4.TabIndex = 18;
+            this.chkGreenHill2_4.Text = "Challenge 4";
+            this.chkGreenHill2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill2_3
+            // 
+            this.chkGreenHill2_3.AutoSize = true;
+            this.chkGreenHill2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkGreenHill2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill2_3.Name = "chkGreenHill2_3";
+            this.chkGreenHill2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill2_3.TabIndex = 17;
+            this.chkGreenHill2_3.Text = "Challenge 3";
+            this.chkGreenHill2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill2_2
+            // 
+            this.chkGreenHill2_2.AutoSize = true;
+            this.chkGreenHill2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkGreenHill2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill2_2.Name = "chkGreenHill2_2";
+            this.chkGreenHill2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill2_2.TabIndex = 16;
+            this.chkGreenHill2_2.Text = "Challenge 2";
+            this.chkGreenHill2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill2_1
+            // 
+            this.chkGreenHill2_1.AutoSize = true;
+            this.chkGreenHill2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkGreenHill2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill2_1.Name = "chkGreenHill2_1";
+            this.chkGreenHill2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill2_1.TabIndex = 15;
+            this.chkGreenHill2_1.Text = "Challenge 1";
+            this.chkGreenHill2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill1_5
+            // 
+            this.chkGreenHill1_5.AutoSize = true;
+            this.chkGreenHill1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkGreenHill1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill1_5.Name = "chkGreenHill1_5";
+            this.chkGreenHill1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill1_5.TabIndex = 14;
+            this.chkGreenHill1_5.Text = "Challenge 5";
+            this.chkGreenHill1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill1_4
+            // 
+            this.chkGreenHill1_4.AutoSize = true;
+            this.chkGreenHill1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkGreenHill1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill1_4.Name = "chkGreenHill1_4";
+            this.chkGreenHill1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill1_4.TabIndex = 13;
+            this.chkGreenHill1_4.Text = "Challenge 4";
+            this.chkGreenHill1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill1_3
+            // 
+            this.chkGreenHill1_3.AutoSize = true;
+            this.chkGreenHill1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkGreenHill1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill1_3.Name = "chkGreenHill1_3";
+            this.chkGreenHill1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill1_3.TabIndex = 12;
+            this.chkGreenHill1_3.Text = "Challenge 3";
+            this.chkGreenHill1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill1_2
+            // 
+            this.chkGreenHill1_2.AutoSize = true;
+            this.chkGreenHill1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkGreenHill1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill1_2.Name = "chkGreenHill1_2";
+            this.chkGreenHill1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill1_2.TabIndex = 11;
+            this.chkGreenHill1_2.Text = "Challenge 2";
+            this.chkGreenHill1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill1_1
+            // 
+            this.chkGreenHill1_1.AutoSize = true;
+            this.chkGreenHill1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkGreenHill1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill1_1.Name = "chkGreenHill1_1";
+            this.chkGreenHill1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkGreenHill1_1.TabIndex = 10;
+            this.chkGreenHill1_1.Text = "Challenge 1";
+            this.chkGreenHill1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill2
+            // 
+            this.chkGreenHill2.AutoSize = true;
+            this.chkGreenHill2.Location = new System.Drawing.Point(152, 23);
+            this.chkGreenHill2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkGreenHill2.Name = "chkGreenHill2";
+            this.chkGreenHill2.Size = new System.Drawing.Size(106, 17);
+            this.chkGreenHill2.TabIndex = 9;
+            this.chkGreenHill2.Text = "Green Hill - Act 2";
+            this.chkGreenHill2.UseVisualStyleBackColor = true;
+            // 
+            // chkGreenHill1
+            // 
+            this.chkGreenHill1.AutoSize = true;
+            this.chkGreenHill1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkGreenHill1.Location = new System.Drawing.Point(10, 23);
+            this.chkGreenHill1.Name = "chkGreenHill1";
+            this.chkGreenHill1.Size = new System.Drawing.Size(268, 17);
+            this.chkGreenHill1.TabIndex = 8;
+            this.chkGreenHill1.Text = "Green Hill - Act 1";
+            this.chkGreenHill1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Controls.Add(this.AdventureButton);
+            this.tabPage1.Controls.Add(this.groupBox6);
+            this.tabPage1.Controls.Add(this.groupBox7);
+            this.tabPage1.Controls.Add(this.groupBox8);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(427, 409);
+            this.tabPage1.TabIndex = 5;
+            this.tabPage1.Text = "Sonic Generations (Adventure Era)";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.chkPerfectChaos);
+            this.groupBox5.Controls.Add(this.chkShadow);
+            this.groupBox5.Location = new System.Drawing.Point(297, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox5.Size = new System.Drawing.Size(126, 132);
+            this.groupBox5.TabIndex = 29;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Bosses";
+            // 
+            // chkPerfectChaos
+            // 
+            this.chkPerfectChaos.AutoSize = true;
+            this.chkPerfectChaos.Location = new System.Drawing.Point(10, 40);
+            this.chkPerfectChaos.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPerfectChaos.Name = "chkPerfectChaos";
+            this.chkPerfectChaos.Size = new System.Drawing.Size(93, 17);
+            this.chkPerfectChaos.TabIndex = 10;
+            this.chkPerfectChaos.Text = "Perfect Chaos";
+            this.chkPerfectChaos.UseVisualStyleBackColor = true;
+            // 
+            // chkShadow
+            // 
+            this.chkShadow.AutoSize = true;
+            this.chkShadow.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkShadow.Location = new System.Drawing.Point(10, 23);
+            this.chkShadow.Name = "chkShadow";
+            this.chkShadow.Size = new System.Drawing.Size(106, 17);
+            this.chkShadow.TabIndex = 8;
+            this.chkShadow.Text = "Shadow";
+            this.chkShadow.UseVisualStyleBackColor = true;
+            // 
+            // AdventureButton
+            // 
+            this.AdventureButton.Location = new System.Drawing.Point(317, 343);
+            this.AdventureButton.Name = "AdventureButton";
+            this.AdventureButton.Size = new System.Drawing.Size(93, 23);
+            this.AdventureButton.TabIndex = 26;
+            this.AdventureButton.Text = "Reset to Default";
+            this.AdventureButton.UseVisualStyleBackColor = true;
+            this.AdventureButton.Click += new System.EventHandler(this.AdventureButton_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.chkSeasideHill2_5);
+            this.groupBox6.Controls.Add(this.chkSeasideHill2_4);
+            this.groupBox6.Controls.Add(this.chkSeasideHill2_3);
+            this.groupBox6.Controls.Add(this.chkSeasideHill2_2);
+            this.groupBox6.Controls.Add(this.chkSeasideHill2_1);
+            this.groupBox6.Controls.Add(this.chkSeasideHill1_5);
+            this.groupBox6.Controls.Add(this.chkSeasideHill1_4);
+            this.groupBox6.Controls.Add(this.chkSeasideHill1_3);
+            this.groupBox6.Controls.Add(this.chkSeasideHill1_2);
+            this.groupBox6.Controls.Add(this.chkSeasideHill1_1);
+            this.groupBox6.Controls.Add(this.chkSeasideHill2);
+            this.groupBox6.Controls.Add(this.chkSeasideHill1);
+            this.groupBox6.Location = new System.Drawing.Point(3, 273);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox6.Size = new System.Drawing.Size(288, 132);
+            this.groupBox6.TabIndex = 28;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Seaside Hill";
+            // 
+            // chkSeasideHill2_5
+            // 
+            this.chkSeasideHill2_5.AutoSize = true;
+            this.chkSeasideHill2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkSeasideHill2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill2_5.Name = "chkSeasideHill2_5";
+            this.chkSeasideHill2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill2_5.TabIndex = 19;
+            this.chkSeasideHill2_5.Text = "Challenge 5";
+            this.chkSeasideHill2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill2_4
+            // 
+            this.chkSeasideHill2_4.AutoSize = true;
+            this.chkSeasideHill2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkSeasideHill2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill2_4.Name = "chkSeasideHill2_4";
+            this.chkSeasideHill2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill2_4.TabIndex = 18;
+            this.chkSeasideHill2_4.Text = "Challenge 4";
+            this.chkSeasideHill2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill2_3
+            // 
+            this.chkSeasideHill2_3.AutoSize = true;
+            this.chkSeasideHill2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkSeasideHill2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill2_3.Name = "chkSeasideHill2_3";
+            this.chkSeasideHill2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill2_3.TabIndex = 17;
+            this.chkSeasideHill2_3.Text = "Challenge 3";
+            this.chkSeasideHill2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill2_2
+            // 
+            this.chkSeasideHill2_2.AutoSize = true;
+            this.chkSeasideHill2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkSeasideHill2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill2_2.Name = "chkSeasideHill2_2";
+            this.chkSeasideHill2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill2_2.TabIndex = 16;
+            this.chkSeasideHill2_2.Text = "Challenge 2";
+            this.chkSeasideHill2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill2_1
+            // 
+            this.chkSeasideHill2_1.AutoSize = true;
+            this.chkSeasideHill2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkSeasideHill2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill2_1.Name = "chkSeasideHill2_1";
+            this.chkSeasideHill2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill2_1.TabIndex = 15;
+            this.chkSeasideHill2_1.Text = "Challenge 1";
+            this.chkSeasideHill2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill1_5
+            // 
+            this.chkSeasideHill1_5.AutoSize = true;
+            this.chkSeasideHill1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkSeasideHill1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill1_5.Name = "chkSeasideHill1_5";
+            this.chkSeasideHill1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill1_5.TabIndex = 14;
+            this.chkSeasideHill1_5.Text = "Challenge 5";
+            this.chkSeasideHill1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill1_4
+            // 
+            this.chkSeasideHill1_4.AutoSize = true;
+            this.chkSeasideHill1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkSeasideHill1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill1_4.Name = "chkSeasideHill1_4";
+            this.chkSeasideHill1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill1_4.TabIndex = 13;
+            this.chkSeasideHill1_4.Text = "Challenge 4";
+            this.chkSeasideHill1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill1_3
+            // 
+            this.chkSeasideHill1_3.AutoSize = true;
+            this.chkSeasideHill1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkSeasideHill1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill1_3.Name = "chkSeasideHill1_3";
+            this.chkSeasideHill1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill1_3.TabIndex = 12;
+            this.chkSeasideHill1_3.Text = "Challenge 3";
+            this.chkSeasideHill1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill1_2
+            // 
+            this.chkSeasideHill1_2.AutoSize = true;
+            this.chkSeasideHill1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkSeasideHill1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill1_2.Name = "chkSeasideHill1_2";
+            this.chkSeasideHill1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill1_2.TabIndex = 11;
+            this.chkSeasideHill1_2.Text = "Challenge 2";
+            this.chkSeasideHill1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill1_1
+            // 
+            this.chkSeasideHill1_1.AutoSize = true;
+            this.chkSeasideHill1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkSeasideHill1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill1_1.Name = "chkSeasideHill1_1";
+            this.chkSeasideHill1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkSeasideHill1_1.TabIndex = 10;
+            this.chkSeasideHill1_1.Text = "Challenge 1";
+            this.chkSeasideHill1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill2
+            // 
+            this.chkSeasideHill2.AutoSize = true;
+            this.chkSeasideHill2.Location = new System.Drawing.Point(152, 23);
+            this.chkSeasideHill2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSeasideHill2.Name = "chkSeasideHill2";
+            this.chkSeasideHill2.Size = new System.Drawing.Size(115, 17);
+            this.chkSeasideHill2.TabIndex = 9;
+            this.chkSeasideHill2.Text = "Seaside Hill - Act 2";
+            this.chkSeasideHill2.UseVisualStyleBackColor = true;
+            // 
+            // chkSeasideHill1
+            // 
+            this.chkSeasideHill1.AutoSize = true;
+            this.chkSeasideHill1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkSeasideHill1.Location = new System.Drawing.Point(10, 23);
+            this.chkSeasideHill1.Name = "chkSeasideHill1";
+            this.chkSeasideHill1.Size = new System.Drawing.Size(268, 17);
+            this.chkSeasideHill1.TabIndex = 8;
+            this.chkSeasideHill1.Text = "Seaside Hill - Act 1";
+            this.chkSeasideHill1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.chkCityEscape2_5);
+            this.groupBox7.Controls.Add(this.chkCityEscape2_4);
+            this.groupBox7.Controls.Add(this.chkCityEscape2_3);
+            this.groupBox7.Controls.Add(this.chkCityEscape2_2);
+            this.groupBox7.Controls.Add(this.chkCityEscape2_1);
+            this.groupBox7.Controls.Add(this.chkCityEscape1_5);
+            this.groupBox7.Controls.Add(this.chkCityEscape1_4);
+            this.groupBox7.Controls.Add(this.chkCityEscape1_3);
+            this.groupBox7.Controls.Add(this.chkCityEscape1_2);
+            this.groupBox7.Controls.Add(this.chkCityEscape1_1);
+            this.groupBox7.Controls.Add(this.chkCityEscape2);
+            this.groupBox7.Controls.Add(this.chkCityEscape1);
+            this.groupBox7.Location = new System.Drawing.Point(3, 138);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox7.Size = new System.Drawing.Size(288, 132);
+            this.groupBox7.TabIndex = 27;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "City Escape";
+            // 
+            // chkCityEscape2_5
+            // 
+            this.chkCityEscape2_5.AutoSize = true;
+            this.chkCityEscape2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkCityEscape2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape2_5.Name = "chkCityEscape2_5";
+            this.chkCityEscape2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape2_5.TabIndex = 19;
+            this.chkCityEscape2_5.Text = "Challenge 5";
+            this.chkCityEscape2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape2_4
+            // 
+            this.chkCityEscape2_4.AutoSize = true;
+            this.chkCityEscape2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkCityEscape2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape2_4.Name = "chkCityEscape2_4";
+            this.chkCityEscape2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape2_4.TabIndex = 18;
+            this.chkCityEscape2_4.Text = "Challenge 4";
+            this.chkCityEscape2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape2_3
+            // 
+            this.chkCityEscape2_3.AutoSize = true;
+            this.chkCityEscape2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkCityEscape2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape2_3.Name = "chkCityEscape2_3";
+            this.chkCityEscape2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape2_3.TabIndex = 17;
+            this.chkCityEscape2_3.Text = "Challenge 3";
+            this.chkCityEscape2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape2_2
+            // 
+            this.chkCityEscape2_2.AutoSize = true;
+            this.chkCityEscape2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkCityEscape2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape2_2.Name = "chkCityEscape2_2";
+            this.chkCityEscape2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape2_2.TabIndex = 16;
+            this.chkCityEscape2_2.Text = "Challenge 2";
+            this.chkCityEscape2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape2_1
+            // 
+            this.chkCityEscape2_1.AutoSize = true;
+            this.chkCityEscape2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkCityEscape2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape2_1.Name = "chkCityEscape2_1";
+            this.chkCityEscape2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape2_1.TabIndex = 15;
+            this.chkCityEscape2_1.Text = "Challenge 1";
+            this.chkCityEscape2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape1_5
+            // 
+            this.chkCityEscape1_5.AutoSize = true;
+            this.chkCityEscape1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkCityEscape1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape1_5.Name = "chkCityEscape1_5";
+            this.chkCityEscape1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape1_5.TabIndex = 14;
+            this.chkCityEscape1_5.Text = "Challenge 5";
+            this.chkCityEscape1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape1_4
+            // 
+            this.chkCityEscape1_4.AutoSize = true;
+            this.chkCityEscape1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkCityEscape1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape1_4.Name = "chkCityEscape1_4";
+            this.chkCityEscape1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape1_4.TabIndex = 13;
+            this.chkCityEscape1_4.Text = "Challenge 4";
+            this.chkCityEscape1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape1_3
+            // 
+            this.chkCityEscape1_3.AutoSize = true;
+            this.chkCityEscape1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkCityEscape1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape1_3.Name = "chkCityEscape1_3";
+            this.chkCityEscape1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape1_3.TabIndex = 12;
+            this.chkCityEscape1_3.Text = "Challenge 3";
+            this.chkCityEscape1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape1_2
+            // 
+            this.chkCityEscape1_2.AutoSize = true;
+            this.chkCityEscape1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkCityEscape1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape1_2.Name = "chkCityEscape1_2";
+            this.chkCityEscape1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape1_2.TabIndex = 11;
+            this.chkCityEscape1_2.Text = "Challenge 2";
+            this.chkCityEscape1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape1_1
+            // 
+            this.chkCityEscape1_1.AutoSize = true;
+            this.chkCityEscape1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkCityEscape1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape1_1.Name = "chkCityEscape1_1";
+            this.chkCityEscape1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkCityEscape1_1.TabIndex = 10;
+            this.chkCityEscape1_1.Text = "Challenge 1";
+            this.chkCityEscape1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape2
+            // 
+            this.chkCityEscape2.AutoSize = true;
+            this.chkCityEscape2.Location = new System.Drawing.Point(152, 23);
+            this.chkCityEscape2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCityEscape2.Name = "chkCityEscape2";
+            this.chkCityEscape2.Size = new System.Drawing.Size(116, 17);
+            this.chkCityEscape2.TabIndex = 9;
+            this.chkCityEscape2.Text = "City Escape - Act 2";
+            this.chkCityEscape2.UseVisualStyleBackColor = true;
+            // 
+            // chkCityEscape1
+            // 
+            this.chkCityEscape1.AutoSize = true;
+            this.chkCityEscape1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkCityEscape1.Location = new System.Drawing.Point(10, 23);
+            this.chkCityEscape1.Name = "chkCityEscape1";
+            this.chkCityEscape1.Size = new System.Drawing.Size(268, 17);
+            this.chkCityEscape1.TabIndex = 8;
+            this.chkCityEscape1.Text = "City Escape - Act 1";
+            this.chkCityEscape1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.chkSpeedHighway2_5);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway2_4);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway2_3);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway2_2);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway2_1);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway1_5);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway1_4);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway1_3);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway1_2);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway1_1);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway2);
+            this.groupBox8.Controls.Add(this.chkSpeedHighway1);
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox8.Size = new System.Drawing.Size(288, 132);
+            this.groupBox8.TabIndex = 25;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Speed Highway";
+            // 
+            // chkSpeedHighway2_5
+            // 
+            this.chkSpeedHighway2_5.AutoSize = true;
+            this.chkSpeedHighway2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkSpeedHighway2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway2_5.Name = "chkSpeedHighway2_5";
+            this.chkSpeedHighway2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway2_5.TabIndex = 19;
+            this.chkSpeedHighway2_5.Text = "Challenge 5";
+            this.chkSpeedHighway2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway2_4
+            // 
+            this.chkSpeedHighway2_4.AutoSize = true;
+            this.chkSpeedHighway2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkSpeedHighway2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway2_4.Name = "chkSpeedHighway2_4";
+            this.chkSpeedHighway2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway2_4.TabIndex = 18;
+            this.chkSpeedHighway2_4.Text = "Challenge 4";
+            this.chkSpeedHighway2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway2_3
+            // 
+            this.chkSpeedHighway2_3.AutoSize = true;
+            this.chkSpeedHighway2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkSpeedHighway2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway2_3.Name = "chkSpeedHighway2_3";
+            this.chkSpeedHighway2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway2_3.TabIndex = 17;
+            this.chkSpeedHighway2_3.Text = "Challenge 3";
+            this.chkSpeedHighway2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway2_2
+            // 
+            this.chkSpeedHighway2_2.AutoSize = true;
+            this.chkSpeedHighway2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkSpeedHighway2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway2_2.Name = "chkSpeedHighway2_2";
+            this.chkSpeedHighway2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway2_2.TabIndex = 16;
+            this.chkSpeedHighway2_2.Text = "Challenge 2";
+            this.chkSpeedHighway2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway2_1
+            // 
+            this.chkSpeedHighway2_1.AutoSize = true;
+            this.chkSpeedHighway2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkSpeedHighway2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway2_1.Name = "chkSpeedHighway2_1";
+            this.chkSpeedHighway2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway2_1.TabIndex = 15;
+            this.chkSpeedHighway2_1.Text = "Challenge 1";
+            this.chkSpeedHighway2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway1_5
+            // 
+            this.chkSpeedHighway1_5.AutoSize = true;
+            this.chkSpeedHighway1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkSpeedHighway1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway1_5.Name = "chkSpeedHighway1_5";
+            this.chkSpeedHighway1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway1_5.TabIndex = 14;
+            this.chkSpeedHighway1_5.Text = "Challenge 5";
+            this.chkSpeedHighway1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway1_4
+            // 
+            this.chkSpeedHighway1_4.AutoSize = true;
+            this.chkSpeedHighway1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkSpeedHighway1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway1_4.Name = "chkSpeedHighway1_4";
+            this.chkSpeedHighway1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway1_4.TabIndex = 13;
+            this.chkSpeedHighway1_4.Text = "Challenge 4";
+            this.chkSpeedHighway1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway1_3
+            // 
+            this.chkSpeedHighway1_3.AutoSize = true;
+            this.chkSpeedHighway1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkSpeedHighway1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway1_3.Name = "chkSpeedHighway1_3";
+            this.chkSpeedHighway1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway1_3.TabIndex = 12;
+            this.chkSpeedHighway1_3.Text = "Challenge 3";
+            this.chkSpeedHighway1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway1_2
+            // 
+            this.chkSpeedHighway1_2.AutoSize = true;
+            this.chkSpeedHighway1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkSpeedHighway1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway1_2.Name = "chkSpeedHighway1_2";
+            this.chkSpeedHighway1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway1_2.TabIndex = 11;
+            this.chkSpeedHighway1_2.Text = "Challenge 2";
+            this.chkSpeedHighway1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway1_1
+            // 
+            this.chkSpeedHighway1_1.AutoSize = true;
+            this.chkSpeedHighway1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkSpeedHighway1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway1_1.Name = "chkSpeedHighway1_1";
+            this.chkSpeedHighway1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkSpeedHighway1_1.TabIndex = 10;
+            this.chkSpeedHighway1_1.Text = "Challenge 1";
+            this.chkSpeedHighway1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway2
+            // 
+            this.chkSpeedHighway2.AutoSize = true;
+            this.chkSpeedHighway2.Location = new System.Drawing.Point(152, 23);
+            this.chkSpeedHighway2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSpeedHighway2.Name = "chkSpeedHighway2";
+            this.chkSpeedHighway2.Size = new System.Drawing.Size(135, 17);
+            this.chkSpeedHighway2.TabIndex = 9;
+            this.chkSpeedHighway2.Text = "Speed Highway - Act 2";
+            this.chkSpeedHighway2.UseVisualStyleBackColor = true;
+            // 
+            // chkSpeedHighway1
+            // 
+            this.chkSpeedHighway1.AutoSize = true;
+            this.chkSpeedHighway1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkSpeedHighway1.Location = new System.Drawing.Point(10, 23);
+            this.chkSpeedHighway1.Name = "chkSpeedHighway1";
+            this.chkSpeedHighway1.Size = new System.Drawing.Size(268, 17);
+            this.chkSpeedHighway1.TabIndex = 8;
+            this.chkSpeedHighway1.Text = "Speed Highway - Act 1";
+            this.chkSpeedHighway1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox10);
+            this.tabPage2.Controls.Add(this.ModernButton);
+            this.tabPage2.Controls.Add(this.groupBox11);
+            this.tabPage2.Controls.Add(this.groupBox12);
+            this.tabPage2.Controls.Add(this.groupBox13);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(427, 409);
+            this.tabPage2.TabIndex = 6;
+            this.tabPage2.Text = "Sonic Generations (Modern Era)";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.chkTimeEater);
+            this.groupBox10.Controls.Add(this.chkEggDragoon);
+            this.groupBox10.Controls.Add(this.chkSilver);
+            this.groupBox10.Location = new System.Drawing.Point(297, 3);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox10.Size = new System.Drawing.Size(126, 132);
+            this.groupBox10.TabIndex = 34;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Bosses";
+            // 
+            // chkTimeEater
+            // 
+            this.chkTimeEater.AutoSize = true;
+            this.chkTimeEater.Location = new System.Drawing.Point(10, 74);
+            this.chkTimeEater.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkTimeEater.Name = "chkTimeEater";
+            this.chkTimeEater.Size = new System.Drawing.Size(77, 17);
+            this.chkTimeEater.TabIndex = 11;
+            this.chkTimeEater.Text = "Time Eater";
+            this.chkTimeEater.UseVisualStyleBackColor = true;
+            // 
+            // chkEggDragoon
+            // 
+            this.chkEggDragoon.AutoSize = true;
+            this.chkEggDragoon.Location = new System.Drawing.Point(10, 40);
+            this.chkEggDragoon.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkEggDragoon.Name = "chkEggDragoon";
+            this.chkEggDragoon.Size = new System.Drawing.Size(89, 17);
+            this.chkEggDragoon.TabIndex = 10;
+            this.chkEggDragoon.Text = "Egg Dragoon";
+            this.chkEggDragoon.UseVisualStyleBackColor = true;
+            // 
+            // chkSilver
+            // 
+            this.chkSilver.AutoSize = true;
+            this.chkSilver.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkSilver.Location = new System.Drawing.Point(10, 23);
+            this.chkSilver.Name = "chkSilver";
+            this.chkSilver.Size = new System.Drawing.Size(106, 17);
+            this.chkSilver.TabIndex = 8;
+            this.chkSilver.Text = "Silver";
+            this.chkSilver.UseVisualStyleBackColor = true;
+            // 
+            // ModernButton
+            // 
+            this.ModernButton.Location = new System.Drawing.Point(317, 343);
+            this.ModernButton.Name = "ModernButton";
+            this.ModernButton.Size = new System.Drawing.Size(93, 23);
+            this.ModernButton.TabIndex = 31;
+            this.ModernButton.Text = "Reset to Default";
+            this.ModernButton.UseVisualStyleBackColor = true;
+            this.ModernButton.Click += new System.EventHandler(this.ModernButton_Click);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.chkPlanetWisp2_5);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp2_4);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp2_3);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp2_2);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp2_1);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp1_5);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp1_4);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp1_3);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp1_2);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp1_1);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp2);
+            this.groupBox11.Controls.Add(this.chkPlanetWisp1);
+            this.groupBox11.Location = new System.Drawing.Point(3, 273);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox11.Size = new System.Drawing.Size(288, 132);
+            this.groupBox11.TabIndex = 33;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Planet Wisp";
+            // 
+            // chkPlanetWisp2_5
+            // 
+            this.chkPlanetWisp2_5.AutoSize = true;
+            this.chkPlanetWisp2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkPlanetWisp2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp2_5.Name = "chkPlanetWisp2_5";
+            this.chkPlanetWisp2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp2_5.TabIndex = 19;
+            this.chkPlanetWisp2_5.Text = "Challenge 5";
+            this.chkPlanetWisp2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp2_4
+            // 
+            this.chkPlanetWisp2_4.AutoSize = true;
+            this.chkPlanetWisp2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkPlanetWisp2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp2_4.Name = "chkPlanetWisp2_4";
+            this.chkPlanetWisp2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp2_4.TabIndex = 18;
+            this.chkPlanetWisp2_4.Text = "Challenge 4";
+            this.chkPlanetWisp2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp2_3
+            // 
+            this.chkPlanetWisp2_3.AutoSize = true;
+            this.chkPlanetWisp2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkPlanetWisp2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp2_3.Name = "chkPlanetWisp2_3";
+            this.chkPlanetWisp2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp2_3.TabIndex = 17;
+            this.chkPlanetWisp2_3.Text = "Challenge 3";
+            this.chkPlanetWisp2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp2_2
+            // 
+            this.chkPlanetWisp2_2.AutoSize = true;
+            this.chkPlanetWisp2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkPlanetWisp2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp2_2.Name = "chkPlanetWisp2_2";
+            this.chkPlanetWisp2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp2_2.TabIndex = 16;
+            this.chkPlanetWisp2_2.Text = "Challenge 2";
+            this.chkPlanetWisp2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp2_1
+            // 
+            this.chkPlanetWisp2_1.AutoSize = true;
+            this.chkPlanetWisp2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkPlanetWisp2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp2_1.Name = "chkPlanetWisp2_1";
+            this.chkPlanetWisp2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp2_1.TabIndex = 15;
+            this.chkPlanetWisp2_1.Text = "Challenge 1";
+            this.chkPlanetWisp2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp1_5
+            // 
+            this.chkPlanetWisp1_5.AutoSize = true;
+            this.chkPlanetWisp1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkPlanetWisp1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp1_5.Name = "chkPlanetWisp1_5";
+            this.chkPlanetWisp1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp1_5.TabIndex = 14;
+            this.chkPlanetWisp1_5.Text = "Challenge 5";
+            this.chkPlanetWisp1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp1_4
+            // 
+            this.chkPlanetWisp1_4.AutoSize = true;
+            this.chkPlanetWisp1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkPlanetWisp1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp1_4.Name = "chkPlanetWisp1_4";
+            this.chkPlanetWisp1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp1_4.TabIndex = 13;
+            this.chkPlanetWisp1_4.Text = "Challenge 4";
+            this.chkPlanetWisp1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp1_3
+            // 
+            this.chkPlanetWisp1_3.AutoSize = true;
+            this.chkPlanetWisp1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkPlanetWisp1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp1_3.Name = "chkPlanetWisp1_3";
+            this.chkPlanetWisp1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp1_3.TabIndex = 12;
+            this.chkPlanetWisp1_3.Text = "Challenge 3";
+            this.chkPlanetWisp1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp1_2
+            // 
+            this.chkPlanetWisp1_2.AutoSize = true;
+            this.chkPlanetWisp1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkPlanetWisp1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp1_2.Name = "chkPlanetWisp1_2";
+            this.chkPlanetWisp1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp1_2.TabIndex = 11;
+            this.chkPlanetWisp1_2.Text = "Challenge 2";
+            this.chkPlanetWisp1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp1_1
+            // 
+            this.chkPlanetWisp1_1.AutoSize = true;
+            this.chkPlanetWisp1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkPlanetWisp1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp1_1.Name = "chkPlanetWisp1_1";
+            this.chkPlanetWisp1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkPlanetWisp1_1.TabIndex = 10;
+            this.chkPlanetWisp1_1.Text = "Challenge 1";
+            this.chkPlanetWisp1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp2
+            // 
+            this.chkPlanetWisp2.AutoSize = true;
+            this.chkPlanetWisp2.Location = new System.Drawing.Point(152, 23);
+            this.chkPlanetWisp2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkPlanetWisp2.Name = "chkPlanetWisp2";
+            this.chkPlanetWisp2.Size = new System.Drawing.Size(117, 17);
+            this.chkPlanetWisp2.TabIndex = 9;
+            this.chkPlanetWisp2.Text = "Planet Wisp - Act 2";
+            this.chkPlanetWisp2.UseVisualStyleBackColor = true;
+            // 
+            // chkPlanetWisp1
+            // 
+            this.chkPlanetWisp1.AutoSize = true;
+            this.chkPlanetWisp1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkPlanetWisp1.Location = new System.Drawing.Point(10, 23);
+            this.chkPlanetWisp1.Name = "chkPlanetWisp1";
+            this.chkPlanetWisp1.Size = new System.Drawing.Size(268, 17);
+            this.chkPlanetWisp1.TabIndex = 8;
+            this.chkPlanetWisp1.Text = "Planet Wisp - Act 1";
+            this.chkPlanetWisp1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.chkRooftopRun2_5);
+            this.groupBox12.Controls.Add(this.chkRooftopRun2_4);
+            this.groupBox12.Controls.Add(this.chkRooftopRun2_3);
+            this.groupBox12.Controls.Add(this.chkRooftopRun2_2);
+            this.groupBox12.Controls.Add(this.chkRooftopRun2_1);
+            this.groupBox12.Controls.Add(this.chkRooftopRun1_5);
+            this.groupBox12.Controls.Add(this.chkRooftopRun1_4);
+            this.groupBox12.Controls.Add(this.chkRooftopRun1_3);
+            this.groupBox12.Controls.Add(this.chkRooftopRun1_2);
+            this.groupBox12.Controls.Add(this.chkRooftopRun1_1);
+            this.groupBox12.Controls.Add(this.chkRooftopRun2);
+            this.groupBox12.Controls.Add(this.chkRooftopRun1);
+            this.groupBox12.Location = new System.Drawing.Point(3, 138);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox12.Size = new System.Drawing.Size(288, 132);
+            this.groupBox12.TabIndex = 32;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Rooftop Run";
+            // 
+            // chkRooftopRun2_5
+            // 
+            this.chkRooftopRun2_5.AutoSize = true;
+            this.chkRooftopRun2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkRooftopRun2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun2_5.Name = "chkRooftopRun2_5";
+            this.chkRooftopRun2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun2_5.TabIndex = 19;
+            this.chkRooftopRun2_5.Text = "Challenge 5";
+            this.chkRooftopRun2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun2_4
+            // 
+            this.chkRooftopRun2_4.AutoSize = true;
+            this.chkRooftopRun2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkRooftopRun2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun2_4.Name = "chkRooftopRun2_4";
+            this.chkRooftopRun2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun2_4.TabIndex = 18;
+            this.chkRooftopRun2_4.Text = "Challenge 4";
+            this.chkRooftopRun2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun2_3
+            // 
+            this.chkRooftopRun2_3.AutoSize = true;
+            this.chkRooftopRun2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkRooftopRun2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun2_3.Name = "chkRooftopRun2_3";
+            this.chkRooftopRun2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun2_3.TabIndex = 17;
+            this.chkRooftopRun2_3.Text = "Challenge 3";
+            this.chkRooftopRun2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun2_2
+            // 
+            this.chkRooftopRun2_2.AutoSize = true;
+            this.chkRooftopRun2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkRooftopRun2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun2_2.Name = "chkRooftopRun2_2";
+            this.chkRooftopRun2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun2_2.TabIndex = 16;
+            this.chkRooftopRun2_2.Text = "Challenge 2";
+            this.chkRooftopRun2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun2_1
+            // 
+            this.chkRooftopRun2_1.AutoSize = true;
+            this.chkRooftopRun2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkRooftopRun2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun2_1.Name = "chkRooftopRun2_1";
+            this.chkRooftopRun2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun2_1.TabIndex = 15;
+            this.chkRooftopRun2_1.Text = "Challenge 1";
+            this.chkRooftopRun2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun1_5
+            // 
+            this.chkRooftopRun1_5.AutoSize = true;
+            this.chkRooftopRun1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkRooftopRun1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun1_5.Name = "chkRooftopRun1_5";
+            this.chkRooftopRun1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun1_5.TabIndex = 14;
+            this.chkRooftopRun1_5.Text = "Challenge 5";
+            this.chkRooftopRun1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun1_4
+            // 
+            this.chkRooftopRun1_4.AutoSize = true;
+            this.chkRooftopRun1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkRooftopRun1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun1_4.Name = "chkRooftopRun1_4";
+            this.chkRooftopRun1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun1_4.TabIndex = 13;
+            this.chkRooftopRun1_4.Text = "Challenge 4";
+            this.chkRooftopRun1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun1_3
+            // 
+            this.chkRooftopRun1_3.AutoSize = true;
+            this.chkRooftopRun1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkRooftopRun1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun1_3.Name = "chkRooftopRun1_3";
+            this.chkRooftopRun1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun1_3.TabIndex = 12;
+            this.chkRooftopRun1_3.Text = "Challenge 3";
+            this.chkRooftopRun1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun1_2
+            // 
+            this.chkRooftopRun1_2.AutoSize = true;
+            this.chkRooftopRun1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkRooftopRun1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun1_2.Name = "chkRooftopRun1_2";
+            this.chkRooftopRun1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun1_2.TabIndex = 11;
+            this.chkRooftopRun1_2.Text = "Challenge 2";
+            this.chkRooftopRun1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun1_1
+            // 
+            this.chkRooftopRun1_1.AutoSize = true;
+            this.chkRooftopRun1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkRooftopRun1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun1_1.Name = "chkRooftopRun1_1";
+            this.chkRooftopRun1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkRooftopRun1_1.TabIndex = 10;
+            this.chkRooftopRun1_1.Text = "Challenge 1";
+            this.chkRooftopRun1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun2
+            // 
+            this.chkRooftopRun2.AutoSize = true;
+            this.chkRooftopRun2.Location = new System.Drawing.Point(152, 23);
+            this.chkRooftopRun2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkRooftopRun2.Name = "chkRooftopRun2";
+            this.chkRooftopRun2.Size = new System.Drawing.Size(121, 17);
+            this.chkRooftopRun2.TabIndex = 9;
+            this.chkRooftopRun2.Text = "Rooftop Run - Act 2";
+            this.chkRooftopRun2.UseVisualStyleBackColor = true;
+            // 
+            // chkRooftopRun1
+            // 
+            this.chkRooftopRun1.AutoSize = true;
+            this.chkRooftopRun1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkRooftopRun1.Location = new System.Drawing.Point(10, 23);
+            this.chkRooftopRun1.Name = "chkRooftopRun1";
+            this.chkRooftopRun1.Size = new System.Drawing.Size(268, 17);
+            this.chkRooftopRun1.TabIndex = 8;
+            this.chkRooftopRun1.Text = "Rooftop Run - Act 1";
+            this.chkRooftopRun1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.chkCrisisCity2_5);
+            this.groupBox13.Controls.Add(this.chkCrisisCity2_4);
+            this.groupBox13.Controls.Add(this.chkCrisisCity2_3);
+            this.groupBox13.Controls.Add(this.chkCrisisCity2_2);
+            this.groupBox13.Controls.Add(this.chkCrisisCity2_1);
+            this.groupBox13.Controls.Add(this.chkCrisisCity1_5);
+            this.groupBox13.Controls.Add(this.chkCrisisCity1_4);
+            this.groupBox13.Controls.Add(this.chkCrisisCity1_3);
+            this.groupBox13.Controls.Add(this.chkCrisisCity1_2);
+            this.groupBox13.Controls.Add(this.chkCrisisCity1_1);
+            this.groupBox13.Controls.Add(this.chkCrisisCity2);
+            this.groupBox13.Controls.Add(this.chkCrisisCity1);
+            this.groupBox13.Location = new System.Drawing.Point(3, 3);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox13.Size = new System.Drawing.Size(288, 132);
+            this.groupBox13.TabIndex = 30;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Crisis City";
+            // 
+            // chkCrisisCity2_5
+            // 
+            this.chkCrisisCity2_5.AutoSize = true;
+            this.chkCrisisCity2_5.Location = new System.Drawing.Point(152, 108);
+            this.chkCrisisCity2_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity2_5.Name = "chkCrisisCity2_5";
+            this.chkCrisisCity2_5.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity2_5.TabIndex = 19;
+            this.chkCrisisCity2_5.Text = "Challenge 5";
+            this.chkCrisisCity2_5.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity2_4
+            // 
+            this.chkCrisisCity2_4.AutoSize = true;
+            this.chkCrisisCity2_4.Location = new System.Drawing.Point(152, 91);
+            this.chkCrisisCity2_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity2_4.Name = "chkCrisisCity2_4";
+            this.chkCrisisCity2_4.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity2_4.TabIndex = 18;
+            this.chkCrisisCity2_4.Text = "Challenge 4";
+            this.chkCrisisCity2_4.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity2_3
+            // 
+            this.chkCrisisCity2_3.AutoSize = true;
+            this.chkCrisisCity2_3.Location = new System.Drawing.Point(152, 74);
+            this.chkCrisisCity2_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity2_3.Name = "chkCrisisCity2_3";
+            this.chkCrisisCity2_3.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity2_3.TabIndex = 17;
+            this.chkCrisisCity2_3.Text = "Challenge 3";
+            this.chkCrisisCity2_3.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity2_2
+            // 
+            this.chkCrisisCity2_2.AutoSize = true;
+            this.chkCrisisCity2_2.Location = new System.Drawing.Point(152, 57);
+            this.chkCrisisCity2_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity2_2.Name = "chkCrisisCity2_2";
+            this.chkCrisisCity2_2.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity2_2.TabIndex = 16;
+            this.chkCrisisCity2_2.Text = "Challenge 2";
+            this.chkCrisisCity2_2.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity2_1
+            // 
+            this.chkCrisisCity2_1.AutoSize = true;
+            this.chkCrisisCity2_1.Location = new System.Drawing.Point(152, 40);
+            this.chkCrisisCity2_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity2_1.Name = "chkCrisisCity2_1";
+            this.chkCrisisCity2_1.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity2_1.TabIndex = 15;
+            this.chkCrisisCity2_1.Text = "Challenge 1";
+            this.chkCrisisCity2_1.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity1_5
+            // 
+            this.chkCrisisCity1_5.AutoSize = true;
+            this.chkCrisisCity1_5.Location = new System.Drawing.Point(10, 108);
+            this.chkCrisisCity1_5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity1_5.Name = "chkCrisisCity1_5";
+            this.chkCrisisCity1_5.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity1_5.TabIndex = 14;
+            this.chkCrisisCity1_5.Text = "Challenge 5";
+            this.chkCrisisCity1_5.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity1_4
+            // 
+            this.chkCrisisCity1_4.AutoSize = true;
+            this.chkCrisisCity1_4.Location = new System.Drawing.Point(10, 91);
+            this.chkCrisisCity1_4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity1_4.Name = "chkCrisisCity1_4";
+            this.chkCrisisCity1_4.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity1_4.TabIndex = 13;
+            this.chkCrisisCity1_4.Text = "Challenge 4";
+            this.chkCrisisCity1_4.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity1_3
+            // 
+            this.chkCrisisCity1_3.AutoSize = true;
+            this.chkCrisisCity1_3.Location = new System.Drawing.Point(10, 74);
+            this.chkCrisisCity1_3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity1_3.Name = "chkCrisisCity1_3";
+            this.chkCrisisCity1_3.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity1_3.TabIndex = 12;
+            this.chkCrisisCity1_3.Text = "Challenge 3";
+            this.chkCrisisCity1_3.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity1_2
+            // 
+            this.chkCrisisCity1_2.AutoSize = true;
+            this.chkCrisisCity1_2.Location = new System.Drawing.Point(10, 57);
+            this.chkCrisisCity1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity1_2.Name = "chkCrisisCity1_2";
+            this.chkCrisisCity1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity1_2.TabIndex = 11;
+            this.chkCrisisCity1_2.Text = "Challenge 2";
+            this.chkCrisisCity1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity1_1
+            // 
+            this.chkCrisisCity1_1.AutoSize = true;
+            this.chkCrisisCity1_1.Location = new System.Drawing.Point(10, 40);
+            this.chkCrisisCity1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity1_1.Name = "chkCrisisCity1_1";
+            this.chkCrisisCity1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkCrisisCity1_1.TabIndex = 10;
+            this.chkCrisisCity1_1.Text = "Challenge 1";
+            this.chkCrisisCity1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity2
+            // 
+            this.chkCrisisCity2.AutoSize = true;
+            this.chkCrisisCity2.Location = new System.Drawing.Point(152, 23);
+            this.chkCrisisCity2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkCrisisCity2.Name = "chkCrisisCity2";
+            this.chkCrisisCity2.Size = new System.Drawing.Size(104, 17);
+            this.chkCrisisCity2.TabIndex = 9;
+            this.chkCrisisCity2.Text = "Crisis City - Act 2";
+            this.chkCrisisCity2.UseVisualStyleBackColor = true;
+            // 
+            // chkCrisisCity1
+            // 
+            this.chkCrisisCity1.AutoSize = true;
+            this.chkCrisisCity1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkCrisisCity1.Location = new System.Drawing.Point(10, 23);
+            this.chkCrisisCity1.Name = "chkCrisisCity1";
+            this.chkCrisisCity1.Size = new System.Drawing.Size(268, 17);
+            this.chkCrisisCity1.TabIndex = 8;
+            this.chkCrisisCity1.Text = "Crisis City - Act 1";
+            this.chkCrisisCity1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.groupBox24);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(427, 409);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Shadow Generations";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox24
+            // 
+            this.groupBox24.AutoSize = true;
+            this.groupBox24.Controls.Add(this.chkShadowLoadless);
+            this.groupBox24.Location = new System.Drawing.Point(3, 3);
+            this.groupBox24.Name = "groupBox24";
+            this.groupBox24.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox24.Size = new System.Drawing.Size(421, 169);
+            this.groupBox24.TabIndex = 6;
+            this.groupBox24.TabStop = false;
+            this.groupBox24.Text = "Story progression";
+            // 
+            // chkShadowLoadless
+            // 
+            this.chkShadowLoadless.AutoSize = true;
+            this.chkShadowLoadless.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkShadowLoadless.Location = new System.Drawing.Point(10, 23);
+            this.chkShadowLoadless.Name = "chkShadowLoadless";
+            this.chkShadowLoadless.Size = new System.Drawing.Size(401, 17);
+            this.chkShadowLoadless.TabIndex = 3;
+            this.chkShadowLoadless.Text = "Enable loadless timing";
+            this.chkShadowLoadless.UseVisualStyleBackColor = true;
             // 
             // autosplitterVersion
             // 
@@ -209,30 +1833,6 @@
             this.autosplitterVersion.TabIndex = 5;
             this.autosplitterVersion.Text = "Autosplitter version: vX.X.X";
             this.autosplitterVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // chkFocus
-            // 
-            this.chkFocus.AutoSize = true;
-            this.chkFocus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkFocus.Location = new System.Drawing.Point(10, 23);
-            this.chkFocus.Margin = new System.Windows.Forms.Padding(0);
-            this.chkFocus.Name = "chkFocus";
-            this.chkFocus.Size = new System.Drawing.Size(183, 30);
-            this.chkFocus.TabIndex = 5;
-            this.chkFocus.Text = "Prevent the game from pausing\r\nwhen it goes out of focus";
-            this.chkFocus.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.chkFocus);
-            this.groupBox6.Location = new System.Drawing.Point(262, 10);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(0);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox6.Size = new System.Drawing.Size(203, 67);
-            this.groupBox6.TabIndex = 6;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Other options";
             // 
             // DiscordLink
             // 
@@ -245,688 +1845,27 @@
             this.DiscordLink.Text = "Need help setting this up? Ask on Discord";
             this.DiscordLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DiscordLink_LinkClicked);
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.AresButton);
-            this.tabPage5.Controls.Add(this.groupBox21);
-            this.tabPage5.Controls.Add(this.groupBox22);
-            this.tabPage5.Controls.Add(this.groupBox23);
-            this.tabPage5.Controls.Add(this.groupBox24);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(427, 341);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Story mode (Ares)";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // groupBox24
-            // 
-            this.groupBox24.AutoSize = true;
-            this.groupBox24.Controls.Add(this.chk51_story);
-            this.groupBox24.Controls.Add(this.chkAres_SuperSonic);
-            this.groupBox24.Controls.Add(this.chkAres_WyvernRun);
-            this.groupBox24.Controls.Add(this.chkAres_WyvernStart);
-            this.groupBox24.Controls.Add(this.chkAres_Crane);
-            this.groupBox24.Controls.Add(this.chkAres_Water);
-            this.groupBox24.Controls.Add(this.chkAres_WyvernFirst);
-            this.groupBox24.Controls.Add(this.chkAres_Knuckles);
-            this.groupBox24.Location = new System.Drawing.Point(3, 3);
-            this.groupBox24.Name = "groupBox24";
-            this.groupBox24.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox24.Size = new System.Drawing.Size(421, 169);
-            this.groupBox24.TabIndex = 6;
-            this.groupBox24.TabStop = false;
-            this.groupBox24.Text = "Story progression";
-            // 
-            // chkAres_Knuckles
-            // 
-            this.chkAres_Knuckles.AutoSize = true;
-            this.chkAres_Knuckles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_Knuckles.Location = new System.Drawing.Point(10, 23);
-            this.chkAres_Knuckles.Name = "chkAres_Knuckles";
-            this.chkAres_Knuckles.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_Knuckles.TabIndex = 3;
-            this.chkAres_Knuckles.Text = "Free Knuckles";
-            this.chkAres_Knuckles.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_WyvernFirst
-            // 
-            this.chkAres_WyvernFirst.AutoSize = true;
-            this.chkAres_WyvernFirst.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_WyvernFirst.Location = new System.Drawing.Point(10, 40);
-            this.chkAres_WyvernFirst.Name = "chkAres_WyvernFirst";
-            this.chkAres_WyvernFirst.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_WyvernFirst.TabIndex = 4;
-            this.chkAres_WyvernFirst.Text = "Complete Wyvern chase";
-            this.chkAres_WyvernFirst.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_Water
-            // 
-            this.chkAres_Water.AutoSize = true;
-            this.chkAres_Water.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_Water.Location = new System.Drawing.Point(10, 57);
-            this.chkAres_Water.Name = "chkAres_Water";
-            this.chkAres_Water.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_Water.TabIndex = 5;
-            this.chkAres_Water.Text = "Drain the water from the canyon";
-            this.chkAres_Water.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_Crane
-            // 
-            this.chkAres_Crane.AutoSize = true;
-            this.chkAres_Crane.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_Crane.Location = new System.Drawing.Point(10, 74);
-            this.chkAres_Crane.Name = "chkAres_Crane";
-            this.chkAres_Crane.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_Crane.TabIndex = 7;
-            this.chkAres_Crane.Text = "Complete the Crane miniquest";
-            this.chkAres_Crane.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_WyvernStart
-            // 
-            this.chkAres_WyvernStart.AutoSize = true;
-            this.chkAres_WyvernStart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_WyvernStart.Location = new System.Drawing.Point(10, 91);
-            this.chkAres_WyvernStart.Name = "chkAres_WyvernStart";
-            this.chkAres_WyvernStart.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_WyvernStart.TabIndex = 8;
-            this.chkAres_WyvernStart.Text = "Start Wyvern\'s boss fight";
-            this.chkAres_WyvernStart.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_WyvernRun
-            // 
-            this.chkAres_WyvernRun.AutoSize = true;
-            this.chkAres_WyvernRun.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_WyvernRun.Location = new System.Drawing.Point(10, 108);
-            this.chkAres_WyvernRun.Name = "chkAres_WyvernRun";
-            this.chkAres_WyvernRun.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_WyvernRun.TabIndex = 9;
-            this.chkAres_WyvernRun.Text = "Reach the running section in Wyvern\'s boss fight";
-            this.chkAres_WyvernRun.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_SuperSonic
-            // 
-            this.chkAres_SuperSonic.AutoSize = true;
-            this.chkAres_SuperSonic.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_SuperSonic.Location = new System.Drawing.Point(10, 125);
-            this.chkAres_SuperSonic.Name = "chkAres_SuperSonic";
-            this.chkAres_SuperSonic.Size = new System.Drawing.Size(401, 17);
-            this.chkAres_SuperSonic.TabIndex = 10;
-            this.chkAres_SuperSonic.Text = "Transform into Super Sonic";
-            this.chkAres_SuperSonic.UseVisualStyleBackColor = true;
-            // 
-            // chk51_story
-            // 
-            this.chk51_story.AutoSize = true;
-            this.chk51_story.Checked = true;
-            this.chk51_story.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk51_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk51_story.Location = new System.Drawing.Point(10, 142);
-            this.chk51_story.Name = "chk51_story";
-            this.chk51_story.Size = new System.Drawing.Size(401, 17);
-            this.chk51_story.TabIndex = 2;
-            this.chk51_story.Text = "Progress to the next island";
-            this.chk51_story.UseVisualStyleBackColor = true;
-            // 
-            // groupBox23
-            // 
-            this.groupBox23.Controls.Add(this.chkAres_CyanCE);
-            this.groupBox23.Controls.Add(this.chkAres_GreenCE);
-            this.groupBox23.Controls.Add(this.chkAres_WhiteCE);
-            this.groupBox23.Controls.Add(this.chkAres_YellowCE);
-            this.groupBox23.Controls.Add(this.chkAres_RedCE);
-            this.groupBox23.Controls.Add(this.chkAres_BlueCE);
-            this.groupBox23.Location = new System.Drawing.Point(145, 178);
-            this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox23.Size = new System.Drawing.Size(136, 160);
-            this.groupBox23.TabIndex = 8;
-            this.groupBox23.TabStop = false;
-            this.groupBox23.Text = "Chaos emeralds";
-            // 
-            // chkAres_BlueCE
-            // 
-            this.chkAres_BlueCE.AutoSize = true;
-            this.chkAres_BlueCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_BlueCE.Location = new System.Drawing.Point(10, 23);
-            this.chkAres_BlueCE.Name = "chkAres_BlueCE";
-            this.chkAres_BlueCE.Size = new System.Drawing.Size(116, 17);
-            this.chkAres_BlueCE.TabIndex = 14;
-            this.chkAres_BlueCE.Text = "Blue Emerald";
-            this.chkAres_BlueCE.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_RedCE
-            // 
-            this.chkAres_RedCE.AutoSize = true;
-            this.chkAres_RedCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_RedCE.Location = new System.Drawing.Point(10, 40);
-            this.chkAres_RedCE.Name = "chkAres_RedCE";
-            this.chkAres_RedCE.Size = new System.Drawing.Size(116, 17);
-            this.chkAres_RedCE.TabIndex = 15;
-            this.chkAres_RedCE.Text = "Red Emerald";
-            this.chkAres_RedCE.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_YellowCE
-            // 
-            this.chkAres_YellowCE.AutoSize = true;
-            this.chkAres_YellowCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_YellowCE.Location = new System.Drawing.Point(10, 57);
-            this.chkAres_YellowCE.Name = "chkAres_YellowCE";
-            this.chkAres_YellowCE.Size = new System.Drawing.Size(116, 17);
-            this.chkAres_YellowCE.TabIndex = 16;
-            this.chkAres_YellowCE.Text = "Yellow Emerald";
-            this.chkAres_YellowCE.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_WhiteCE
-            // 
-            this.chkAres_WhiteCE.AutoSize = true;
-            this.chkAres_WhiteCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_WhiteCE.Location = new System.Drawing.Point(10, 74);
-            this.chkAres_WhiteCE.Name = "chkAres_WhiteCE";
-            this.chkAres_WhiteCE.Size = new System.Drawing.Size(116, 17);
-            this.chkAres_WhiteCE.TabIndex = 17;
-            this.chkAres_WhiteCE.Text = "White Emerald";
-            this.chkAres_WhiteCE.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_GreenCE
-            // 
-            this.chkAres_GreenCE.AutoSize = true;
-            this.chkAres_GreenCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_GreenCE.Location = new System.Drawing.Point(10, 91);
-            this.chkAres_GreenCE.Name = "chkAres_GreenCE";
-            this.chkAres_GreenCE.Size = new System.Drawing.Size(116, 30);
-            this.chkAres_GreenCE.TabIndex = 18;
-            this.chkAres_GreenCE.Text = "Green Emerald\r\n(Knuckles\' quest)";
-            this.chkAres_GreenCE.UseVisualStyleBackColor = true;
-            // 
-            // chkAres_CyanCE
-            // 
-            this.chkAres_CyanCE.AutoSize = true;
-            this.chkAres_CyanCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkAres_CyanCE.Location = new System.Drawing.Point(10, 121);
-            this.chkAres_CyanCE.Name = "chkAres_CyanCE";
-            this.chkAres_CyanCE.Size = new System.Drawing.Size(116, 30);
-            this.chkAres_CyanCE.TabIndex = 19;
-            this.chkAres_CyanCE.Text = "Cyan Emerald\r\n(Knuckles\' quest)";
-            this.chkAres_CyanCE.UseVisualStyleBackColor = true;
-            // 
-            // groupBox22
-            // 
-            this.groupBox22.AutoSize = true;
-            this.groupBox22.Controls.Add(this.chk13_story);
-            this.groupBox22.Controls.Add(this.chk12_story);
-            this.groupBox22.Controls.Add(this.chk11_story);
-            this.groupBox22.Controls.Add(this.chk10_story);
-            this.groupBox22.Controls.Add(this.chk9_story);
-            this.groupBox22.Controls.Add(this.chk8_story);
-            this.groupBox22.Controls.Add(this.chk7_story);
-            this.groupBox22.Location = new System.Drawing.Point(3, 178);
-            this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox22.Size = new System.Drawing.Size(136, 160);
-            this.groupBox22.TabIndex = 7;
-            this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "Cyber space";
-            // 
-            // chk7_story
-            // 
-            this.chk7_story.AutoSize = true;
-            this.chk7_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk7_story.Location = new System.Drawing.Point(10, 23);
-            this.chk7_story.Name = "chk7_story";
-            this.chk7_story.Size = new System.Drawing.Size(116, 17);
-            this.chk7_story.TabIndex = 11;
-            this.chk7_story.Text = "2 - 1";
-            this.chk7_story.UseVisualStyleBackColor = true;
-            // 
-            // chk8_story
-            // 
-            this.chk8_story.AutoSize = true;
-            this.chk8_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk8_story.Location = new System.Drawing.Point(10, 40);
-            this.chk8_story.Name = "chk8_story";
-            this.chk8_story.Size = new System.Drawing.Size(116, 17);
-            this.chk8_story.TabIndex = 12;
-            this.chk8_story.Text = "2 - 2";
-            this.chk8_story.UseVisualStyleBackColor = true;
-            // 
-            // chk9_story
-            // 
-            this.chk9_story.AutoSize = true;
-            this.chk9_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk9_story.Location = new System.Drawing.Point(10, 57);
-            this.chk9_story.Name = "chk9_story";
-            this.chk9_story.Size = new System.Drawing.Size(116, 17);
-            this.chk9_story.TabIndex = 13;
-            this.chk9_story.Text = "2 - 3";
-            this.chk9_story.UseVisualStyleBackColor = true;
-            // 
-            // chk10_story
-            // 
-            this.chk10_story.AutoSize = true;
-            this.chk10_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk10_story.Location = new System.Drawing.Point(10, 74);
-            this.chk10_story.Name = "chk10_story";
-            this.chk10_story.Size = new System.Drawing.Size(116, 17);
-            this.chk10_story.TabIndex = 14;
-            this.chk10_story.Text = "2 - 4";
-            this.chk10_story.UseVisualStyleBackColor = true;
-            // 
-            // chk11_story
-            // 
-            this.chk11_story.AutoSize = true;
-            this.chk11_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk11_story.Location = new System.Drawing.Point(10, 91);
-            this.chk11_story.Name = "chk11_story";
-            this.chk11_story.Size = new System.Drawing.Size(116, 17);
-            this.chk11_story.TabIndex = 15;
-            this.chk11_story.Text = "2 - 5";
-            this.chk11_story.UseVisualStyleBackColor = true;
-            // 
-            // chk12_story
-            // 
-            this.chk12_story.AutoSize = true;
-            this.chk12_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk12_story.Location = new System.Drawing.Point(10, 108);
-            this.chk12_story.Name = "chk12_story";
-            this.chk12_story.Size = new System.Drawing.Size(116, 17);
-            this.chk12_story.TabIndex = 16;
-            this.chk12_story.Text = "2 - 6";
-            this.chk12_story.UseVisualStyleBackColor = true;
-            // 
-            // chk13_story
-            // 
-            this.chk13_story.AutoSize = true;
-            this.chk13_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk13_story.Location = new System.Drawing.Point(10, 125);
-            this.chk13_story.Name = "chk13_story";
-            this.chk13_story.Size = new System.Drawing.Size(116, 17);
-            this.chk13_story.TabIndex = 17;
-            this.chk13_story.Text = "2 - 7";
-            this.chk13_story.UseVisualStyleBackColor = true;
-            // 
-            // groupBox21
-            // 
-            this.groupBox21.AutoSize = true;
-            this.groupBox21.Controls.Add(this.chk51_fishing);
-            this.groupBox21.Location = new System.Drawing.Point(287, 178);
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox21.Size = new System.Drawing.Size(137, 63);
-            this.groupBox21.TabIndex = 9;
-            this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Fishing";
-            // 
-            // chk51_fishing
-            // 
-            this.chk51_fishing.AutoSize = true;
-            this.chk51_fishing.Checked = true;
-            this.chk51_fishing.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk51_fishing.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk51_fishing.Location = new System.Drawing.Point(10, 23);
-            this.chk51_fishing.Margin = new System.Windows.Forms.Padding(0);
-            this.chk51_fishing.Name = "chk51_fishing";
-            this.chk51_fishing.Size = new System.Drawing.Size(117, 30);
-            this.chk51_fishing.TabIndex = 12;
-            this.chk51_fishing.Text = "Split when exiting\r\nthe fishing level";
-            this.chk51_fishing.UseVisualStyleBackColor = true;
-            // 
-            // AresButton
-            // 
-            this.AresButton.Location = new System.Drawing.Point(312, 259);
-            this.AresButton.Name = "AresButton";
-            this.AresButton.Size = new System.Drawing.Size(93, 23);
-            this.AresButton.TabIndex = 10;
-            this.AresButton.Text = "Reset to Default";
-            this.AresButton.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.KronosButton);
-            this.tabPage4.Controls.Add(this.groupBox14);
-            this.tabPage4.Controls.Add(this.groupBox8);
-            this.tabPage4.Controls.Add(this.groupBox9);
-            this.tabPage4.Controls.Add(this.groupBox7);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(427, 341);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Story mode (Kronos)";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.AutoSize = true;
-            this.groupBox7.Controls.Add(this.chk50_story);
-            this.groupBox7.Controls.Add(this.chkKronos_SuperSonic);
-            this.groupBox7.Controls.Add(this.chkKronos_GigantosStart);
-            this.groupBox7.Controls.Add(this.chkKronos_Tombstones);
-            this.groupBox7.Controls.Add(this.chkKronos_GigantosFirst);
-            this.groupBox7.Controls.Add(this.chkKronos_Amy);
-            this.groupBox7.Controls.Add(this.chkKronos_Door);
-            this.groupBox7.Controls.Add(this.chkKronos_Ninja);
-            this.groupBox7.Location = new System.Drawing.Point(3, 3);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox7.Size = new System.Drawing.Size(421, 169);
-            this.groupBox7.TabIndex = 1;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Story progression";
-            // 
-            // chkKronos_Ninja
-            // 
-            this.chkKronos_Ninja.AutoSize = true;
-            this.chkKronos_Ninja.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_Ninja.Location = new System.Drawing.Point(10, 23);
-            this.chkKronos_Ninja.Name = "chkKronos_Ninja";
-            this.chkKronos_Ninja.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_Ninja.TabIndex = 2;
-            this.chkKronos_Ninja.Text = "Open the first door (after defeating Ninja)";
-            this.chkKronos_Ninja.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_Door
-            // 
-            this.chkKronos_Door.AutoSize = true;
-            this.chkKronos_Door.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_Door.Location = new System.Drawing.Point(10, 40);
-            this.chkKronos_Door.Name = "chkKronos_Door";
-            this.chkKronos_Door.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_Door.TabIndex = 3;
-            this.chkKronos_Door.Text = "Complete the first puzzle";
-            this.chkKronos_Door.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_Amy
-            // 
-            this.chkKronos_Amy.AutoSize = true;
-            this.chkKronos_Amy.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_Amy.Location = new System.Drawing.Point(10, 57);
-            this.chkKronos_Amy.Name = "chkKronos_Amy";
-            this.chkKronos_Amy.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_Amy.TabIndex = 4;
-            this.chkKronos_Amy.Text = "Free Amy";
-            this.chkKronos_Amy.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_GigantosFirst
-            // 
-            this.chkKronos_GigantosFirst.AutoSize = true;
-            this.chkKronos_GigantosFirst.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_GigantosFirst.Location = new System.Drawing.Point(10, 74);
-            this.chkKronos_GigantosFirst.Name = "chkKronos_GigantosFirst";
-            this.chkKronos_GigantosFirst.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_GigantosFirst.TabIndex = 5;
-            this.chkKronos_GigantosFirst.Text = "Complete Giganto\'s first encounter event";
-            this.chkKronos_GigantosFirst.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_Tombstones
-            // 
-            this.chkKronos_Tombstones.AutoSize = true;
-            this.chkKronos_Tombstones.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_Tombstones.Location = new System.Drawing.Point(10, 91);
-            this.chkKronos_Tombstones.Name = "chkKronos_Tombstones";
-            this.chkKronos_Tombstones.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_Tombstones.TabIndex = 6;
-            this.chkKronos_Tombstones.Text = "Complete the Ancients\' tombstone quest";
-            this.chkKronos_Tombstones.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_GigantosStart
-            // 
-            this.chkKronos_GigantosStart.AutoSize = true;
-            this.chkKronos_GigantosStart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_GigantosStart.Location = new System.Drawing.Point(10, 108);
-            this.chkKronos_GigantosStart.Name = "chkKronos_GigantosStart";
-            this.chkKronos_GigantosStart.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_GigantosStart.TabIndex = 7;
-            this.chkKronos_GigantosStart.Text = "Start Giganto\'s boss fight";
-            this.chkKronos_GigantosStart.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_SuperSonic
-            // 
-            this.chkKronos_SuperSonic.AutoSize = true;
-            this.chkKronos_SuperSonic.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_SuperSonic.Location = new System.Drawing.Point(10, 125);
-            this.chkKronos_SuperSonic.Name = "chkKronos_SuperSonic";
-            this.chkKronos_SuperSonic.Size = new System.Drawing.Size(401, 17);
-            this.chkKronos_SuperSonic.TabIndex = 11;
-            this.chkKronos_SuperSonic.Text = "Transform into Super Sonic";
-            this.chkKronos_SuperSonic.UseVisualStyleBackColor = true;
-            // 
-            // chk50_story
-            // 
-            this.chk50_story.AutoSize = true;
-            this.chk50_story.Checked = true;
-            this.chk50_story.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk50_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk50_story.Location = new System.Drawing.Point(10, 142);
-            this.chk50_story.Margin = new System.Windows.Forms.Padding(0);
-            this.chk50_story.Name = "chk50_story";
-            this.chk50_story.Size = new System.Drawing.Size(401, 17);
-            this.chk50_story.TabIndex = 10;
-            this.chk50_story.Text = "Progress to the next island";
-            this.chk50_story.UseVisualStyleBackColor = true;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.chkKronos_CyanCE);
-            this.groupBox9.Controls.Add(this.chkKronos_GreenCE);
-            this.groupBox9.Controls.Add(this.chkKronos_WhiteCE);
-            this.groupBox9.Controls.Add(this.chkKronos_YellowCE);
-            this.groupBox9.Controls.Add(this.chkKronos_RedCE);
-            this.groupBox9.Controls.Add(this.chkKronos_BlueCE);
-            this.groupBox9.Location = new System.Drawing.Point(145, 178);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox9.Size = new System.Drawing.Size(136, 160);
-            this.groupBox9.TabIndex = 3;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Chaos emeralds";
-            // 
-            // chkKronos_BlueCE
-            // 
-            this.chkKronos_BlueCE.AutoSize = true;
-            this.chkKronos_BlueCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_BlueCE.Location = new System.Drawing.Point(10, 23);
-            this.chkKronos_BlueCE.Name = "chkKronos_BlueCE";
-            this.chkKronos_BlueCE.Size = new System.Drawing.Size(116, 17);
-            this.chkKronos_BlueCE.TabIndex = 8;
-            this.chkKronos_BlueCE.Text = "Blue Emerald";
-            this.chkKronos_BlueCE.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_RedCE
-            // 
-            this.chkKronos_RedCE.AutoSize = true;
-            this.chkKronos_RedCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_RedCE.Location = new System.Drawing.Point(10, 40);
-            this.chkKronos_RedCE.Name = "chkKronos_RedCE";
-            this.chkKronos_RedCE.Size = new System.Drawing.Size(116, 17);
-            this.chkKronos_RedCE.TabIndex = 9;
-            this.chkKronos_RedCE.Text = "Red Emerald";
-            this.chkKronos_RedCE.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_YellowCE
-            // 
-            this.chkKronos_YellowCE.AutoSize = true;
-            this.chkKronos_YellowCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_YellowCE.Location = new System.Drawing.Point(10, 57);
-            this.chkKronos_YellowCE.Name = "chkKronos_YellowCE";
-            this.chkKronos_YellowCE.Size = new System.Drawing.Size(116, 17);
-            this.chkKronos_YellowCE.TabIndex = 10;
-            this.chkKronos_YellowCE.Text = "Yellow Emerald";
-            this.chkKronos_YellowCE.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_WhiteCE
-            // 
-            this.chkKronos_WhiteCE.AutoSize = true;
-            this.chkKronos_WhiteCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_WhiteCE.Location = new System.Drawing.Point(10, 74);
-            this.chkKronos_WhiteCE.Name = "chkKronos_WhiteCE";
-            this.chkKronos_WhiteCE.Size = new System.Drawing.Size(116, 17);
-            this.chkKronos_WhiteCE.TabIndex = 11;
-            this.chkKronos_WhiteCE.Text = "White Emerald";
-            this.chkKronos_WhiteCE.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_GreenCE
-            // 
-            this.chkKronos_GreenCE.AutoSize = true;
-            this.chkKronos_GreenCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_GreenCE.Location = new System.Drawing.Point(10, 91);
-            this.chkKronos_GreenCE.Name = "chkKronos_GreenCE";
-            this.chkKronos_GreenCE.Size = new System.Drawing.Size(116, 30);
-            this.chkKronos_GreenCE.TabIndex = 12;
-            this.chkKronos_GreenCE.Text = "Green Emerald\r\n(Amy\'s quest)";
-            this.chkKronos_GreenCE.UseVisualStyleBackColor = true;
-            // 
-            // chkKronos_CyanCE
-            // 
-            this.chkKronos_CyanCE.AutoSize = true;
-            this.chkKronos_CyanCE.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkKronos_CyanCE.Location = new System.Drawing.Point(10, 121);
-            this.chkKronos_CyanCE.Name = "chkKronos_CyanCE";
-            this.chkKronos_CyanCE.Size = new System.Drawing.Size(116, 30);
-            this.chkKronos_CyanCE.TabIndex = 13;
-            this.chkKronos_CyanCE.Text = "Cyan Emerald\r\n(Amy\'s quest)";
-            this.chkKronos_CyanCE.UseVisualStyleBackColor = true;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.AutoSize = true;
-            this.groupBox8.Controls.Add(this.chk6_story);
-            this.groupBox8.Controls.Add(this.chk5_story);
-            this.groupBox8.Controls.Add(this.chk4_story);
-            this.groupBox8.Controls.Add(this.chk3_story);
-            this.groupBox8.Controls.Add(this.chk2_story);
-            this.groupBox8.Controls.Add(this.chk1_story);
-            this.groupBox8.Controls.Add(this.chk0_story);
-            this.groupBox8.Location = new System.Drawing.Point(3, 178);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox8.Size = new System.Drawing.Size(136, 160);
-            this.groupBox8.TabIndex = 2;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Cyber space";
-            // 
-            // chk0_story
-            // 
-            this.chk0_story.AutoSize = true;
-            this.chk0_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk0_story.Location = new System.Drawing.Point(10, 23);
-            this.chk0_story.Name = "chk0_story";
-            this.chk0_story.Size = new System.Drawing.Size(116, 17);
-            this.chk0_story.TabIndex = 3;
-            this.chk0_story.Text = "1 - 1";
-            this.chk0_story.UseVisualStyleBackColor = true;
-            // 
-            // chk1_story
-            // 
-            this.chk1_story.AutoSize = true;
-            this.chk1_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk1_story.Location = new System.Drawing.Point(10, 40);
-            this.chk1_story.Name = "chk1_story";
-            this.chk1_story.Size = new System.Drawing.Size(116, 17);
-            this.chk1_story.TabIndex = 4;
-            this.chk1_story.Text = "1 - 2";
-            this.chk1_story.UseVisualStyleBackColor = true;
-            // 
-            // chk2_story
-            // 
-            this.chk2_story.AutoSize = true;
-            this.chk2_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk2_story.Location = new System.Drawing.Point(10, 57);
-            this.chk2_story.Name = "chk2_story";
-            this.chk2_story.Size = new System.Drawing.Size(116, 17);
-            this.chk2_story.TabIndex = 5;
-            this.chk2_story.Text = "1 - 3";
-            this.chk2_story.UseVisualStyleBackColor = true;
-            // 
-            // chk3_story
-            // 
-            this.chk3_story.AutoSize = true;
-            this.chk3_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk3_story.Location = new System.Drawing.Point(10, 74);
-            this.chk3_story.Name = "chk3_story";
-            this.chk3_story.Size = new System.Drawing.Size(116, 17);
-            this.chk3_story.TabIndex = 6;
-            this.chk3_story.Text = "1 - 4";
-            this.chk3_story.UseVisualStyleBackColor = true;
-            // 
-            // chk4_story
-            // 
-            this.chk4_story.AutoSize = true;
-            this.chk4_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk4_story.Location = new System.Drawing.Point(10, 91);
-            this.chk4_story.Name = "chk4_story";
-            this.chk4_story.Size = new System.Drawing.Size(116, 17);
-            this.chk4_story.TabIndex = 7;
-            this.chk4_story.Text = "1 - 5";
-            this.chk4_story.UseVisualStyleBackColor = true;
-            // 
-            // chk5_story
-            // 
-            this.chk5_story.AutoSize = true;
-            this.chk5_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk5_story.Location = new System.Drawing.Point(10, 108);
-            this.chk5_story.Name = "chk5_story";
-            this.chk5_story.Size = new System.Drawing.Size(116, 17);
-            this.chk5_story.TabIndex = 8;
-            this.chk5_story.Text = "1 - 6";
-            this.chk5_story.UseVisualStyleBackColor = true;
-            // 
-            // chk6_story
-            // 
-            this.chk6_story.AutoSize = true;
-            this.chk6_story.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk6_story.Location = new System.Drawing.Point(10, 125);
-            this.chk6_story.Name = "chk6_story";
-            this.chk6_story.Size = new System.Drawing.Size(116, 17);
-            this.chk6_story.TabIndex = 9;
-            this.chk6_story.Text = "1 - 7";
-            this.chk6_story.UseVisualStyleBackColor = true;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.AutoSize = true;
-            this.groupBox14.Controls.Add(this.chk50_fishing);
-            this.groupBox14.Location = new System.Drawing.Point(287, 178);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox14.Size = new System.Drawing.Size(137, 63);
-            this.groupBox14.TabIndex = 4;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Fishing";
-            // 
-            // chk50_fishing
-            // 
-            this.chk50_fishing.AutoSize = true;
-            this.chk50_fishing.Checked = true;
-            this.chk50_fishing.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk50_fishing.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chk50_fishing.Location = new System.Drawing.Point(10, 23);
-            this.chk50_fishing.Margin = new System.Windows.Forms.Padding(0);
-            this.chk50_fishing.Name = "chk50_fishing";
-            this.chk50_fishing.Size = new System.Drawing.Size(117, 30);
-            this.chk50_fishing.TabIndex = 12;
-            this.chk50_fishing.Text = "Split when exiting\r\nthe fishing level";
-            this.chk50_fishing.UseVisualStyleBackColor = true;
-            // 
-            // KronosButton
-            // 
-            this.KronosButton.Location = new System.Drawing.Point(312, 259);
-            this.KronosButton.Name = "KronosButton";
-            this.KronosButton.Size = new System.Drawing.Size(93, 23);
-            this.KronosButton.TabIndex = 5;
-            this.KronosButton.Text = "Reset to Default";
-            this.KronosButton.UseVisualStyleBackColor = true;
-            this.KronosButton.Click += new System.EventHandler(this.KronosButton_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tabControl1.Location = new System.Drawing.Point(10, 23);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(435, 367);
-            this.tabControl1.TabIndex = 0;
+            // chkSonicStart
+            // 
+            this.chkSonicStart.AutoSize = true;
+            this.chkSonicStart.Location = new System.Drawing.Point(317, 296);
+            this.chkSonicStart.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSonicStart.Name = "chkSonicStart";
+            this.chkSonicStart.Size = new System.Drawing.Size(71, 17);
+            this.chkSonicStart.TabIndex = 30;
+            this.chkSonicStart.Text = "Auto start";
+            this.chkSonicStart.UseVisualStyleBackColor = true;
+            // 
+            // chkSonicLoadless
+            // 
+            this.chkSonicLoadless.AutoSize = true;
+            this.chkSonicLoadless.Location = new System.Drawing.Point(317, 313);
+            this.chkSonicLoadless.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkSonicLoadless.Name = "chkSonicLoadless";
+            this.chkSonicLoadless.Size = new System.Drawing.Size(98, 17);
+            this.chkSonicLoadless.TabIndex = 31;
+            this.chkSonicLoadless.Text = "Loadless timing";
+            this.chkSonicLoadless.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -934,113 +1873,193 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.DiscordLink);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.autosplitterVersion);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Settings";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(475, 500);
+            this.groupBox2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
-            this.groupBox23.ResumeLayout(false);
-            this.groupBox23.PerformLayout();
-            this.groupBox22.ResumeLayout(false);
-            this.groupBox22.PerformLayout();
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkStoryStart;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox chkArcadeStart;
-        private System.Windows.Forms.CheckBox chkArcade1_1;
         private System.Windows.Forms.Label autosplitterVersion;
-        private System.Windows.Forms.CheckBox chkFocus;
-        private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.LinkLabel DiscordLink;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chkBossRushStart;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button KronosButton;
-        private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.CheckBox chk50_fishing;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.CheckBox chk6_story;
-        private System.Windows.Forms.CheckBox chk5_story;
-        private System.Windows.Forms.CheckBox chk4_story;
-        private System.Windows.Forms.CheckBox chk3_story;
-        private System.Windows.Forms.CheckBox chk2_story;
-        private System.Windows.Forms.CheckBox chk1_story;
-        private System.Windows.Forms.CheckBox chk0_story;
+        private System.Windows.Forms.Button ClassicButton;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.CheckBox chkKronos_CyanCE;
-        private System.Windows.Forms.CheckBox chkKronos_GreenCE;
-        private System.Windows.Forms.CheckBox chkKronos_WhiteCE;
-        private System.Windows.Forms.CheckBox chkKronos_YellowCE;
-        private System.Windows.Forms.CheckBox chkKronos_RedCE;
-        private System.Windows.Forms.CheckBox chkKronos_BlueCE;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.CheckBox chk50_story;
-        private System.Windows.Forms.CheckBox chkKronos_SuperSonic;
-        private System.Windows.Forms.CheckBox chkKronos_GigantosStart;
-        private System.Windows.Forms.CheckBox chkKronos_Tombstones;
-        private System.Windows.Forms.CheckBox chkKronos_GigantosFirst;
-        private System.Windows.Forms.CheckBox chkKronos_Amy;
-        private System.Windows.Forms.CheckBox chkKronos_Door;
-        private System.Windows.Forms.CheckBox chkKronos_Ninja;
+        private System.Windows.Forms.CheckBox chkGreenHill2;
+        private System.Windows.Forms.CheckBox chkGreenHill1;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button AresButton;
-        private System.Windows.Forms.GroupBox groupBox21;
-        private System.Windows.Forms.CheckBox chk51_fishing;
-        private System.Windows.Forms.GroupBox groupBox22;
-        private System.Windows.Forms.CheckBox chk13_story;
-        private System.Windows.Forms.CheckBox chk12_story;
-        private System.Windows.Forms.CheckBox chk11_story;
-        private System.Windows.Forms.CheckBox chk10_story;
-        private System.Windows.Forms.CheckBox chk9_story;
-        private System.Windows.Forms.CheckBox chk8_story;
-        private System.Windows.Forms.CheckBox chk7_story;
-        private System.Windows.Forms.GroupBox groupBox23;
-        private System.Windows.Forms.CheckBox chkAres_CyanCE;
-        private System.Windows.Forms.CheckBox chkAres_GreenCE;
-        private System.Windows.Forms.CheckBox chkAres_WhiteCE;
-        private System.Windows.Forms.CheckBox chkAres_YellowCE;
-        private System.Windows.Forms.CheckBox chkAres_RedCE;
-        private System.Windows.Forms.CheckBox chkAres_BlueCE;
         private System.Windows.Forms.GroupBox groupBox24;
-        private System.Windows.Forms.CheckBox chk51_story;
-        private System.Windows.Forms.CheckBox chkAres_SuperSonic;
-        private System.Windows.Forms.CheckBox chkAres_WyvernRun;
-        private System.Windows.Forms.CheckBox chkAres_WyvernStart;
-        private System.Windows.Forms.CheckBox chkAres_Crane;
-        private System.Windows.Forms.CheckBox chkAres_Water;
-        private System.Windows.Forms.CheckBox chkAres_WyvernFirst;
-        private System.Windows.Forms.CheckBox chkAres_Knuckles;
+        private System.Windows.Forms.CheckBox chkShadowLoadless;
+        private System.Windows.Forms.CheckBox chkGreenHill2_5;
+        private System.Windows.Forms.CheckBox chkGreenHill2_4;
+        private System.Windows.Forms.CheckBox chkGreenHill2_3;
+        private System.Windows.Forms.CheckBox chkGreenHill2_2;
+        private System.Windows.Forms.CheckBox chkGreenHill2_1;
+        private System.Windows.Forms.CheckBox chkGreenHill1_5;
+        private System.Windows.Forms.CheckBox chkGreenHill1_4;
+        private System.Windows.Forms.CheckBox chkGreenHill1_3;
+        private System.Windows.Forms.CheckBox chkGreenHill1_2;
+        private System.Windows.Forms.CheckBox chkGreenHill1_1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox chkSkySanctuary2_5;
+        private System.Windows.Forms.CheckBox chkSkySanctuary2_4;
+        private System.Windows.Forms.CheckBox chkSkySanctuary2_3;
+        private System.Windows.Forms.CheckBox chkSkySanctuary2_2;
+        private System.Windows.Forms.CheckBox chkSkySanctuary2_1;
+        private System.Windows.Forms.CheckBox chkSkySanctuary1_5;
+        private System.Windows.Forms.CheckBox chkSkySanctuary1_4;
+        private System.Windows.Forms.CheckBox chkSkySanctuary1_3;
+        private System.Windows.Forms.CheckBox chkSkySanctuary1_2;
+        private System.Windows.Forms.CheckBox chkSkySanctuary1_1;
+        private System.Windows.Forms.CheckBox chkSkySanctuary2;
+        private System.Windows.Forms.CheckBox chkSkySanctuary1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkChemicalPlant2_5;
+        private System.Windows.Forms.CheckBox chkChemicalPlant2_4;
+        private System.Windows.Forms.CheckBox chkChemicalPlant2_3;
+        private System.Windows.Forms.CheckBox chkChemicalPlant2_2;
+        private System.Windows.Forms.CheckBox chkChemicalPlant2_1;
+        private System.Windows.Forms.CheckBox chkChemicalPlant1_5;
+        private System.Windows.Forms.CheckBox chkChemicalPlant1_4;
+        private System.Windows.Forms.CheckBox chkChemicalPlant1_3;
+        private System.Windows.Forms.CheckBox chkChemicalPlant1_2;
+        private System.Windows.Forms.CheckBox chkChemicalPlant1_1;
+        private System.Windows.Forms.CheckBox chkChemicalPlant2;
+        private System.Windows.Forms.CheckBox chkChemicalPlant1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkDeathEgg;
+        private System.Windows.Forms.CheckBox chkMetalSonic;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox chkPerfectChaos;
+        private System.Windows.Forms.CheckBox chkShadow;
+        private System.Windows.Forms.Button AdventureButton;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.CheckBox chkSeasideHill2_5;
+        private System.Windows.Forms.CheckBox chkSeasideHill2_4;
+        private System.Windows.Forms.CheckBox chkSeasideHill2_3;
+        private System.Windows.Forms.CheckBox chkSeasideHill2_2;
+        private System.Windows.Forms.CheckBox chkSeasideHill2_1;
+        private System.Windows.Forms.CheckBox chkSeasideHill1_5;
+        private System.Windows.Forms.CheckBox chkSeasideHill1_4;
+        private System.Windows.Forms.CheckBox chkSeasideHill1_3;
+        private System.Windows.Forms.CheckBox chkSeasideHill1_2;
+        private System.Windows.Forms.CheckBox chkSeasideHill1_1;
+        private System.Windows.Forms.CheckBox chkSeasideHill2;
+        private System.Windows.Forms.CheckBox chkSeasideHill1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckBox chkCityEscape2_5;
+        private System.Windows.Forms.CheckBox chkCityEscape2_4;
+        private System.Windows.Forms.CheckBox chkCityEscape2_3;
+        private System.Windows.Forms.CheckBox chkCityEscape2_2;
+        private System.Windows.Forms.CheckBox chkCityEscape2_1;
+        private System.Windows.Forms.CheckBox chkCityEscape1_5;
+        private System.Windows.Forms.CheckBox chkCityEscape1_4;
+        private System.Windows.Forms.CheckBox chkCityEscape1_3;
+        private System.Windows.Forms.CheckBox chkCityEscape1_2;
+        private System.Windows.Forms.CheckBox chkCityEscape1_1;
+        private System.Windows.Forms.CheckBox chkCityEscape2;
+        private System.Windows.Forms.CheckBox chkCityEscape1;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.CheckBox chkSpeedHighway2_5;
+        private System.Windows.Forms.CheckBox chkSpeedHighway2_4;
+        private System.Windows.Forms.CheckBox chkSpeedHighway2_3;
+        private System.Windows.Forms.CheckBox chkSpeedHighway2_2;
+        private System.Windows.Forms.CheckBox chkSpeedHighway2_1;
+        private System.Windows.Forms.CheckBox chkSpeedHighway1_5;
+        private System.Windows.Forms.CheckBox chkSpeedHighway1_4;
+        private System.Windows.Forms.CheckBox chkSpeedHighway1_3;
+        private System.Windows.Forms.CheckBox chkSpeedHighway1_2;
+        private System.Windows.Forms.CheckBox chkSpeedHighway1_1;
+        private System.Windows.Forms.CheckBox chkSpeedHighway2;
+        private System.Windows.Forms.CheckBox chkSpeedHighway1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.CheckBox chkTimeEater;
+        private System.Windows.Forms.CheckBox chkEggDragoon;
+        private System.Windows.Forms.CheckBox chkSilver;
+        private System.Windows.Forms.Button ModernButton;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.CheckBox chkPlanetWisp2_5;
+        private System.Windows.Forms.CheckBox chkPlanetWisp2_4;
+        private System.Windows.Forms.CheckBox chkPlanetWisp2_3;
+        private System.Windows.Forms.CheckBox chkPlanetWisp2_2;
+        private System.Windows.Forms.CheckBox chkPlanetWisp2_1;
+        private System.Windows.Forms.CheckBox chkPlanetWisp1_5;
+        private System.Windows.Forms.CheckBox chkPlanetWisp1_4;
+        private System.Windows.Forms.CheckBox chkPlanetWisp1_3;
+        private System.Windows.Forms.CheckBox chkPlanetWisp1_2;
+        private System.Windows.Forms.CheckBox chkPlanetWisp1_1;
+        private System.Windows.Forms.CheckBox chkPlanetWisp2;
+        private System.Windows.Forms.CheckBox chkPlanetWisp1;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.CheckBox chkRooftopRun2_5;
+        private System.Windows.Forms.CheckBox chkRooftopRun2_4;
+        private System.Windows.Forms.CheckBox chkRooftopRun2_3;
+        private System.Windows.Forms.CheckBox chkRooftopRun2_2;
+        private System.Windows.Forms.CheckBox chkRooftopRun2_1;
+        private System.Windows.Forms.CheckBox chkRooftopRun1_5;
+        private System.Windows.Forms.CheckBox chkRooftopRun1_4;
+        private System.Windows.Forms.CheckBox chkRooftopRun1_3;
+        private System.Windows.Forms.CheckBox chkRooftopRun1_2;
+        private System.Windows.Forms.CheckBox chkRooftopRun1_1;
+        private System.Windows.Forms.CheckBox chkRooftopRun2;
+        private System.Windows.Forms.CheckBox chkRooftopRun1;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.CheckBox chkCrisisCity2_5;
+        private System.Windows.Forms.CheckBox chkCrisisCity2_4;
+        private System.Windows.Forms.CheckBox chkCrisisCity2_3;
+        private System.Windows.Forms.CheckBox chkCrisisCity2_2;
+        private System.Windows.Forms.CheckBox chkCrisisCity2_1;
+        private System.Windows.Forms.CheckBox chkCrisisCity1_5;
+        private System.Windows.Forms.CheckBox chkCrisisCity1_4;
+        private System.Windows.Forms.CheckBox chkCrisisCity1_3;
+        private System.Windows.Forms.CheckBox chkCrisisCity1_2;
+        private System.Windows.Forms.CheckBox chkCrisisCity1_1;
+        private System.Windows.Forms.CheckBox chkCrisisCity2;
+        private System.Windows.Forms.CheckBox chkCrisisCity1;
+        private System.Windows.Forms.CheckBox chkSonicLoadless;
+        private System.Windows.Forms.CheckBox chkSonicStart;
     }
 }

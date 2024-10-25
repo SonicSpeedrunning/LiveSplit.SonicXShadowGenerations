@@ -11,6 +11,7 @@ using LiveSplit.UI.Components;
 using LiveSplit.SonicXShadowGenerations.Game;
 using LiveSplit.Options;
 using Helper.Common.ProcessInterop;
+using LiveSplit.SonicXShadowGenerations.Game.Sonic;
 
 namespace LiveSplit.SonicXShadowGenerations
 {
@@ -55,7 +56,7 @@ namespace LiveSplit.SonicXShadowGenerations
 
         private async Task AutosplitterTask(LiveSplitState state, CancellationToken canceltoken)
         {
-            string[] gameProcessNames = ["SonicXShadow.exe"];
+            string[] gameProcessNames = ["SONIC_GENERATIONS.exe", "SONIC_X_SHADOW_GENERATIONS.exe"];
 
             // Update interval represents the amount of time between each update cycle. Tipically 16ms for 60hz refresh rate.
             // The default in LiveSplit One is 120hz so no reason to attempt this here as well.
@@ -75,12 +76,17 @@ namespace LiveSplit.SonicXShadowGenerations
                 // Perform memory scanning and look for the addresses we need.
                 // As this proces can deliberately throw, it's wrapped in a try/catch block.
                 // If memory scanning fails, the autosplitter will wait (to spare a bit of system resources) and retry again.
-                Memory? memory = null;
+                IMemory? memory = null;
                 while (!canceltoken.IsCancellationRequested && process.IsOpen)
                 {
                     try
                     {
-                        memory = new Memory(process);
+                        memory = process.ProcessName switch
+                        {
+                            "SONIC_GENERATIONS.exe" => new MemorySonic(process),
+                            _ => new MemoryShadow(process),
+                        };
+                        
                         break;
                     }
                     catch
@@ -92,9 +98,6 @@ namespace LiveSplit.SonicXShadowGenerations
                 // If memory is still null here, we either requested cancellation of the task or the process is not open anymore
                 if (memory is null)
                     continue;
-
-                // Once the target process has been found and attached to, set up the default watchers
-                Watchers watchers = new Watchers(process, memory);
 
                 while (!canceltoken.IsCancellationRequested && process.IsOpen)
                 {
@@ -109,33 +112,33 @@ namespace LiveSplit.SonicXShadowGenerations
                     // 2. If the timer is currently either running or paused, then the isLoading, gameTime, and reset actions will be run.
                     // 3. If reset does not return true, then the split action will be run.
                     // 4. If the timer is currently not running (and not paused), then the start action will be run.
-                    watchers.Update(process, memory);
+                    memory.Update(process);
 
                     // Main logic: the autosplitter checks for time, s and splitting conditions only if it's running
                     // This prevents, for example, automatic resetting when the run is already complete (TimerPhase.Ended)
                     if (timer.CurrentState.CurrentPhase == TimerPhase.Running || timer.CurrentState.CurrentPhase == TimerPhase.Paused)
                     {
-                        bool? isLoading = Actions.IsLoading(watchers, Settings);
+                        bool? isLoading = memory.IsLoading(Settings);
                         if (isLoading is not null)
                             state.IsGameTimePaused = isLoading.Value;
 
-                        TimeSpan? gameTime = Actions.GameTime(watchers, Settings, memory);
+                        TimeSpan? gameTime = memory.GameTime(Settings);
                         if (gameTime is not null)
                             timer.CurrentState.SetGameTime(gameTime.Value);
 
-                        if (Actions.Reset(watchers, Settings))
+                        if (memory.Reset(Settings))
                             timer.Reset();
-                        else if (Actions.Split(watchers, Settings))
+                        else if (memory.Split(Settings))
                             timer.Split();
                     }
 
                     // Start logic: for obvious reasons, this should be checked only if the timer has not started yet
-                    if (timer.CurrentState.CurrentPhase == TimerPhase.NotRunning && Actions.Start(watchers, Settings))
+                    if (timer.CurrentState.CurrentPhase == TimerPhase.NotRunning && memory.Start(Settings))
                     {
                         timer.Start();
                         state.IsGameTimePaused = true;
 
-                        bool? isLoading = Actions.IsLoading(watchers, Settings);
+                        bool? isLoading = memory.IsLoading(Settings);
                         if (isLoading is not null)
                             state.IsGameTimePaused = isLoading.Value;
                     }
@@ -159,7 +162,7 @@ namespace LiveSplit.SonicXShadowGenerations
             {
                 try
                 {
-                    ProcessMemory? process = exeNames.Select(ProcessMemory.HookProcess).FirstOrDefault();
+                    ProcessMemory? process = exeNames.Select(ProcessMemory.HookProcess).FirstOrDefault(p => p is not null);
                     
                     if (process is not null)
                         return process;

@@ -20,7 +20,7 @@ internal static partial class WinAPI
     {
         fixed (void* valuePtr = &value)
         {
-            Span<byte> valueBuffer = new(valuePtr, sizeof(T));
+            Span<byte> valueBuffer = new(valuePtr, Marshal.SizeOf<T>());
             return ReadProcessMemory(processHandle, address, valueBuffer);
         }
     }

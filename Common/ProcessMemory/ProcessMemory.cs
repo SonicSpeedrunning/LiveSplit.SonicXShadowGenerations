@@ -74,7 +74,8 @@ public partial class ProcessMemory : IDisposable
     {
         get
         {
-            mainModule ??= Modules.First();
+            if (mainModule is null)
+                mainModule = Modules.First();
             return mainModule;
         }
     }

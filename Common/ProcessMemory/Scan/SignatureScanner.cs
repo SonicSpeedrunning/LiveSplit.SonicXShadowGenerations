@@ -83,10 +83,6 @@ public static class SignatureScanner
 
                     lastPageSuccess = true; // Set success flag for the current page
                 }
-                else
-                {
-                    lastPageSuccess = false;
-                }
 
                 address = end; // Move to the next page
             }
@@ -264,7 +260,7 @@ public static class SignatureScanner
                     }
 
                     // If we find a match, set current to the current cursor position and return true
-                    Current = currentCursor;
+                    Current = currentCursor - startCursor;
                     currentCursor += 1; // Move cursor to next byte
                     this.currentCursor = currentCursor;
                     return true;

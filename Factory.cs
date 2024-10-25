@@ -13,7 +13,7 @@ namespace LiveSplit.SonicXShadowGenerations
         public string Description => "Automatic splitting and Game Time calculation";
         public ComponentCategory Category => ComponentCategory.Control;
         public string UpdateName => this.ComponentName;
-        public string UpdateURL => "https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicXShadowGenerations/main/";
+        public string UpdateURL => "https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicXShadowGenerations/master/";
         public string XMLURL => this.UpdateURL + "Components/update.LiveSplit.SonicXShadowGenerations.xml";
         public IComponent Create(LiveSplitState state) => new AutosplitterComponent(state);
 

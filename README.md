@@ -1,11 +1,11 @@
-<h1> <img src="https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicXShadowGenerations/main/sonic-frontiers-logo.png" alt="SonicXShadowGenerations" height="75" align="middle" /> Sonic X Shadow Generations - Autosplitter</h1>
+<h1> <img src="https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicXShadowGenerations/master/sonic-shadow-generations-logo.png" alt="SonicXShadowGenerations" height="75" align="middle" /> Sonic X Shadow Generations - Autosplitter</h1>
 
 The current is a work-in-progress autosplitter, broken in the current state. As such, any of the info provided below is currently inaccurate.
 At the present state, the autosplitter is just a template based on the Sonic Frontiers autosplitter.
 
 The objective is to have a fully-featured autosplitter for the PC version of Sonic X Shadow Generations with customizable splitting options
 
-<img src="https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicXShadowGenerations/main/settings.png">
+<img src="https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicXShadowGenerations/master/settings.png">
 
 # General behaviour
 
