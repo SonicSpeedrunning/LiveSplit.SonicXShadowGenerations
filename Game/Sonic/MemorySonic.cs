@@ -1,40 +1,68 @@
 ﻿using System;
 using System.Linq;
-using Helper.Common.Collections;
 using Helper.Common.MemoryUtils;
 using Helper.Common.ProcessInterop;
 
 namespace LiveSplit.SonicXShadowGenerations.Game.Sonic;
 
-internal class MemorySonic : IMemory
+/// <summary>
+/// Represents the memory management and state tracking for Sonic Generations.
+/// Inherits from the abstract Memory class to provide game state data.
+/// </summary>
+internal class MemorySonic : Memory
 {
-    private MemStateTracker _tick { get; }
+    /// <summary>
+    /// The version of the game.
+    /// </summary>
     public GameVersion Version { get; }
 
-    // Addresses
+    /// <summary>
+    /// The base memory address used to monitor the loading state.
+    /// </summary>
     private readonly IntPtr baseLoading;
+
+    /// <summary>
+    /// The base memory address used to track the current level information.
+    /// </summary>
     private readonly IntPtr baseLevel;
 
+    /// <summary>
+    /// Watcher for monitoring the game's loading state.
+    /// </summary>
     public LazyWatcher<bool> Is_Loading { get; }
+
+    /// <summary>
+    /// Watcher for monitoring the current level ID of the game.
+    /// </summary>
     public LazyWatcher<LevelID> LevelID { get; }
+
+    /// <summary>
+    /// Watcher for monitoring the level completion state.
+    /// </summary>
     public LazyWatcher<bool> LevelCompletion { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MemorySonic"/> class and sets up memory watchers.
+    /// </summary>
+    /// <param name="process">The process memory instance for Sonic Generations.</param>
+    /// <exception cref="Exception">Thrown if memory addresses cannot be found for tracking.</exception>
     public MemorySonic(ProcessMemory process)
+        : base()
     {
+        // Set the version based on the process's main module memory size
         Version = process.MainModule.ModuleMemorySize switch
         {
-            0x18182000 => Sonic.GameVersion.v1_1_0_0,
-            _  => Sonic.GameVersion.Unknown,
+            0x18182000 => GameVersion.v1_1_0_0,
+            _  => GameVersion.Unknown,
         };
 
-        // Used for determine the loading state
-        baseLoading = process.Scan(new MemoryScanPattern(3, "48 8B 15 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B 45 AF") { OnFound = (addr) => addr + 0x4 + process.Read<int>(addr) });
-        if (baseLoading == IntPtr.Zero)
-            throw new Exception();
+        // Find the base address for loading state in memory
+        baseLoading = process.MainModule.ScanAll(new MemoryScanPattern(3, "48 8B 15 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B 45 AF") { OnFound = (addr) => addr + 0x4 + process.Read<int>(addr) }).First();
 
-        // Used for level data
+        // Find the base address for level data in memory.
         IntPtr level = process
-            .ScanAll(new MemoryScanPattern(3, "48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 15 ?? ?? ?? ?? 8B 0D"), process.MainModule.BaseAddress, process.MainModule.ModuleMemorySize)
+            .MainModule
+            .ScanAll(new MemoryScanPattern(3, "48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 15 ?? ?? ?? ?? 8B 0D"))
             .First(addr =>
             {
                 IntPtr ptr = addr + 12;
@@ -43,18 +71,19 @@ internal class MemorySonic : IMemory
             });
         baseLevel = level + 0x4 + process.Read<int>(level);
 
-        // Tracker for lazy evaluation of watcher data
-        _tick = new MemStateTracker();
+        // Initialize watchers for game state tracking.
 
-        LevelID = new LazyWatcher<LevelID>(_tick, Sonic.LevelID.GreenHill_Act1, (current, _) =>
+        LevelID = new LazyWatcher<LevelID>(StateTracker, Sonic.LevelID.GreenHill_Act1, (current, _) =>
         {
             Span<byte> lvl = stackalloc byte[2];
 
+            // Retrieve current level ID by reading from memory.
             if (!process.ReadPointer(baseLevel, out IntPtr ptr)
                 || !process.ReadPointer(ptr + 0xAC, out ptr)
                 || !process.ReadArray(ptr + 0xC8, lvl))
                 return current;
 
+            // Map level data to corresponding level IDs.
             return lvl[0] switch
             {
                 0 => lvl[1] switch
@@ -232,44 +261,65 @@ internal class MemorySonic : IMemory
             };
         });
 
-        Is_Loading = new LazyWatcher<bool>(_tick, false, (current, _) =>
+        Is_Loading = new LazyWatcher<bool>(StateTracker, false, (current, _) =>
         {
+            // Check if the main menu is active.
             if (LevelID.Current == Sonic.LevelID.MainMenu)
                 return false;
-            
+
+            // Read loading state from memory.
             if (!process.ReadPointer(baseLoading, out IntPtr ptr)
                 || !process.Read(ptr + 0xC, out byte val))
                 return current;
 
+            // Return true if loading byte is non-zero.
             return val != 0;
         });
 
-        LevelCompletion = new LazyWatcher<bool>(_tick, false, (current, _) =>
+        LevelCompletion = new LazyWatcher<bool>(StateTracker, false, (current, _) =>
         {
             if (!process.ReadPointer(baseLevel, out IntPtr ptr)
                 || !process.ReadPointer(ptr + 0xAC, out ptr)
                 || !process.Read(ptr + 0xC4, out byte val))
                 return false;
 
+            // Return true if level is marked as completed.
             return val == 2;
         });
     }
 
-    internal override void Update(ProcessMemory _)
+    /// <summary>
+    /// Updates the current state of the memory trackers each game tick.
+    /// </summary>
+    /// <param name="process">The process memory instance.</param>
+    /// <param name="settings">The settings controlling level tracking and splitting.</param>
+    internal override void Update(ProcessMemory process, Settings settings)
     {
-        _tick.Tick();
+        StateTracker.Tick();
     }
 
+    /// <summary>
+    /// Determines if the run has started, initializing tracking based on settings.
+    /// </summary>
+    /// <param name="settings">The settings used to initialize tracking.</param>
+    /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
     internal override bool Start(Settings settings)
     {
         return settings.SonicStart && LevelID.Old == Sonic.LevelID.MainMenu && LevelID.Current == Sonic.LevelID.GreenHill_Act1;
     }
 
+    /// <summary>
+    /// Determines if a split should occur based on the level ID and completion state.
+    /// </summary>
+    /// <param name="settings">The settings controlling level-specific splits.</param>
+    /// <returns>True if a split should occur; otherwise, false.</returns>
     internal override bool Split(Settings settings)
     {
+        // Special split condition for the Time Eater level.
         if (LevelID.Old == Sonic.LevelID.TimeEater)
             return settings.TimeEater && !LevelCompletion.Old && LevelCompletion.Current;
 
+        // Regular split conditions based on completion of specific levels.
         return !LevelCompletion.Current && LevelCompletion.Old && (LevelID.Old switch
         {
             Sonic.LevelID.GreenHill_Act1 => settings.GreenHill1,
@@ -389,9 +439,21 @@ internal class MemorySonic : IMemory
         });
     }
 
+    /// <summary>
+    /// Determines if the game is currently loading.
+    /// </summary>
+    /// <returns>True if the game is loading; otherwise, false.</returns>
     internal override bool? IsLoading(Settings settings) => settings.SonicLoadless && Is_Loading.Current;
 
+    /// <summary>
+    /// Determines if the autosplitter timer should reset.
+    /// </summary>
+    /// <returns>True if the autospltter should reset; otherwise, false.</returns>
     internal override bool Reset(Settings settings) => false;
 
+    /// <summary>
+    /// Sets the autosplitter's game time.
+    /// </summary>
+    /// <returns>The game time as a nullable TimeSpan.</returns>
     internal override TimeSpan? GameTime(Settings settings) => null;
 }

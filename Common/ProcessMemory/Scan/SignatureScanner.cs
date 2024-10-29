@@ -116,7 +116,7 @@ public static class SignatureScanner
     /// <param name="startIndex">The starting index in the data buffer.</param>
     /// <param name="noOfElements">The number of elements (bytes) to scan from the start index.</param>
     /// <returns>An enumerable of matching offsets where the pattern is found.</returns>
-    public static IEnumerable<int> ScanAll(ScanPattern pattern, byte[] data, int startIndex, int noOfElements)
+    private static IEnumerable<int> ScanAll(ScanPattern pattern, byte[] data, int startIndex, int noOfElements)
     {
         if (startIndex < 0)
             throw new ArgumentOutOfRangeException(nameof(startIndex), "The start index must be greater than or equal to zero.");
@@ -268,7 +268,6 @@ public static class SignatureScanner
                 end:
                     // Skip over unnecessary comparisons using the skip offset table
                     currentCursor += *(pSkipOffsets + *(pBuffer + currentCursor + signatureLength - 1));
-                    ;
                 }
             }
 

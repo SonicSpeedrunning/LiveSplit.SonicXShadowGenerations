@@ -1,202 +1,355 @@
 ﻿using System;
-using System.Buffers;
-using System.Linq;
-using Helper.Common.Collections;
 using Helper.Common.MemoryUtils;
 using Helper.Common.ProcessInterop;
+using Helper.Common.ProcessInterop.API;
+using LiveSplit.SonicXShadowGenerations.Common;
+using LiveSplit.SonicXShadowGenerations.GameEngine;
 
-namespace LiveSplit.SonicXShadowGenerations.Game;
+namespace LiveSplit.SonicXShadowGenerations.Game.Shadow;
 
-internal class MemoryShadow : IMemory
+/// <summary>
+/// Represents the memory management and state tracking for Shadow Generations.
+/// Inherits from the abstract Memory class to provide game state data.
+/// </summary>
+internal class MemoryShadow : Memory
 {
-    // General game stuff
-    public Shadow.GameVersion Version { get; }
+    /// <summary>
+    /// The version of the game.
+    /// </summary>
+    public GameVersion Version { get; }
 
-    // Important addresses and offsets
-    public IntPtr BaseEngineAddress { get; }
+    /// <summary>
+    /// The Hedgehog engine instance used for interacting with the game engine.
+    /// </summary>
+    private HedgehogEngine2 Engine { get; }
 
-
-    // Cached addresses
-    private IntPtr Address_Application { get; set; } = IntPtr.Zero;
-    private IntPtr Address_ApplicationSequence { get; set; } = IntPtr.Zero;
-    private IntPtr Address_GameMode { get; set; } = IntPtr.Zero;
-    private IntPtr Address_GameModeExtension { get; set; } = IntPtr.Zero;
-    private IntPtr Address_GameModeHsmExtension { get; set; } = IntPtr.Zero;
-
-
-    public int Offset_Application { get; }
-    public int Offset_GameMode { get; }
-    public int Offset_GameModeExtension { get; }
-    private int GameModeExtensionCount { get; set; }
-
-
-    private MemStateTracker _stateTracker;
+    /// <summary>
+    /// Watches the loading state of the game.
+    /// </summary>
     public LazyWatcher<bool> Is_Loading { get; }
 
+    /// <summary>
+    /// Watches the current game mode (e.g., main menu, in-game).
+    /// </summary>
+    public LazyWatcher<string> GameMode { get; }
 
+    /// <summary>
+    /// Watches the status of the HSM (Hierarchical State Machine).
+    /// </summary>
+    public LazyWatcher<string[]> HsmStatus { get; }
+
+    /// <summary>
+    /// Watches the level ID in the game.
+    /// </summary>
+    public LazyWatcher<LevelID> LevelID { get; }
+
+    /// <summary>
+    /// Watches if the player is currently in the final Quick Time Event (QTE).
+    /// </summary>
+    private LazyWatcher<bool> IsInFinalQTE { get; }
+
+    /// <summary>
+    /// Watches the count of QTEs encountered at the final boss.
+    /// </summary>
+    public LazyWatcher<int> FinalQTECount { get; }
+
+    /// <summary>
+    /// Constructor initializing game engine, version, and various game state watchers.
+    /// </summary>
+    /// <param name="process">The current game process.</param>
     public MemoryShadow(ProcessMemory process)
+        : base()
     {
+        Engine = new HedgehogEngine2(process);
+
+        // Determine the game version based on module memory size.
+        // Currently unused in the autosplitter, might be needed in the future.
         Version = process.MainModule.ModuleMemorySize switch
         {
-            0x1CA2A000 => Shadow.GameVersion.v1_1_0_0,
-            _ => Shadow.GameVersion.Unknown
+            0x1CA2A000 => GameVersion.v1_1_0_0,
+            _ => GameVersion.Unknown
         };
 
-        BaseEngineAddress = process.Scan(new MemoryScanPattern(1, "E8 ???????? 4C 8B 40 28")
+        // Initialize LazyWatchers for observing game properties
+
+        GameMode = new LazyWatcher<string>(StateTracker, "GameModeTitle", (current, _) =>
         {
-            OnFound = (addr) =>
-            {
-                IntPtr tempAddr = addr + process.Read<int>(addr) + 0x4 + 0x3;
-                tempAddr += process.Read<int>(tempAddr) + 0x4;
-                return tempAddr;
-            }
+            // Look up the game mode using RTTI
+            return Engine.RTTI.Lookup(Engine.GameMode, out string gm) ? gm : current;
         });
 
-        Offset_Application = 0x88;
-        Offset_GameMode = 0x78;
-        Offset_GameModeExtension = 0xB0;
-
-        _stateTracker = new MemStateTracker();
-
-        Is_Loading = new LazyWatcher<bool>(_stateTracker, false, (current, _) =>
+        HsmStatus = new LazyWatcher<string[]>(StateTracker, [string.Empty, string.Empty, string.Empty, string.Empty], (current, _) =>
         {
-            if (RTTILookup(process, Address_GameMode, out string gm) && gm == "GameModeOpening@game@app@@")
+            string[] ret = new string[4]; // Array to hold status strings
+            Span<long> buf = stackalloc long[2]; // Buffer to read memory
+
+            // Check for valid game mode and read status from memory
+            if (Engine.GameModeExtensionCount == 0 || Engine.GameModeHsmExtension == IntPtr.Zero || !process.ReadArray(Engine.GameModeHsmExtension + 0x38, buf))
+            {
+                // Return the current status if read fails
+                ret[0] = current[0];
+                ret[1] = current[1];
+                ret[2] = current[2];
+                ret[3] = current[3];
+                return ret;
+            }
+
+            // Determine the number of details to read (max 4)
+            int no_of_details = (int)buf[1] & 0xF;
+            if (no_of_details > 4)
+                no_of_details = 4;
+
+            Span<long> details = stackalloc long[no_of_details];
+            // Read the details from memory
+            if (!process.ReadArray((IntPtr)buf[0], details))
+            {
+                // Return the current status if read fails
+                ret[0] = current[0];
+                ret[1] = current[1];
+                ret[2] = current[2];
+                ret[3] = current[3];
+                return ret;
+            }
+
+            // Look up each detail and store it in the return array
+            for (int i = 0; i < no_of_details; i++)
+            {
+                if (Engine.RTTI.Lookup((IntPtr)details[i], out string value))
+                    ret[i] = value;
+            }
+
+            for (int i = no_of_details; i < 4; i++)
+                ret[i] = string.Empty;
+
+            return ret;
+        });
+
+        Is_Loading = new LazyWatcher<bool>(StateTracker, false, (current, _) =>
+        {
+            // Determine if the game is currently loading based on game mode and status
+            if (GameMode.Current == "GameModeOpening")
                 return false;
 
-            if (GameModeExtensionCount == 0 || Address_GameModeHsmExtension == IntPtr.Zero)
+            if (Engine.GameModeExtensionCount == 0 || Engine.GameModeHsmExtension == IntPtr.Zero)
                 return true;
 
-            Span<long> buf = stackalloc long[2];
+            return HsmStatus.Current[1] == "Build"
+                || HsmStatus.Current[1] == "Quit"
+                || HsmStatus.Current[2] == "TransitStage";
+        });
 
-            if (!process.ReadArray(Address_GameModeHsmExtension + 0x60, buf))
+        LevelID = new LazyWatcher<LevelID>(StateTracker, Shadow.LevelID.MainMenu, (current, _) =>
+        {
+            // Read the current level ID from memory
+            if (!process.ReadString(Engine.ApplicationSequenceExtension + 0xA0, 6, StringType.ASCII, out string id))
                 return current;
 
-            if (process.ReadPointer((IntPtr)buf[0] + 0x20, out IntPtr ptr)
-                && process.ReadString(ptr, 128, out string detail)
-                && (detail == "Build" || detail == "Quit"))
-                return true;
+            // Map the read ID to the corresponding LevelID enum
+            return id switch
+            {
+                "w00r01" => Shadow.LevelID.MainMenu,
+                "w09a10" => Shadow.LevelID.WhiteWorld,
+                "w01a11" => Shadow.LevelID.SpaceColonyArk1,
+                "w01c11" => Shadow.LevelID.SpaceColonyArk1_Challenge1,
+                "w01c12" => Shadow.LevelID.SpaceColonyArk1_Challenge2,
+                "w01h11" => Shadow.LevelID.SpaceColonyArk1_ChallengeHard,
+                "w01a20" => Shadow.LevelID.SpaceColonyArk2,
+                "w01c21" => Shadow.LevelID.SpaceColonyArk2_Challenge1,
+                "w01c22" => Shadow.LevelID.SpaceColonyArk2_Challenge2,
+                "w01h21" => Shadow.LevelID.SpaceColonyArk2_ChallengeHard,
+                "w02a10" => Shadow.LevelID.RailCanyon1,
+                "w02c11" => Shadow.LevelID.RailCanyon1_Challenge1,
+                "w02c12" => Shadow.LevelID.RailCanyon1_Challenge2,
+                "w02h11" => Shadow.LevelID.RailCanyon1_ChallengeHard,
+                "w02a20" => Shadow.LevelID.RailCanyon2,
+                "w02c21" => Shadow.LevelID.RailCanyon2_Challenge1,
+                "w02c22" => Shadow.LevelID.RailCanyon2_Challenge2,
+                "w02h21" => Shadow.LevelID.RailCanyon2_ChallengeHard,
+                "w11b10" => Shadow.LevelID.Biolizard,
+                "w11b11" => Shadow.LevelID.BiolizardHard,
+                "w03a10" => Shadow.LevelID.KingdomValley1,
+                "w03c11" => Shadow.LevelID.KingdomValley1_Challenge1,
+                "w03c12" => Shadow.LevelID.KingdomValley1_Challenge2,
+                "w03h11" => Shadow.LevelID.KingdomValley1_ChallengeHard,
+                "w03a20" => Shadow.LevelID.KingdomValley2,
+                "w03c21" => Shadow.LevelID.KingdomValley2_Challenge1,
+                "w03c22" => Shadow.LevelID.KingdomValley2_Challenge2,
+                "w03h21" => Shadow.LevelID.KingdomValley2_ChallengeHard,
+                "w04a10" => Shadow.LevelID.SunsetHeights1,
+                "w04c11" => Shadow.LevelID.SunsetHeights1_Challenge1,
+                "w04c12" => Shadow.LevelID.SunsetHeights1_Challenge2,
+                "w04h11" => Shadow.LevelID.SunsetHeights1_ChallengeHard,
+                "w04a20" => Shadow.LevelID.SunsetHeights2,
+                "w04c21" => Shadow.LevelID.SunsetHeights2_Challenge1,
+                "w04c22" => Shadow.LevelID.SunsetHeights2_Challenge2,
+                "w04h21" => Shadow.LevelID.SunsetHeights2_ChallengeHard,
+                "w12b10" => Shadow.LevelID.MetalOverlord,
+                "w12b11" => Shadow.LevelID.MetalOverlordHard,
+                "w05a10" => Shadow.LevelID.ChaosIsland1,
+                "w05c11" => Shadow.LevelID.ChaosIsland1_Challenge1,
+                "w05c12" => Shadow.LevelID.ChaosIsland1_Challenge2,
+                "w05h11" => Shadow.LevelID.ChaosIsland1_ChallengeHard,
+                "w05a20" => Shadow.LevelID.ChaosIsland2,
+                "w05c21" => Shadow.LevelID.ChaosIsland2_Challenge1,
+                "w05c22" => Shadow.LevelID.ChaosIsland2_Challenge2,
+                "w05h21" => Shadow.LevelID.ChaosIsland2_ChallengeHard,
+                "w13b10" => Shadow.LevelID.Mephiles,
+                "w13b11" => Shadow.LevelID.MephilesHard,
+                "w06a10" => Shadow.LevelID.RadicalHighway1,
+                "w06a20" => Shadow.LevelID.RadicalHighway2,
+                "w14b10" => Shadow.LevelID.BlackDoom,
+                _ => Shadow.LevelID.Unknown,
+            };
+        });
 
-            if (process.ReadPointer((IntPtr)buf[1] + 0x20, out ptr)
-                && process.ReadString(ptr, 128, out detail)
-                && detail == "TransitStage")
-                return true;
+        IsInFinalQTE = new LazyWatcher<bool>(StateTracker, false, (_, _) =>
+        {
+            // Check if the player is in the final QTE based on the current level and events
+            return LevelID.Current == Shadow.LevelID.BlackDoom && Engine.EventQTEInput.IsNotZero() && Engine.BossPerfectBlackDoomFinal.IsNotZero();
+        });
 
-            return false;
+        FinalQTECount = new LazyWatcher<int>(StateTracker, 0, (current, _) =>
+        {
+            if (LevelID.Current != Shadow.LevelID.BlackDoom || current == 2)
+                return 0;
+
+            if (IsInFinalQTE.Old && !IsInFinalQTE.Current)
+                return current + 1;
+
+            return current;
         });
     }
 
-    internal override void Update(ProcessMemory process)
+    /// <summary>
+    /// Updates the memory state of the game
+    /// </summary>
+    /// <param name="process">The current <see cref="ProcessMemory"/> instance.</param>
+    internal override void Update(ProcessMemory process, Settings settings)
     {
-        _stateTracker.Tick();
+        ApplyHWNDpatch(process, settings);  // Applies or removes patches
+        StateTracker.Tick();                // Update the state tracker
+        Engine.Update(process);             // Update the engine with the current process memory
+    }
 
-        // Reset the cached addresses
-        Address_Application = default;
-        Address_ApplicationSequence = default;
-        Address_GameMode = default;
-        Address_GameModeExtension = default;
-        Address_GameModeHsmExtension = default;
+    /// <summary>
+    /// Applies or removes the game patch to control focus behavior.
+    /// </summary>
+    /// <param name="process">The current process memory instance.</param>
+    /// <param name="settings">The settings specifying whether to apply the patch.</param>
+    private void ApplyHWNDpatch(ProcessMemory process, Settings settings)
+    {
+        IntPtr address = Engine.hWndAddress;
+        bool setting = settings.ShadowFocusPatch;
 
-        // And reset the cached values as well
-        GameModeExtensionCount = default;
-
-        if (!process.ReadPointer(BaseEngineAddress, out IntPtr ptr) || ptr == IntPtr.Zero)
-            return;
-
-        if (!process.ReadPointer(ptr + Offset_Application, out IntPtr ptr2))
-            return;
-
-        Address_Application = ptr2;
-
-        if (!process.Read<byte>(ptr + Offset_Application + 0x8, out byte applicationSequenceCount) || applicationSequenceCount == 0 || applicationSequenceCount > 25)
-            return;
-
-        long[] rent = ArrayPool<long>.Shared.Rent(applicationSequenceCount);
-
-        try
+        if (process.Read<byte>(address, out byte val))
         {
-            if (!process.ReadArray<long>(Address_Application, rent.AsSpan(0, applicationSequenceCount)))
-                return;
+            // If the game is unpatched and we want the patch to be applied
+            if (val == 0x75 && setting)
+                process.Write<byte>(Engine.hWndAddress, 0xEB); // Apply patch
 
-            Address_ApplicationSequence = rent
-                .Take(applicationSequenceCount)
-                .Select(item =>
-                {
-                    if (!RTTILookup(process, (IntPtr)item, out string name) || name != "ApplicationSequenceExtension@game@app@@")
-                        return IntPtr.Zero;
-
-                    return (IntPtr)item;
-                })
-                .FirstOrDefault(item => item != IntPtr.Zero);
-
-            if (Address_ApplicationSequence == IntPtr.Zero)
-                return;
-        }
-        finally
-        {
-            ArrayPool<long>.Shared.Return(rent);
-        }
-
-        if (!process.ReadPointer(Address_ApplicationSequence + Offset_GameMode, out ptr))
-            return;
-        Address_GameMode = ptr;
-
-        if (!process.ReadPointer(Address_GameMode + Offset_GameModeExtension, out ptr))
-            return;
-        Address_GameModeExtension = ptr;
-
-        if (!process.Read<byte>(Address_GameMode + Offset_GameModeExtension + 0x8, out byte gameModeExtensionCount)
-            || gameModeExtensionCount == 0 || gameModeExtensionCount > 128)
-            return;
-        GameModeExtensionCount = gameModeExtensionCount;
-
-        rent = ArrayPool<long>.Shared.Rent(GameModeExtensionCount);
-        try
-        {
-            if (!process.ReadArray(Address_GameModeExtension, rent.AsSpan(0, GameModeExtensionCount)))
-                return;
-
-            foreach (var item in rent.AsSpan(0, GameModeExtensionCount))
-            {
-                if (RTTILookup(process, (IntPtr)item, out string value))
-                {
-                    if (value == "GameModeHsmExtension@game@app@@")
-                        Address_GameModeHsmExtension = (IntPtr)item;
-                }
-
-                if (Address_GameModeHsmExtension != IntPtr.Zero)
-                    break;
-            }
-        }
-        finally
-        {
-            ArrayPool<long>.Shared.Return(rent);
+            // If the game is patched and we want the patch to be removed
+            else if (val == 0xEB && !setting)
+                process.Write<byte>(Engine.hWndAddress, 0x75); // Remove patch
         }
     }
 
+    /// <summary>
+    /// Determines if the game is currently loading.
+    /// </summary>
+    /// <returns>True if the game is loading; otherwise, false.</returns>
     internal override bool? IsLoading(Settings settings)
     {
         return settings.ShadowLoadless && Is_Loading.Current;
     }
 
     /// <summary>
-    /// Recovers the RTTI name
+    /// Determines if the game has transitioned from the title screen to the opening cutscene.
     /// </summary>
-    private bool RTTILookup(ProcessMemory process, IntPtr instanceAddress, out string value)
+    /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
+    internal override bool Start(Settings settings)
     {
-        if (instanceAddress == IntPtr.Zero
-            || !process.ReadPointer(instanceAddress, out IntPtr addr)
-            || !process.ReadPointer(addr - 0x8, out addr)
-            || !process.Read<int>(addr += 0xC, out int val))
-        {
-            value = string.Empty;
-            return false;
-        }
-
-        return process.ReadString(process.MainModule.BaseAddress + val + 0x10 + 0x4, 128, out value);
+        return settings.ShadowStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening";
     }
 
-    internal override bool Start(Settings settings) => false;
-    internal override bool Split(Settings settings) => false;
-    internal override bool Reset(Settings settings) => false;
+    /// <summary>
+    /// Determines if a split should occur based on game conditions.
+    /// </summary>
+    /// <returns>True if a split should occur; otherwise, false.</returns>
+    internal override bool Split(Settings settings)
+    {
+        if (LevelID.Old == Shadow.LevelID.BlackDoom)
+            return settings.BlackDoom && FinalQTECount.Old == 2 && FinalQTECount.Current == 0;
+
+        if ((HsmStatus.Old[1] == "ChallengeResult" || HsmStatus.Old[1] == "Result") && HsmStatus.Current[1] == "Build")
+        {
+            return LevelID.Old switch
+            {
+                Shadow.LevelID.SpaceColonyArk1 => settings.SpacecolonyArk1,
+                Shadow.LevelID.SpaceColonyArk1_Challenge1 => settings.SpacecolonyArk1_1,
+                Shadow.LevelID.SpaceColonyArk1_Challenge2 => settings.SpacecolonyArk1_2,
+                Shadow.LevelID.SpaceColonyArk1_ChallengeHard => settings.SpacecolonyArk1_Hard,
+                Shadow.LevelID.SpaceColonyArk2 => settings.SpacecolonyArk2,
+                Shadow.LevelID.SpaceColonyArk2_Challenge1 => settings.SpacecolonyArk2_1,
+                Shadow.LevelID.SpaceColonyArk2_Challenge2 => settings.SpacecolonyArk2_2,
+                Shadow.LevelID.SpaceColonyArk2_ChallengeHard => settings.SpacecolonyArk2_Hard,
+                Shadow.LevelID.RailCanyon1 => settings.RailCanyon1,
+                Shadow.LevelID.RailCanyon1_Challenge1 => settings.RailCanyon1_1,
+                Shadow.LevelID.RailCanyon1_Challenge2 => settings.RailCanyon1_2,
+                Shadow.LevelID.RailCanyon1_ChallengeHard => settings.RailCanyon1_Hard,
+                Shadow.LevelID.RailCanyon2 => settings.RailCanyon2,
+                Shadow.LevelID.RailCanyon2_Challenge1 => settings.RailCanyon2_1,
+                Shadow.LevelID.RailCanyon2_Challenge2 => settings.RailCanyon2_2,
+                Shadow.LevelID.RailCanyon2_ChallengeHard => settings.RailCanyon2_Hard,
+                Shadow.LevelID.KingdomValley1 => settings.KingdomValley1,
+                Shadow.LevelID.KingdomValley1_Challenge1 => settings.KingdomValley1_1,
+                Shadow.LevelID.KingdomValley1_Challenge2 => settings.KingdomValley1_2,
+                Shadow.LevelID.KingdomValley1_ChallengeHard => settings.KingdomValley1_Hard,
+                Shadow.LevelID.KingdomValley2 => settings.KingdomValley2,
+                Shadow.LevelID.KingdomValley2_Challenge1 => settings.KingdomValley2_1,
+                Shadow.LevelID.KingdomValley2_Challenge2 => settings.KingdomValley2_2,
+                Shadow.LevelID.KingdomValley2_ChallengeHard => settings.KingdomValley2_Hard,
+                Shadow.LevelID.SunsetHeights1 => settings.SunsetHeights1,
+                Shadow.LevelID.SunsetHeights1_Challenge1 => settings.SunsetHeights1_1,
+                Shadow.LevelID.SunsetHeights1_Challenge2 => settings.SunsetHeights1_2,
+                Shadow.LevelID.SunsetHeights1_ChallengeHard => settings.SunsetHeights1_Hard,
+                Shadow.LevelID.SunsetHeights2 => settings.SunsetHeights2,
+                Shadow.LevelID.SunsetHeights2_Challenge1 => settings.SunsetHeights2_1,
+                Shadow.LevelID.SunsetHeights2_Challenge2 => settings.SunsetHeights2_2,
+                Shadow.LevelID.SunsetHeights2_ChallengeHard => settings.SunsetHeights2_Hard,
+                Shadow.LevelID.ChaosIsland1 => settings.ChaosIsland1,
+                Shadow.LevelID.ChaosIsland1_Challenge1 => settings.ChaosIsland1_1,
+                Shadow.LevelID.ChaosIsland1_Challenge2 => settings.ChaosIsland1_2,
+                Shadow.LevelID.ChaosIsland1_ChallengeHard => settings.ChaosIsland1_Hard,
+                Shadow.LevelID.ChaosIsland2 => settings.ChaosIsland2,
+                Shadow.LevelID.ChaosIsland2_Challenge1 => settings.ChaosIsland2_1,
+                Shadow.LevelID.ChaosIsland2_Challenge2 => settings.ChaosIsland2_2,
+                Shadow.LevelID.ChaosIsland2_ChallengeHard => settings.ChaosIsland2_Hard,
+                Shadow.LevelID.RadicalHighway1 => settings.RadicalHighway1,
+                Shadow.LevelID.RadicalHighway2 => settings.RadicalHighway2,
+                Shadow.LevelID.Biolizard => settings.Biolizard,
+                Shadow.LevelID.BiolizardHard => settings.Biolizard_Hard,
+                Shadow.LevelID.MetalOverlord => settings.MetalOverlord,
+                Shadow.LevelID.MetalOverlordHard => settings.MetalOverlord_Hard,
+                Shadow.LevelID.Mephiles => settings.Mephiles,
+                Shadow.LevelID.MephilesHard => settings.Mephiles_Hard,
+                _ => false,
+            };
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Determines if the autosplitter timer should reset.
+    /// </summary>
+    /// <returns>True if the autospltter should reset; otherwise, false.</returns>
+    internal override bool Reset(Settings settings)
+    {
+        return settings.ShadowReset && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening";
+    }
+
+    /// <summary>
+    /// Sets the autosplitter's game time.
+    /// </summary>
+    /// <returns>The game time as a nullable TimeSpan.</returns>
     internal override TimeSpan? GameTime(Settings settings) => null;
 }

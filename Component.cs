@@ -12,6 +12,7 @@ using LiveSplit.SonicXShadowGenerations.Game;
 using LiveSplit.Options;
 using Helper.Common.ProcessInterop;
 using LiveSplit.SonicXShadowGenerations.Game.Sonic;
+using LiveSplit.SonicXShadowGenerations.Game.Shadow;
 
 namespace LiveSplit.SonicXShadowGenerations
 {
@@ -32,9 +33,9 @@ namespace LiveSplit.SonicXShadowGenerations
                 {
                     await AutosplitterTask(state, cancelToken.Token);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Log.Error(ex);
+                    // Log.Error(ex);
                 }
             },
             cancelToken.Token);
@@ -76,7 +77,7 @@ namespace LiveSplit.SonicXShadowGenerations
                 // Perform memory scanning and look for the addresses we need.
                 // As this proces can deliberately throw, it's wrapped in a try/catch block.
                 // If memory scanning fails, the autosplitter will wait (to spare a bit of system resources) and retry again.
-                IMemory? memory = null;
+                Memory? memory = null;
                 while (!canceltoken.IsCancellationRequested && process.IsOpen)
                 {
                     try
@@ -112,7 +113,7 @@ namespace LiveSplit.SonicXShadowGenerations
                     // 2. If the timer is currently either running or paused, then the isLoading, gameTime, and reset actions will be run.
                     // 3. If reset does not return true, then the split action will be run.
                     // 4. If the timer is currently not running (and not paused), then the start action will be run.
-                    memory.Update(process);
+                    memory.Update(process, Settings);
 
                     // Main logic: the autosplitter checks for time, s and splitting conditions only if it's running
                     // This prevents, for example, automatic resetting when the run is already complete (TimerPhase.Ended)

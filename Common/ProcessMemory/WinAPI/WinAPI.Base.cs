@@ -124,11 +124,13 @@ internal static partial class WinAPI
     {
         // Constants that define the process access flags for reading and querying the process.
         const int PROCESS_VM_READ = 0x0010;             // Grants read access to the process's memory
+        const int PROCESS_VM_WRITE = 0x0020;            // Grants write access to the process's memory
+        const int PROCESS_VM_OPERATION = 0x0008;        // Required to perform an operation on the address space of a process (including WriteProcessMemory)
         const int PROCESS_QUERY_INFORMATION = 0x0400;   // Grants the ability to query information about the process
         const int SYNCHRONIZE = 0x00100000;             // Allows to use wait functions, eg. WaitForSingleObject
 
         // Open the process with the required permissions. The function fails if the returned handle is zero.
-        processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION | SYNCHRONIZE, false, processId);
+        processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_QUERY_INFORMATION | SYNCHRONIZE, false, processId);
         return processHandle != IntPtr.Zero;
 
         // The OpenProcess function is imported from kernel32.dll.

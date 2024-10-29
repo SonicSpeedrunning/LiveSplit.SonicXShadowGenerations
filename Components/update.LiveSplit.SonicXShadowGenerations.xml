@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <updates>
+	<update version="1.0.0.0">
+		<files>
+			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Added autosplittting support for Shadow Generations</change>
+			<change>Added patch to stop the game from pausing when leaving the game window</change>
+			<change>Fixed a bug in the memory reading library</change>
+		</changelog>
+	</update>
 	<update version="0.0.9">
 		<files>
 			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>

@@ -125,6 +125,58 @@ public partial class Settings : UserControl
     public bool EggDragoon { get; set; }
     public bool TimeEater { get; set; }
     public bool ShadowLoadless { get; set; }
+    public bool ShadowStart { get; set; }
+    public bool ShadowReset { get; set; }
+    public bool SpacecolonyArk1 { get; set; }
+    public bool SpacecolonyArk1_1 { get; set; }
+    public bool SpacecolonyArk1_2 { get; set; }
+    public bool SpacecolonyArk1_Hard { get; set; }
+    public bool SpacecolonyArk2 { get; set; }
+    public bool SpacecolonyArk2_1 { get; set; }
+    public bool SpacecolonyArk2_2 { get; set; }
+    public bool SpacecolonyArk2_Hard { get; set; }
+    public bool RailCanyon1 { get; set; }
+    public bool RailCanyon1_1 { get; set; }
+    public bool RailCanyon1_2 { get; set; }
+    public bool RailCanyon1_Hard { get; set; }
+    public bool RailCanyon2 { get; set; }
+    public bool RailCanyon2_1 { get; set; }
+    public bool RailCanyon2_2 { get; set; }
+    public bool RailCanyon2_Hard { get; set; }
+    public bool KingdomValley1 { get; set; }
+    public bool KingdomValley1_1 { get; set; }
+    public bool KingdomValley1_2 { get; set; }
+    public bool KingdomValley1_Hard { get; set; }
+    public bool KingdomValley2 { get; set; }
+    public bool KingdomValley2_1 { get; set; }
+    public bool KingdomValley2_2 { get; set; }
+    public bool KingdomValley2_Hard { get; set; }
+    public bool SunsetHeights1 { get; set; }
+    public bool SunsetHeights1_1 { get; set; }
+    public bool SunsetHeights1_2 { get; set; }
+    public bool SunsetHeights1_Hard { get; set; }
+    public bool SunsetHeights2 { get; set; }
+    public bool SunsetHeights2_1 { get; set; }
+    public bool SunsetHeights2_2 { get; set; }
+    public bool SunsetHeights2_Hard { get; set; }
+    public bool ChaosIsland1 { get; set; }
+    public bool ChaosIsland1_1 { get; set; }
+    public bool ChaosIsland1_2 { get; set; }
+    public bool ChaosIsland1_Hard { get; set; }
+    public bool ChaosIsland2 { get; set; }
+    public bool ChaosIsland2_1 { get; set; }
+    public bool ChaosIsland2_2 { get; set; }
+    public bool ChaosIsland2_Hard { get; set; }
+    public bool RadicalHighway1 { get; set; }
+    public bool RadicalHighway2 { get; set; }
+    public bool ShadowFocusPatch { get; set; }
+    public bool Biolizard { get; set; }
+    public bool Biolizard_Hard { get; set; }
+    public bool MetalOverlord { get; set; }
+    public bool MetalOverlord_Hard { get; set; }
+    public bool Mephiles { get; set; }
+    public bool Mephiles_Hard { get; set; }
+    public bool BlackDoom { get; set; }
 
     public Settings()
     {
@@ -250,6 +302,59 @@ public partial class Settings : UserControl
         chkEggDragoon.DataBindings.Add("Checked", this, "EggDragoon", false, DataSourceUpdateMode.OnPropertyChanged);
         chkTimeEater.DataBindings.Add("Checked", this, "TimeEater", false, DataSourceUpdateMode.OnPropertyChanged);
         chkShadowLoadless.DataBindings.Add("Checked", this, "ShadowLoadless", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk1.DataBindings.Add("Checked", this, "SpaceColonyArk1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk1_1.DataBindings.Add("Checked", this, "SpaceColonyArk1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk1_2.DataBindings.Add("Checked", this, "SpaceColonyArk1_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk1_Hard.DataBindings.Add("Checked", this, "SpaceColonyArk1_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk2.DataBindings.Add("Checked", this, "SpaceColonyArk2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk2_1.DataBindings.Add("Checked", this, "SpaceColonyArk2_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk2_2.DataBindings.Add("Checked", this, "SpaceColonyArk2_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSpaceColonyArk2_Hard.DataBindings.Add("Checked", this, "SpaceColonyArk2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon1.DataBindings.Add("Checked", this, "RailCanyon1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon1_1.DataBindings.Add("Checked", this, "RailCanyon1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon1_2.DataBindings.Add("Checked", this, "RailCanyon1_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon1_Hard.DataBindings.Add("Checked", this, "RailCanyon1_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon2.DataBindings.Add("Checked", this, "RailCanyon2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon2_1.DataBindings.Add("Checked", this, "RailCanyon2_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon2_2.DataBindings.Add("Checked", this, "RailCanyon2_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRailCanyon2_Hard.DataBindings.Add("Checked", this, "RailCanyon2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley1.DataBindings.Add("Checked", this, "KingdomValley1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley1_1.DataBindings.Add("Checked", this, "KingdomValley1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley1_2.DataBindings.Add("Checked", this, "KingdomValley1_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley1_Hard.DataBindings.Add("Checked", this, "KingdomValley1_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley2.DataBindings.Add("Checked", this, "KingdomValley2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley2_1.DataBindings.Add("Checked", this, "KingdomValley2_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley2_2.DataBindings.Add("Checked", this, "KingdomValley2_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKingdomValley2_Hard.DataBindings.Add("Checked", this, "KingdomValley2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights1.DataBindings.Add("Checked", this, "SunsetHeights1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights1_1.DataBindings.Add("Checked", this, "SunsetHeights1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights1_2.DataBindings.Add("Checked", this, "SunsetHeights1_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights1_Hard.DataBindings.Add("Checked", this, "SunsetHeights1_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights2.DataBindings.Add("Checked", this, "SunsetHeights2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights2_1.DataBindings.Add("Checked", this, "SunsetHeights2_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights2_2.DataBindings.Add("Checked", this, "SunsetHeights2_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkSunsetHeights2_Hard.DataBindings.Add("Checked", this, "SunsetHeights2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland1.DataBindings.Add("Checked", this, "ChaosIsland1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland1_1.DataBindings.Add("Checked", this, "ChaosIsland1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland1_2.DataBindings.Add("Checked", this, "ChaosIsland1_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland1_Hard.DataBindings.Add("Checked", this, "ChaosIsland1_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland2.DataBindings.Add("Checked", this, "ChaosIsland2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland2_1.DataBindings.Add("Checked", this, "ChaosIsland2_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland2_2.DataBindings.Add("Checked", this, "ChaosIsland2_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkChaosIsland2_Hard.DataBindings.Add("Checked", this, "ChaosIsland2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRadicalHighway1.DataBindings.Add("Checked", this, "RadicalHighway1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkRadicalHighway2.DataBindings.Add("Checked", this, "RadicalHighway2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowStart.DataBindings.Add("Checked", this, "ShadowStart", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowReset.DataBindings.Add("Checked", this, "ShadowReset", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowFocusPatch.DataBindings.Add("Checked", this, "ShadowFocusPatch", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkBiolizard.DataBindings.Add("Checked", this, "Biolizard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkBiolizard_Hard.DataBindings.Add("Checked", this, "Biolizard_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkMetalOverlord.DataBindings.Add("Checked", this, "MetalOverlord", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkMetalOverlord_Hard.DataBindings.Add("Checked", this, "MetalOverlord_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkMephiles.DataBindings.Add("Checked", this, "Mephiles", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkMephiles_Hard.DataBindings.Add("Checked", this, "Mephiles_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkBlackDoom.DataBindings.Add("Checked", this, "BlackDoom", false, DataSourceUpdateMode.OnPropertyChanged);
+
 
         // Default Values
         SonicLoadless = true;
@@ -280,6 +385,23 @@ public partial class Settings : UserControl
         EggDragoon = true;
         TimeEater = true;
         ShadowLoadless = true;
+        SpacecolonyArk1 = SpacecolonyArk1_1 = SpacecolonyArk1_2 = SpacecolonyArk1_Hard = true;
+        SpacecolonyArk2 = SpacecolonyArk2_1 = SpacecolonyArk2_2 = SpacecolonyArk2_Hard = true;
+        RailCanyon1 = RailCanyon1_1 = RailCanyon1_2 = RailCanyon1_Hard = true;
+        RailCanyon2 = RailCanyon2_1 = RailCanyon2_2 = RailCanyon2_Hard = true;
+        KingdomValley1 = KingdomValley1_1 = KingdomValley1_2 = KingdomValley1_Hard = true;
+        KingdomValley2 = KingdomValley2_1 = KingdomValley2_2 = KingdomValley2_Hard = true;
+        SunsetHeights1 = SunsetHeights1_1 = SunsetHeights1_2 = SunsetHeights1_Hard = true;
+        SunsetHeights2 = SunsetHeights2_1 = SunsetHeights2_2 = SunsetHeights2_Hard = true;
+        ChaosIsland1 = ChaosIsland1_1 = ChaosIsland1_2 = ChaosIsland1_Hard = true;
+        ChaosIsland2 = ChaosIsland2_1 = ChaosIsland2_2 = ChaosIsland2_Hard = true;
+        RadicalHighway1 = RadicalHighway2 = true;
+        ShadowStart = ShadowReset = true;
+        Biolizard = Biolizard_Hard = true;
+        MetalOverlord = MetalOverlord_Hard = true;
+        Mephiles = Mephiles_Hard = true;
+        BlackDoom = true;
+        ShadowFocusPatch = false;
     }
 
     public XmlNode GetSettings(XmlDocument doc)
@@ -403,6 +525,58 @@ public partial class Settings : UserControl
         settingsNode.AppendChild(ToElement(doc, "EggDragoon", EggDragoon));
         settingsNode.AppendChild(ToElement(doc, "TimeEater", TimeEater));
         settingsNode.AppendChild(ToElement(doc, "ShadowLoadless", ShadowLoadless));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1", SpacecolonyArk1));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1_1", SpacecolonyArk1_1));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1_2", SpacecolonyArk1_2));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1_Hard", SpacecolonyArk1_Hard));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk2", SpacecolonyArk2));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk2_1", SpacecolonyArk2_1));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk2_2", SpacecolonyArk2_2));
+        settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk2_Hard", SpacecolonyArk2_Hard));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon1", RailCanyon1));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon1_1", RailCanyon1_1));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon1_2", RailCanyon1_2));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon1_Hard", RailCanyon1_Hard));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon2", RailCanyon2));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon2_1", RailCanyon2_1));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon2_2", RailCanyon2_2));
+        settingsNode.AppendChild(ToElement(doc, "RailCanyon2_Hard", RailCanyon2_Hard));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley1", KingdomValley1));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley1_1", KingdomValley1_1));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley1_2", KingdomValley1_2));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley1_Hard", KingdomValley1_Hard));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley2", KingdomValley2));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley2_1", KingdomValley2_1));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley2_2", KingdomValley2_2));
+        settingsNode.AppendChild(ToElement(doc, "KingdomValley2_Hard", KingdomValley2_Hard));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights1", SunsetHeights1));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights1_1", SunsetHeights1_1));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights1_2", SunsetHeights1_2));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights1_Hard", SunsetHeights1_Hard));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights2", SunsetHeights2));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights2_1", SunsetHeights2_1));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights2_2", SunsetHeights2_2));
+        settingsNode.AppendChild(ToElement(doc, "SunsetHeights2_Hard", SunsetHeights2_Hard));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland1", ChaosIsland1));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland1_1", ChaosIsland1_1));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland1_2", ChaosIsland1_2));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland1_Hard", ChaosIsland1_Hard));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland2", ChaosIsland2));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland2_1", ChaosIsland2_1));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland2_2", ChaosIsland2_2));
+        settingsNode.AppendChild(ToElement(doc, "ChaosIsland2_Hard", ChaosIsland2_Hard));
+        settingsNode.AppendChild(ToElement(doc, "RadicalHighway1", RadicalHighway1));
+        settingsNode.AppendChild(ToElement(doc, "RadicalHighway2", RadicalHighway2));
+        settingsNode.AppendChild(ToElement(doc, "ShadowStart", ShadowStart));
+        settingsNode.AppendChild(ToElement(doc, "ShadowReset", ShadowReset));
+        settingsNode.AppendChild(ToElement(doc, "ShadowFocusPatch", ShadowFocusPatch));
+        settingsNode.AppendChild(ToElement(doc, "Biolizard", Biolizard));
+        settingsNode.AppendChild(ToElement(doc, "Biolizard_Hard", Biolizard_Hard));
+        settingsNode.AppendChild(ToElement(doc, "MetalOverlord", MetalOverlord));
+        settingsNode.AppendChild(ToElement(doc, "MetalOverlord_Hard", MetalOverlord_Hard));
+        settingsNode.AppendChild(ToElement(doc, "Mephiles", Mephiles));
+        settingsNode.AppendChild(ToElement(doc, "Mephiles_Hard", Mephiles_Hard));
+        settingsNode.AppendChild(ToElement(doc, "BlackDoom", BlackDoom));
         return settingsNode;
     }
 
@@ -525,6 +699,58 @@ public partial class Settings : UserControl
         EggDragoon = ParseBool(settings, "EggDragoon", true);
         TimeEater = ParseBool(settings, "TimeEater", true);
         ShadowLoadless = ParseBool(settings, "ShadowLoadless", true);
+        SpacecolonyArk1 = ParseBool(settings, "SpacecolonyArk1", true);
+        SpacecolonyArk1_1 = ParseBool(settings, "SpacecolonyArk1_1", true);
+        SpacecolonyArk1_2 = ParseBool(settings, "SpacecolonyArk1_2", true);
+        SpacecolonyArk1_Hard = ParseBool(settings, "SpacecolonyArk1_Hard", true);
+        SpacecolonyArk2 = ParseBool(settings, "SpacecolonyArk2", true);
+        SpacecolonyArk2_1 = ParseBool(settings, "SpacecolonyArk2_1", true);
+        SpacecolonyArk2_2 = ParseBool(settings, "SpacecolonyArk2_2", true);
+        SpacecolonyArk2_Hard = ParseBool(settings, "SpacecolonyArk2_Hard", true);
+        RailCanyon1 = ParseBool(settings, "RailCanyon1", true);
+        RailCanyon1_1 = ParseBool(settings, "RailCanyon1_1", true);
+        RailCanyon1_2 = ParseBool(settings, "RailCanyon1_2", true);
+        RailCanyon1_Hard = ParseBool(settings, "RailCanyon1_Hard", true);
+        RailCanyon2 = ParseBool(settings, "RailCanyon2", true);
+        RailCanyon2_1 = ParseBool(settings, "RailCanyon2_1", true);
+        RailCanyon2_2 = ParseBool(settings, "RailCanyon2_2", true);
+        RailCanyon2_Hard = ParseBool(settings, "RailCanyon2_Hard", true);
+        KingdomValley1 = ParseBool(settings, "KingdomValley1", true);
+        KingdomValley1_1 = ParseBool(settings, "KingdomValley1_1", true);
+        KingdomValley1_2 = ParseBool(settings, "KingdomValley1_2", true);
+        KingdomValley1_Hard = ParseBool(settings, "KingdomValley1_Hard", true);
+        KingdomValley2 = ParseBool(settings, "KingdomValley2", true);
+        KingdomValley2_1 = ParseBool(settings, "KingdomValley2_1", true);
+        KingdomValley2_2 = ParseBool(settings, "KingdomValley2_2", true);
+        KingdomValley2_Hard = ParseBool(settings, "KingdomValley2_Hard", true);
+        SunsetHeights1 = ParseBool(settings, "SunsetHeights1", true);
+        SunsetHeights1_1 = ParseBool(settings, "SunsetHeights1_1", true);
+        SunsetHeights1_2 = ParseBool(settings, "SunsetHeights1_2", true);
+        SunsetHeights1_Hard = ParseBool(settings, "SunsetHeights1_Hard", true);
+        SunsetHeights2 = ParseBool(settings, "SunsetHeights2", true);
+        SunsetHeights2_1 = ParseBool(settings, "SunsetHeights2_1", true);
+        SunsetHeights2_2 = ParseBool(settings, "SunsetHeights2_2", true);
+        SunsetHeights2_Hard = ParseBool(settings, "SunsetHeights2_Hard", true);
+        ChaosIsland1 = ParseBool(settings, "ChaosIsland1", true);
+        ChaosIsland1_1 = ParseBool(settings, "ChaosIsland1_1", true);
+        ChaosIsland1_2 = ParseBool(settings, "ChaosIsland1_2", true);
+        ChaosIsland1_Hard = ParseBool(settings, "ChaosIsland1_Hard", true);
+        ChaosIsland2 = ParseBool(settings, "ChaosIsland2", true);
+        ChaosIsland2_1 = ParseBool(settings, "ChaosIsland2_1", true);
+        ChaosIsland2_2 = ParseBool(settings, "ChaosIsland2_2", true);
+        ChaosIsland2_Hard = ParseBool(settings, "ChaosIsland2_Hard", true);
+        RadicalHighway1 = ParseBool(settings, "RadicalHighway1", true);
+        RadicalHighway2 = ParseBool(settings, "RadicalHighway2", true);
+        ShadowStart = ParseBool(settings, "ShadowStart", true);
+        ShadowReset = ParseBool(settings, "ShadowReset", true);
+        ShadowFocusPatch = ParseBool(settings, "ShadowFocusPatch", true);
+        Biolizard = ParseBool(settings, "Biolizard", true);
+        Biolizard_Hard = ParseBool(settings, "Biolizard_Hard", true);
+        MetalOverlord = ParseBool(settings, "MetalOverlord", true);
+        MetalOverlord_Hard = ParseBool(settings, "MetalOverlord_Hard", true);
+        Mephiles = ParseBool(settings, "Mephiles", true);
+        Mephiles_Hard = ParseBool(settings, "Mephiles_Hard", true);
+        BlackDoom = ParseBool(settings, "BlackDoom", true);
     }
 
     static bool ParseBool(XmlNode settings, string setting, bool default_ = false)
@@ -541,45 +767,71 @@ public partial class Settings : UserControl
 
     private void ClassicButton_Click(object sender, EventArgs e)
     {
-        SonicLoadless = true;
-        SonicStart = true;
-        GreenHill1 = GreenHill1_1 = GreenHill1_2 = GreenHill1_3 = GreenHill1_4 = GreenHill1_5 = true;
-        GreenHill2 = GreenHill2_1 = GreenHill2_2 = GreenHill2_3 = GreenHill2_4 = GreenHill2_5 = true;
-        ChemicalPlant1 = ChemicalPlant1_1 = ChemicalPlant1_2 = ChemicalPlant1_3 = ChemicalPlant1_4 = ChemicalPlant1_5 = true;
-        ChemicalPlant2 = ChemicalPlant2_1 = ChemicalPlant2_2 = ChemicalPlant2_3 = ChemicalPlant2_4 = ChemicalPlant2_5 = true;
-        SkySanctuary1 = SkySanctuary1_1 = SkySanctuary1_2 = SkySanctuary1_3 = SkySanctuary1_4 = SkySanctuary1_5 = true;
-        SkySanctuary2 = SkySanctuary2_1 = SkySanctuary2_2 = SkySanctuary2_3 = SkySanctuary2_4 = SkySanctuary2_5 = true;
-        MetalSonic = true;
-        DeathEgg = true;
+        chkSonicLoadless.Checked = true;
+        chkSonicStart.Checked = true;
+        chkGreenHill1.Checked = chkGreenHill1_1.Checked = chkGreenHill1_2.Checked = chkGreenHill1_3.Checked = chkGreenHill1_4.Checked = chkGreenHill1_5.Checked = true;
+        chkGreenHill2.Checked = chkGreenHill2_1.Checked = chkGreenHill2_2.Checked = chkGreenHill2_3.Checked = chkGreenHill2_4.Checked = chkGreenHill2_5.Checked = true;
+        chkChemicalPlant1.Checked = chkChemicalPlant1_1.Checked = chkChemicalPlant1_2.Checked = chkChemicalPlant1_3.Checked = chkChemicalPlant1_4.Checked = chkChemicalPlant1_5.Checked = true;
+        chkChemicalPlant2.Checked = chkChemicalPlant2_1.Checked = chkChemicalPlant2_2.Checked = chkChemicalPlant2_3.Checked = chkChemicalPlant2_4.Checked = chkChemicalPlant2_5.Checked = true;
+        chkSkySanctuary1.Checked = chkSkySanctuary1_1.Checked = chkSkySanctuary1_2.Checked = chkSkySanctuary1_3.Checked = chkSkySanctuary1_4.Checked = chkSkySanctuary1_5.Checked = true;
+        chkSkySanctuary2.Checked = chkSkySanctuary2_1.Checked = chkSkySanctuary2_2.Checked = chkSkySanctuary2_3.Checked = chkSkySanctuary2_4.Checked = chkSkySanctuary2_5.Checked = true;
+        chkMetalSonic.Checked = true;
+        chkDeathEgg.Checked = true;
     }
 
     private void AdventureButton_Click(object sender, EventArgs e)
     {
-        SpeedHighway1 = SpeedHighway1_1 = SpeedHighway1_2 = SpeedHighway1_3 = SpeedHighway1_4 = SpeedHighway1_5 = true;
-        SpeedHighway2 = SpeedHighway2_1 = SpeedHighway2_2 = SpeedHighway2_3 = SpeedHighway2_4 = SpeedHighway2_5 = true;
-        CityEscape1 = CityEscape1_1 = CityEscape1_2 = CityEscape1_3 = CityEscape1_4 = CityEscape1_5 = true;
-        CityEscape2 = CityEscape2_1 = CityEscape2_2 = CityEscape2_3 = CityEscape2_4 = CityEscape2_5 = true;
-        SeasideHill1 = SeasideHill1_1 = SeasideHill1_2 = SeasideHill1_3 = SeasideHill1_4 = SeasideHill1_5 = true;
-        SeasideHill2 = SeasideHill2_1 = SeasideHill2_2 = SeasideHill2_3 = SeasideHill2_4 = SeasideHill2_5 = true;
-        Shadow = true;
-        PerfectChaos = true;
+        chkSpeedHighway1.Checked = chkSpeedHighway1_1.Checked = chkSpeedHighway1_2.Checked = chkSpeedHighway1_3.Checked = chkSpeedHighway1_4.Checked = chkSpeedHighway1_5.Checked = true;
+        chkSpeedHighway2.Checked = chkSpeedHighway2_1.Checked = chkSpeedHighway2_2.Checked = chkSpeedHighway2_3.Checked = chkSpeedHighway2_4.Checked = chkSpeedHighway2_5.Checked = true;
+        chkCityEscape1.Checked = chkCityEscape1_1.Checked = chkCityEscape1_2.Checked = chkCityEscape1_3.Checked = chkCityEscape1_4.Checked = chkCityEscape1_5.Checked = true;
+        chkCityEscape2.Checked = chkCityEscape2_1.Checked = chkCityEscape2_2.Checked = chkCityEscape2_3.Checked = chkCityEscape2_4.Checked = chkCityEscape2_5.Checked = true;
+        chkSeasideHill1.Checked = chkSeasideHill1_1.Checked = chkSeasideHill1_2.Checked = chkSeasideHill1_3.Checked = chkSeasideHill1_4.Checked = chkSeasideHill1_5.Checked = true;
+        chkSeasideHill2.Checked = chkSeasideHill2_1.Checked = chkSeasideHill2_2.Checked = chkSeasideHill2_3.Checked = chkSeasideHill2_4.Checked = chkSeasideHill2_5.Checked = true;
+        chkShadow.Checked = true;
+        chkPerfectChaos.Checked = true;
     }
 
     private void ModernButton_Click(object sender, EventArgs e)
     {
-        CrisisCity1 = CrisisCity1_1 = CrisisCity1_2 = CrisisCity1_3 = CrisisCity1_4 = CrisisCity1_5 = true;
-        CrisisCity2 = CrisisCity2_1 = CrisisCity2_2 = CrisisCity2_3 = CrisisCity2_4 = CrisisCity2_5 = true;
-        RooftopRun1 = RooftopRun1_1 = RooftopRun1_2 = RooftopRun1_3 = RooftopRun1_4 = RooftopRun1_5 = true;
-        RooftopRun2 = RooftopRun2_1 = RooftopRun2_2 = RooftopRun2_3 = RooftopRun2_4 = RooftopRun2_5 = true;
-        PlanetWisp1 = PlanetWisp1_1 = PlanetWisp1_2 = PlanetWisp1_3 = PlanetWisp1_4 = PlanetWisp1_5 = true;
-        PlanetWisp2 = PlanetWisp2_1 = PlanetWisp2_2 = PlanetWisp2_3 = PlanetWisp2_4 = PlanetWisp2_5 = true;
-        Silver = true;
-        EggDragoon = true;
-        TimeEater = true;
+        chkCrisisCity1.Checked = chkCrisisCity1_1.Checked = chkCrisisCity1_2.Checked = chkCrisisCity1_3.Checked = chkCrisisCity1_4.Checked = chkCrisisCity1_5.Checked = true;
+        chkCrisisCity2.Checked = chkCrisisCity2_1.Checked = chkCrisisCity2_2.Checked = chkCrisisCity2_3.Checked = chkCrisisCity2_4.Checked = chkCrisisCity2_5.Checked = true;
+        chkRooftopRun1.Checked = chkRooftopRun1_1.Checked = chkRooftopRun1_2.Checked = chkRooftopRun1_3.Checked = chkRooftopRun1_4.Checked = chkRooftopRun1_5.Checked = true;
+        chkRooftopRun2.Checked = chkRooftopRun2_1.Checked = chkRooftopRun2_2.Checked = chkRooftopRun2_3.Checked = chkRooftopRun2_4.Checked = chkRooftopRun2_5.Checked = true;
+        chkPlanetWisp1.Checked = chkPlanetWisp1_1.Checked = chkPlanetWisp1_2.Checked = chkPlanetWisp1_3.Checked = chkPlanetWisp1_4.Checked = chkPlanetWisp1_5.Checked = true;
+        chkPlanetWisp2.Checked = chkPlanetWisp2_1.Checked = chkPlanetWisp2_2.Checked = chkPlanetWisp2_3.Checked = chkPlanetWisp2_4.Checked = chkPlanetWisp2_5.Checked = true;
+        chkSilver.Checked = true;
+        chkEggDragoon.Checked = true;
+        chkTimeEater.Checked = true;
     }
 
     private void DiscordLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
         System.Diagnostics.Process.Start("https://discord.gg/M6CyCfC6M7");
+    }
+
+    private void ShadowMiscButton_Click(object sender, EventArgs e)
+    {
+        chkShadowStart.Checked = chkShadowReset.Checked = true;
+        chkShadowFocusPatch.Checked = false;
+        chkShadowLoadless.Checked = true;
+        chkBiolizard.Checked = chkBiolizard_Hard.Checked = true;
+        chkMetalOverlord.Checked = chkMetalOverlord_Hard.Checked = true;
+        chkMephiles.Checked = chkMephiles_Hard.Checked = true;
+        chkBlackDoom.Checked = true;
+    }
+
+    private void ShadowButton_Click(object sender, EventArgs e)
+    {
+        chkSpaceColonyArk1.Checked = chkSpaceColonyArk1_1.Checked = chkSpaceColonyArk1_2.Checked = chkSpaceColonyArk1_Hard.Checked = true;
+        chkSpaceColonyArk2.Checked = chkSpaceColonyArk2_1.Checked = chkSpaceColonyArk2_2.Checked = chkSpaceColonyArk2_Hard.Checked = true;
+        chkRailCanyon1.Checked = chkRailCanyon1_1.Checked = chkRailCanyon1_2.Checked = chkRailCanyon1_Hard.Checked = true;
+        chkRailCanyon2.Checked = chkRailCanyon2_1.Checked = chkRailCanyon2_2.Checked = chkRailCanyon2_Hard.Checked = true;
+        chkKingdomValley1.Checked = chkKingdomValley1_1.Checked = chkKingdomValley1_2.Checked = chkKingdomValley1_Hard.Checked = true;
+        chkKingdomValley2.Checked = chkKingdomValley2_1.Checked = chkKingdomValley2_2.Checked = chkKingdomValley2_Hard.Checked = true;
+        chkSunsetHeights1.Checked = chkSunsetHeights1_1.Checked = chkSunsetHeights1_2.Checked = chkSunsetHeights1_Hard.Checked = true;
+        chkSunsetHeights2.Checked = chkSunsetHeights2_1.Checked = chkSunsetHeights2_2.Checked = chkSunsetHeights2_Hard.Checked = true;
+        chkChaosIsland1.Checked = chkChaosIsland1_1.Checked = chkChaosIsland1_2.Checked = chkChaosIsland1_Hard.Checked = true;
+        chkChaosIsland2.Checked = chkChaosIsland2_1.Checked = chkChaosIsland2_2.Checked = chkChaosIsland2_Hard.Checked = true;
+        chkRadicalHighway1.Checked = chkRadicalHighway2.Checked = true;
     }
 }
