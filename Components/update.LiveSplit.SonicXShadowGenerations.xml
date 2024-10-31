@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <updates>
+	<update version="1.0.0.1">
+		<files>
+			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Rewrote internal update logic</change>
+			<change>Reduced the poll rate from 120hz to 60hz (it saves CPU resources, as reading memory in hedgehog engine games can be computationally expensive)</change>
+			<change>Maybe fixed the memory corruption bug?</change>
+		</changelog>
+	</update>
 	<update version="1.0.0.0">
 		<files>
 			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>

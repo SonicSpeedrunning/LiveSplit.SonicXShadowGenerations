@@ -7,7 +7,7 @@
     <RootNamespace>LiveSplit.SonicXShadowGenerations</RootNamespace>
     <Nullable>enable</Nullable>
     <Version></Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,6 +23,10 @@
     <PackageReference Include="IndexRange" Version="1.0.3" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="MSBuild.ILMerge.Task" Version="1.1.3" />
+    <PackageReference Include="SkipLocalsInit" Version="1.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +40,10 @@
     </Reference>
     <Reference Include="System.Memory">
       <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">

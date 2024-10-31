@@ -3,6 +3,8 @@ using System.Buffers;
 using System.Runtime.InteropServices;
 using System.Security;
 using Helper.Common.ProcessInterop.API.Definitions;
+using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace Helper.Common.ProcessInterop.API;
 
@@ -15,25 +17,33 @@ internal static partial class WinAPI
     /// <param name="processId">The ID of the process if found; otherwise, 0.</param>
     /// <param name="pHandle">The handle to the process if found; otherwise, IntPtr.Zero.</param>
     /// <returns>True if the process is found and the handle is opened; otherwise, false.</returns>
-    public static bool OpenProcessHandleByName(string name, out int processId, out IntPtr pHandle)
+    [SkipLocalsInit]
+    internal static bool OpenProcessHandleByName(string name, out int processId, out IntPtr pHandle)
     {
-        const int processIdsArraySize = 512; // The maximum number of process IDs to retrieve
+        const int processIdsArraySize = 512; // The maximum number of process IDs to retrieve (512 is a good estimate)
         int[]? processIds = null;            // Array to hold the process IDs
 
         try
         {
             // Rent an array from the shared pool to hold the process IDs
             processIds = ArrayPool<int>.Shared.Rent(processIdsArraySize);
+            int sizeNeeded;
 
-            // Get the array of process IDs
-            if (!EnumProcesses(processIds, processIds.Length * sizeof(int), out int sizeNeeded))
+            unsafe
             {
-                // If the enumeration fails, set outputs to default and return false
-                processId = 0;
-                pHandle = IntPtr.Zero;
-                return false;
+                fixed (int* pProcessIds = processIds)
+                {
+                    // Get the array of process IDs
+                    if (!EnumProcesses(pProcessIds, processIdsArraySize * sizeof(int), out sizeNeeded))
+                    {
+                        // If the enumeration fails, set outputs to default and return false
+                        processId = 0;
+                        pHandle = IntPtr.Zero;
+                        return false;
+                    }
+                }
             }
-
+            
             int numProcesses = sizeNeeded / sizeof(int);
 
             // Iterate over each process ID and yield the process name
@@ -56,7 +66,6 @@ internal static partial class WinAPI
                 // If we didn't find the right process, close the handle to avoid leaks
                 CloseProcessHandle(localHandle);
             }
-
         }
         finally
         {
@@ -73,7 +82,7 @@ internal static partial class WinAPI
         // Importing necessary methods from the Windows API
         [DllImport(Libs.Psapi)]
         [SuppressUnmanagedCodeSecurity]
-        static extern bool EnumProcesses(int[] lpidProcess, int cb, out int lpcbNeeded);
+        static unsafe extern bool EnumProcesses(int* lpidProcess, int cb, out int lpcbNeeded);
     }
 
     /// <summary>
@@ -86,33 +95,28 @@ internal static partial class WinAPI
     /// <exception cref="InvalidOperationException">
     /// Thrown when the process handle is invalid (i.e., IntPtr.Zero).
     /// </exception>
-    public static string GetProcessName(IntPtr pHandle)
+    [SkipLocalsInit]
+    internal static string GetProcessName(IntPtr pHandle)
     {
         if (pHandle == IntPtr.Zero)
             throw new InvalidOperationException("Invalid process handle.");
 
         const int BUFFER_LENGTH = 256;
-        IntPtr nameBuffer = IntPtr.Zero;
+        Span<char> nameBuffer = stackalloc char[BUFFER_LENGTH];
 
-        try
+        unsafe
         {
-            // Allocate memory for wide characters (BUFFER_LENGTH * 2 for bytes)
-            nameBuffer = Marshal.AllocHGlobal(BUFFER_LENGTH * 2);
-
-            uint size = GetModuleBaseNameW(pHandle, IntPtr.Zero, nameBuffer, BUFFER_LENGTH);
-            return size == 0 ? string.Empty : Marshal.PtrToStringUni(nameBuffer);
+            fixed (char* pNameBuffer = nameBuffer)
+            {
+                uint size = GetModuleBaseNameW(pHandle, IntPtr.Zero, pNameBuffer, BUFFER_LENGTH);
+                return size == 0 ? string.Empty : Marshal.PtrToStringUni((IntPtr)pNameBuffer);
+            }
         }
-        finally
-        {
-            // Free allocated memory to prevent memory leaks
-            if (nameBuffer != IntPtr.Zero)
-                Marshal.FreeHGlobal(nameBuffer);
-        }
-
+        
         // Import the GetModuleBaseNameW function from the psapi.dll
         [DllImport(Libs.Psapi)]
         [SuppressUnmanagedCodeSecurity]
-        static extern uint GetModuleBaseNameW(IntPtr hProcess, IntPtr hModule, IntPtr lpBaseName, int nSize);
+        static unsafe extern uint GetModuleBaseNameW(IntPtr hProcess, IntPtr hModule, char* lpBaseName, int nSize);
     }
 
     /// <summary>
@@ -120,39 +124,39 @@ internal static partial class WinAPI
     /// </summary>
     /// <param name="processId">The unique id of the process to hook to.</param>
     /// <returns>A handle to the target process if the function succeeds; otherwise, IntPtr.Zero</returns>
-    public static bool OpenProcess(int processId, out IntPtr processHandle)
+    internal static bool OpenProcess(int processId, out IntPtr processHandle)
     {
         // Constants that define the process access flags for reading and querying the process.
-        const int PROCESS_VM_READ = 0x0010;             // Grants read access to the process's memory
-        const int PROCESS_VM_WRITE = 0x0020;            // Grants write access to the process's memory
-        const int PROCESS_VM_OPERATION = 0x0008;        // Required to perform an operation on the address space of a process (including WriteProcessMemory)
-        const int PROCESS_QUERY_INFORMATION = 0x0400;   // Grants the ability to query information about the process
-        const int SYNCHRONIZE = 0x00100000;             // Allows to use wait functions, eg. WaitForSingleObject
+        const uint PROCESS_VM_READ = 0x0010;             // Grants read access to the process's memory
+        const uint PROCESS_VM_WRITE = 0x0020;            // Grants write access to the process's memory
+        const uint PROCESS_VM_OPERATION = 0x0008;        // Required to perform an operation on the address space of a process (including WriteProcessMemory)
+        const uint PROCESS_QUERY_INFORMATION = 0x0400;   // Grants the ability to query information about the process
+        const uint SYNCHRONIZE = 0x00100000;             // Allows to use wait functions, eg. WaitForSingleObject
 
         // Open the process with the required permissions. The function fails if the returned handle is zero.
-        processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_QUERY_INFORMATION | SYNCHRONIZE, false, processId);
+        processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_QUERY_INFORMATION | SYNCHRONIZE, 0, processId);
         return processHandle != IntPtr.Zero;
 
         // The OpenProcess function is imported from kernel32.dll.
         // It is used to open a handle to the external process with the specified access rights.
         [DllImport(Libs.Kernel32)]
         [SuppressUnmanagedCodeSecurity]
-        static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+        static extern IntPtr OpenProcess(uint dwDesiredAccess, int bInheritHandle, int dwProcessId);
     }
 
     /// <summary>
     /// Closes a specified process handle, freeing the relative unmanaged resources.
     /// </summary>
-    public static void CloseProcessHandle(IntPtr processHandle)
+    internal static bool CloseProcessHandle(IntPtr processHandle)
     {
-        CloseHandle(processHandle);
+        return CloseHandle(processHandle) != 0;
 
         // The CloseHandle function is imported from kernel32.dll.
         // It is used to close the handle to the external process when we're done with it.
         // As the handle is an unmanaged resource, it is important to close the handle in order to prevent leaking of resources.
         [DllImport(Libs.Kernel32)]
         [SuppressUnmanagedCodeSecurity]
-        static extern bool CloseHandle(IntPtr hObject);
+        static extern int CloseHandle(IntPtr hObject);
     }
 
     /// <summary>
@@ -160,7 +164,7 @@ internal static partial class WinAPI
     /// </summary>
     /// <param name="handle">Handle to the process.</param>
     /// <returns>True if the process is still running, false if it has exited.</returns>
-    public static bool IsOpen(IntPtr handle)
+    internal static bool IsOpen(IntPtr handle)
     {
         // Constants used by WaitForSingleObject
         const uint WAIT_TIMEOUT = 0x00000102;
@@ -179,7 +183,7 @@ internal static partial class WinAPI
     /// </summary>
     /// <param name="hProcess">The handle to the process.</param>
     /// <returns>True if the process is 64-bit, false if it is 32-bit.</returns>
-    public static bool Is64Bit(IntPtr hProcess)
+    internal static bool Is64Bit(IntPtr hProcess)
     {
         if (hProcess == IntPtr.Zero)
             throw new InvalidOperationException("Invalid process handle.");
@@ -193,25 +197,25 @@ internal static partial class WinAPI
         
         if (osVersion.Major > 10 || (osVersion.Major == 10 && osVersion.Build >= 10586))
         {
-            return IsWow64Process2(hProcess, out ushort processMachine, out _)
+            return IsWow64Process2(hProcess, out ushort processMachine, out _) != 0
                 && processMachine != 0x014C  // x86
                 && processMachine != 0x01C0  // ARM
                 && processMachine != 0x01C4; // ARMv7
 
             [DllImport(Libs.Kernel32)]
             [SuppressUnmanagedCodeSecurity]
-            static extern bool IsWow64Process2(IntPtr hProcess, out ushort pProcessMachine, out ushort pNativeMachine);
+            static extern int IsWow64Process2(IntPtr hProcess, out ushort pProcessMachine, out ushort pNativeMachine);
         }
         else
         {
             // Check if the process is running under WOW64.
             // If the system call fails, we return false by default, although this result
             // is inconsequential as it generally assumes the presence of invalid handle.
-            return IsWow64Process(hProcess, out bool iswow64) && !iswow64;
+            return IsWow64Process(hProcess, out int iswow64) != 0 && iswow64 == 0;
 
             [DllImport(Libs.Kernel32)]
             [SuppressUnmanagedCodeSecurity]
-            static extern bool IsWow64Process(IntPtr hProcess, out bool wow64Process);
+            static extern int IsWow64Process(IntPtr hProcess, out int wow64Process);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Buffers;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -13,7 +12,7 @@ namespace Helper.Common.ProcessInterop;
 /// Static class to scan memory for a specific signature pattern within a given byte array.
 /// Useful for identifying particular byte sequences in memory.
 /// </summary>
-public static class SignatureScanner
+internal static class SignatureScanner
 {
     /// <summary>
     /// Scans the memory of a process for all instances of a specific signature pattern.
@@ -23,7 +22,8 @@ public static class SignatureScanner
     /// <param name="baseAddress">Base address of the memory region to scan.</param>
     /// <param name="size">Size of the memory region to scan.</param>
     /// <returns>An enumerable collection of memory addresses where the pattern was found.</returns>
-    public static IEnumerable<IntPtr> ScanAll(IntPtr pHandle, ScanPattern pattern, IntPtr baseAddress, int size)
+    [SkipLocalsInit]
+    internal static IEnumerable<IntPtr> ScanAll(IntPtr pHandle, ScanPattern pattern, IntPtr baseAddress, int size)
     {
         // Ensure the size of the memory region is greater than 0
         if (size <= 0)
@@ -62,20 +62,21 @@ public static class SignatureScanner
                 if (lastPageSuccess)
                     buffer.AsSpan(PAGE_SIZE, signatureLength).CopyTo(buffer.AsSpan(0, signatureLength));
 
+                // Attempt to read the memory into the buffer
                 if (WinAPI.ReadProcessMemory(pHandle, address, buffer.AsSpan(signatureLength, length)))
                 {
                     IEnumerable<int> scan = lastPageSuccess
-                        ? ScanAll(pattern, buffer, 0, length + signatureLength)
-                        : ScanAll(pattern, buffer, signatureLength, length);
+                        ? ScanAll(pattern, buffer, 0, length + signatureLength) // Include the last few bytes from the previous read
+                        : ScanAll(pattern, buffer, signatureLength, length);    // Scan normally
 
                     foreach (int value in scan)
                     {
                         // Calculate the exact address of the match in the process memory
-                        IntPtr foundAddress = lastPageSuccess ?
-                            address + value - signatureLength
-                            : address + value;
+                        IntPtr foundAddress = lastPageSuccess
+                            ? address + value - signatureLength // Adjust address when using the previous page's data
+                            : address + value;                  // Regular calculation when not using previous data
 
-                        // Handle cases where a callback (OnFound) is defined
+                        // Yield the found address or invoke the OnFound callback if defined
                         yield return pattern is MemoryScanPattern memoryPattern
                             ? memoryPattern.OnFound is not null ? memoryPattern.OnFound(foundAddress) : foundAddress
                             : foundAddress;
@@ -100,7 +101,7 @@ public static class SignatureScanner
     /// <param name="pattern">The signature pattern to search for.</param>
     /// <param name="data">The byte array to search in.</param>
     /// <returns>An enumerable of matching offsets where the pattern is found.</returns>
-    public static IEnumerable<int> ScanAll(ScanPattern pattern, byte[] data)
+    internal static IEnumerable<int> ScanAll(ScanPattern pattern, byte[] data)
     {
         if (pattern.Pattern.Length > data.Length)
             throw new InvalidOperationException("The buffer to scan in cannot be shorter than the signature pattern.");
@@ -118,17 +119,32 @@ public static class SignatureScanner
     /// <returns>An enumerable of matching offsets where the pattern is found.</returns>
     private static IEnumerable<int> ScanAll(ScanPattern pattern, byte[] data, int startIndex, int noOfElements)
     {
+        // Ensure the start index is valid
         if (startIndex < 0)
             throw new ArgumentOutOfRangeException(nameof(startIndex), "The start index must be greater than or equal to zero.");
 
-        if (pattern.Pattern.Length > noOfElements)
+        // Ensure the data buffer is not shorter than the signature pattern
+        if (pattern.Pattern.Length > data.Length)
             throw new InvalidOperationException("The buffer to scan in cannot be shorter than the signature pattern.");
 
-        using (ScanEnumerator scanner = new ScanEnumerator(pattern, data, startIndex, noOfElements))
-        {
-            while (scanner.MoveNext())
-                yield return scanner.Current + pattern.Offset;
-        }
+        ScanEnumerator scanner = new(pattern, data.AsSpan(startIndex, noOfElements));
+
+        while (scanner.MoveNext(pattern, data.AsSpan(startIndex, noOfElements)))
+            yield return scanner.Current + pattern.Offset;
+    }
+
+    /// <summary>
+    /// Scans the entire data buffer for multiple signature patterns and returns all found offsets.
+    /// </summary>
+    /// <param name="patterns">An array of signature patterns to search for.</param>
+    /// <param name="data">The byte array to search in.</param>
+    /// <returns>An enumerable of matching offsets where any pattern is found.</returns>
+    internal static IEnumerable<int> ScanAll(ScanPattern[] patterns, byte[] data)
+    {
+        if (patterns.Any(pattern => pattern.Pattern.Length > data.Length))
+            throw new InvalidOperationException("The buffer to scan in cannot be shorter than the signature pattern.");
+
+        return ScanAll(patterns, data, 0, data.Length);
     }
 
     /// <summary>
@@ -149,45 +165,22 @@ public static class SignatureScanner
 
         foreach (ScanPattern pattern in patterns)
         {
-            using (ScanEnumerator scanner = new ScanEnumerator(pattern, data, startIndex, noOfElements))
-            {
-                while (scanner.MoveNext())
-                    yield return scanner.Current + pattern.Offset;
-            }
+            ScanEnumerator scanner = new(pattern, data.AsSpan(startIndex, noOfElements));
+
+            while (scanner.MoveNext(pattern, data.AsSpan(startIndex, noOfElements)))
+                yield return scanner.Current + pattern.Offset;
         }
     }
 
     /// <summary>
-    /// Enumerator that scans through a byte buffer and finds occurrences of a specific scan pattern.
+    /// Custom enumerator that scans through a byte buffer and finds occurrences of a specific scan pattern.
     /// </summary>
-    private struct ScanEnumerator : IEnumerator<int>
+    private struct ScanEnumerator
     {
         public int Current { get; private set; }    // The current position in the buffer (index of the found pattern)
-        object IEnumerator.Current => Current;      // Explicit implementation for the non-generic IEnumerator
 
-        private readonly int startCursor; // Start index for scanning
         private int currentCursor;        // The current scan position in the buffer
         private readonly int endCursor;   // The limit for the enumerator to prevent scanning beyond the valid range
-
-        private readonly ScanPattern scanPattern;   // The pattern we are scanning for
-        private readonly byte[] haystack;           // The byte buffer where the scan occurs
-
-        /// <summary>
-        /// Initializes the ScanEnumerator with the signature pattern and the data buffer.
-        /// </summary>
-        /// <param name="signature">The pattern to search for.</param>
-        /// <param name="data">The byte array to scan.</param>
-        public ScanEnumerator(ScanPattern signature, byte[] data)
-            : this(signature, data, data.Length) { }
-
-        /// <summary>
-        /// Initializes the ScanEnumerator with the signature pattern and the data buffer, limited by 'noOfElements'.
-        /// </summary>
-        /// <param name="signature">The pattern to search for.</param>
-        /// <param name="data">The byte array to scan.</param>
-        /// <param name="noOfElements">The number of elements (bytes) to scan from the start of the buffer.</param>
-        public ScanEnumerator(ScanPattern signature, byte[] data, int noOfElements)
-            : this(signature, data, 0, noOfElements) { }
 
         /// <summary>
         /// Initializes the ScanEnumerator with the signature pattern, data buffer, start index, and number of elements to scan.
@@ -196,32 +189,26 @@ public static class SignatureScanner
         /// <param name="data">The byte array to scan.</param>
         /// <param name="startIndex">The starting index in the byte array.</param>
         /// <param name="noOfElements">The number of elements (bytes) to scan from the start index.</param>
-        public ScanEnumerator(ScanPattern signature, byte[] data, int startIndex, int noOfElements)
+        public ScanEnumerator(ScanPattern signature, ReadOnlySpan<byte> data)
         {
-            if (startIndex + noOfElements > data.Length)
-                throw new IndexOutOfRangeException("Tried to perform a scan outside the bounds of the provided data array");
-
-            haystack = data;
-            scanPattern = signature;
-            startCursor = startIndex;
-            currentCursor = startIndex;
-            endCursor = startIndex + noOfElements - signature.Pattern.Length + 1;
+            currentCursor = 0;
+            endCursor = data.Length - signature.Pattern.Length + 1;
         }
 
         /// <summary>
         /// Advances the enumerator to the next matching position in the buffer.
         /// </summary>
         /// <returns>True if the next element is successfully found; otherwise, false.</returns>
-        public unsafe bool MoveNext()
+        public unsafe bool MoveNext(ScanPattern signature, ReadOnlySpan<byte> data)
         {
-            int signatureLength = scanPattern.Pattern.Length;
+            int signatureLength = signature.Pattern.Length;
 
             // Defining locals as they can be faster
             int currentCursor = this.currentCursor;
             int endCursor = this.endCursor;
 
             // We access memory directly for performance
-            fixed (byte* pBuffer = haystack, pPattern = scanPattern.Pattern, pMask = scanPattern.Mask, pSkipOffsets = scanPattern.SkipOffsets)
+            fixed (byte* pBuffer = data, pPattern = signature.Pattern, pMask = signature.Mask, pSkipOffsets = signature.SkipOffsets)
             {
                 while (currentCursor < endCursor)
                 {
@@ -260,7 +247,7 @@ public static class SignatureScanner
                     }
 
                     // If we find a match, set current to the current cursor position and return true
-                    Current = currentCursor - startCursor;
+                    Current = currentCursor;
                     currentCursor += 1; // Move cursor to next byte
                     this.currentCursor = currentCursor;
                     return true;
@@ -280,13 +267,8 @@ public static class SignatureScanner
         /// </summary>
         public void Reset()
         {
-            currentCursor = startCursor;
+            currentCursor = 0;
         }
-
-        /// <summary>
-        /// Releases any resources used by the enumerator.
-        /// </summary>
-        public void Dispose() { } // No unmanaged resources to release in this implementation
     }
 }
 
@@ -310,7 +292,7 @@ public class ScanPattern
         : this(0, signature) { }
 
     // Regex to validate the signature format. Accepts two hex characters or wildcards (??) with optional spaces.
-    private static readonly Regex regex = new Regex(@"^(([0-9A-Fa-f?]{2})\s*)*$", RegexOptions.Compiled);
+    private static readonly Regex regex = new(@"^(([0-9A-Fa-f?]{2})\s*)*$", RegexOptions.Compiled);
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ScanPattern"/> class by parsing the signature string.

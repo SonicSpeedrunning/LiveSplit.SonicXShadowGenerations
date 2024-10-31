@@ -33,9 +33,9 @@ namespace LiveSplit.SonicXShadowGenerations
                 {
                     await AutosplitterTask(state, cancelToken.Token);
                 }
-                catch
+                catch // (Exception ex)
                 {
-                    // Log.Error(ex);
+                    //Log.Error(ex);
                 }
             },
             cancelToken.Token);
@@ -61,7 +61,7 @@ namespace LiveSplit.SonicXShadowGenerations
 
             // Update interval represents the amount of time between each update cycle. Tipically 16ms for 60hz refresh rate.
             // The default in LiveSplit One is 120hz so no reason to attempt this here as well.
-            TimeSpan updateInterval = TimeSpan.FromMilliseconds(1000d / 120);
+            TimeSpan updateInterval = TimeSpan.FromMilliseconds(1000d / 60);
 
             // TimerModel, used by the autosplitter to signal the splitting actions.
             TimerModel timer = new TimerModel() { CurrentState = state };

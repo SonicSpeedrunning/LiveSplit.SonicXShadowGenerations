@@ -11,7 +11,8 @@ internal static partial class WinAPI
     /// Enumerates function entries in the specified process module.
     /// </summary>
     /// <returns>An enumerable collection of Symbol records containing function names and addresses.</returns>
-    public static IEnumerable<Symbol> EnumerateFunctions(IntPtr pHandle, IntPtr moduleBaseAddress)
+    [SkipLocalsInit]
+    internal static IEnumerable<Symbol> EnumerateFunctions(IntPtr pHandle, IntPtr moduleBaseAddress)
     {
         if (pHandle == IntPtr.Zero)
             throw new InvalidOperationException("Invalid process handle.");
@@ -53,9 +54,14 @@ internal static partial class WinAPI
 
         try
         {
+            // As ArrayPool is nto guaranteed to give us exactly the size we want for the array,
+            // we manually specify it in a Span
+            Span<int> sFunctionAddresses = functionAddresses.AsSpan(0, numberOfFunctions);
+            Span<int> sNameAddresses = nameAddresses.AsSpan(0, numberOfFunctions);
+
             // Read the arrays of function pointers and function name RVAs from the export directory.
-            if (!ReadProcessMemory<int>(pHandle, moduleBaseAddress + exportData.AddressOfFunctionsRVA, functionAddresses)
-                || !ReadProcessMemory<int>(pHandle, moduleBaseAddress + exportData.AddressOfNamesRVA, nameAddresses))
+            if (!ReadProcessMemory<int>(pHandle, moduleBaseAddress + exportData.AddressOfFunctionsRVA, sFunctionAddresses)
+                || !ReadProcessMemory<int>(pHandle, moduleBaseAddress + exportData.AddressOfNamesRVA, sNameAddresses))
                 yield break;
 
             // Iterate over each function name
@@ -83,7 +89,8 @@ internal static partial class WinAPI
         /// <param name="exportDirectory">Address of the export directory in the external process.</param>
         /// <returns>An ExportDirectoryData object containing relevant details of the export directory, or null if reading fails.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        bool ReadExportDirectory(IntPtr processHandle, IntPtr exportDirectory, out ExportDirectoryData exportData)
+        [SkipLocalsInit]
+        static bool ReadExportDirectory(IntPtr processHandle, IntPtr exportDirectory, out ExportDirectoryData exportData)
         {
             Span<int> exportDirBuffer = stackalloc int[10];
             if (!ReadProcessMemory<int>(processHandle, exportDirectory, exportDirBuffer))
@@ -109,6 +116,7 @@ internal static partial class WinAPI
         /// <param name="nameAddress">Address where the function name is stored in memory.</param>
         /// <returns>A string containing the function name, or null if reading fails.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [SkipLocalsInit]
         string? GetFunctionName(IntPtr processHandle, IntPtr nameAddress)
         {
             Span<sbyte> nameBytes = stackalloc sbyte[255];
@@ -132,6 +140,7 @@ internal static partial class WinAPI
     /// <summary>
     /// Structure that holds parsed information from the export directory.
     /// </summary>
+    [SkipLocalsInit]
     private readonly ref struct ExportDirectoryData(int numberOfFunctions, int addressOfFunctionsRVA, int addressOfNamesRVA)
     {
         public readonly int NumberOfFunctions = numberOfFunctions; // Number of names in the export table

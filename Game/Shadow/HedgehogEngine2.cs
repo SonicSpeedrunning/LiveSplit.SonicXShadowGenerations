@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 using Helper.Common.ProcessInterop;
 using LiveSplit.SonicXShadowGenerations.Common;
 
@@ -25,20 +26,30 @@ internal class HedgehogEngine2
     internal IntPtr hWndAddress { get; }
 
     /// <summary>
-    /// Runtime Type Information instance for looking up in-memory types.
+    /// Runtime Type Information instance used to look up and identify in-memory types.
     /// </summary>
     internal RTTI RTTI { get; }
 
-    // Cached addresses for frequently accessed game objects.
-    internal IntPtr GameManager { get; private set; } = default; // An instance of hh::game::GameManager
-    internal IntPtr BossPerfectBlackDoomFinal { get; private set; } = default; // An instance of app::BossPerfectBlackDoomFinal
-    internal IntPtr EventQTEInput { get; private set; } = default; // An instance of app::evt::EventQTEInput
-    internal IntPtr MyApplication { get; private set; } = default; // An instance of app::MyApplication
-    internal IntPtr ApplicationSequenceExtension { get; private set; } = default; // An instance of app::game::ApplicationSequenceExtension
-    internal IntPtr GameMode { get; private set; } = default; // The current running instance of app::game::GameMode
-    internal IntPtr GameModeHsmExtension { get; private set; } = default; // The current running instance of app::game::GameModeHsmExtension
-    internal int GameModeExtensionCount { get; private set; } = default; // The number of currently running instances of type app::game::GameModeExtension
+    /// <summary>
+    /// Dictionary that stores cached addresses for various game services.
+    /// </summary>
+    private readonly Dictionary<string, IntPtr> _services = new();
 
+    /// <summary>
+    /// Dictionary that stores cached addresses for different in-game objects.
+    /// </summary>
+    private readonly Dictionary<string, IntPtr> _objects = new();
+
+    /// <summary>
+    /// Dictionary that stores cached addresses for various application extensions.
+    /// </summary>
+    private readonly Dictionary<string, IntPtr> _extensions = new();
+
+    /// <summary>
+    /// Pointer to the current running instance of app::game::GameMode.
+    /// </summary>
+    internal IntPtr GameMode { get; private set; } = default;
+    
     /// <summary>
     /// Initializes a new instance of the HedgehogEngine2 class and locates
     /// the pointer to the main game manager in memory.
@@ -62,18 +73,14 @@ internal class HedgehogEngine2
     }
 
     /// <summary>
-    /// Resets all cached memory addresses, forcing the next update to re-cache.
+    /// Resets all cached memory addresses, forcing the next update to re-cache them.
     /// </summary>
     private void ResetCache()
     {
-        GameManager = IntPtr.Zero;
-        BossPerfectBlackDoomFinal = IntPtr.Zero;
-        EventQTEInput = IntPtr.Zero;
-        MyApplication = IntPtr.Zero;
-        ApplicationSequenceExtension = IntPtr.Zero;
         GameMode = IntPtr.Zero;
-        GameModeHsmExtension = IntPtr.Zero;
-        GameModeExtensionCount = 0;
+        _services.Clear();
+        _objects.Clear();
+        _extensions.Clear();
     }
 
     /// <summary>
@@ -81,6 +88,7 @@ internal class HedgehogEngine2
     /// the process memory. This method should be called periodically to refresh the cached values.
     /// </summary>
     /// <param name="process">The target process memory handler.</param>
+    [SkipLocalsInit]
     public void Update(ProcessMemory process)
     {
         long[] rent;
@@ -89,118 +97,142 @@ internal class HedgehogEngine2
         ResetCache();
 
         // Step 2: Attempt to read the main GameManager pointer.
-        if (!process.ReadPointer(pGameManager, out IntPtr addr))
+        if (!process.ReadPointer(pGameManager, out IntPtr _gameManager))
             return; // Return early if GameManager address is invalid.
-        GameManager = addr;
 
-        // Step 3: Read pointer to MyApplication; skip if invalid.
-        if (process.ReadPointer(GameManager + 0x350, out addr))
+        if (!process.Read(_gameManager, out GameManager gameManager))
+            return;
+
+        // Scan the game services
+        if (gameManager.noOfGameServices > 0 && gameManager.noOfGameServices < 1024)
         {
-            MyApplication = addr;
+            rent = ArrayPool<long>.Shared.Rent(gameManager.noOfGameServices);
+            Span<long> span = rent.AsSpan(0, gameManager.noOfGameServices);
 
-            // Retrieve ApplicationSequenceExtension if valid.
-            if (process.Read(MyApplication + 0x88, out ArrayAndSize array) && array.size != 0 && array.size < 64)
+            if (process.ReadArray(gameManager.GameServices, span))
             {
-                rent = ArrayPool<long>.Shared.Rent(array.size);
-                Span<long> span = rent.AsSpan(0, array.size);
-
-                // Read array of pointers for ApplicationSequenceExtension
-                if (process.ReadArray(array.Entries, span))
+                foreach (var entry in span)
                 {
-                    foreach (var entry in span)
-                    {
-                        // Identify ApplicationSequenceExtension using RTTI lookup.
-                        if (RTTI.Lookup((IntPtr)entry, out string value))
-                        {
-                            if (value == "ApplicationSequenceExtension")
-                                ApplicationSequenceExtension = (IntPtr)entry;
-                        }
+                    if (RTTI.Lookup((IntPtr)entry, out string value))
+                        _services[value] = (IntPtr)entry;
+                }
+            }
+            ArrayPool<long>.Shared.Return(rent);
+        }
 
-                        if (ApplicationSequenceExtension.IsNotZero())
+        // Scan game application extensions.
+        if (process.Read(gameManager.GameApplication, out GameApplication gameApplication)
+            && gameApplication.noOfApplicationExtensions > 0
+            && gameApplication.noOfApplicationExtensions < 64)
+        {
+            rent = ArrayPool<long>.Shared.Rent(gameApplication.noOfApplicationExtensions);
+            Span<long> span = rent.AsSpan(0, gameApplication.noOfApplicationExtensions);
+
+            IntPtr ase = IntPtr.Zero;
+
+            // Read array of pointers for ApplicationSequenceExtension
+            if (process.ReadArray(gameApplication.ApplicationExtensions, span))
+            {
+                foreach (var entry in span)
+                {
+                    // Identify ApplicationSequenceExtension using RTTI lookup.
+                    if (RTTI.Lookup((IntPtr)entry, out string value))
+                    {
+                        if (value == "ApplicationSequenceExtension")
+                        {
+                            ase = (IntPtr)entry;
                             break;
+                        }
                     }
                 }
-                ArrayPool<long>.Shared.Return(rent);
+            }
+            ArrayPool<long>.Shared.Return(rent);
 
-                // If ApplicationSequenceExtension is found, locate GameMode.
-                if (ApplicationSequenceExtension.IsNotZero())
+            // If ApplicationSequenceExtension is found, locate GameMode.
+            if (ase.IsNotZero())
+            {
+                // Try to read the pointer for GameMode instance.
+                if (process.Read(ase, out ApplicationSequenceExtension extension))
                 {
-                    // Try to read the pointer for GameMode instance.
-                    if (process.ReadPointer(ApplicationSequenceExtension + 0x78, out addr))
+                    GameMode = extension.GameMode;
+
+                    // Read current instance of GameModeExtension.
+                    if (process.Read(GameMode, out GameMode gameMode) && gameMode.noOfExtensions > 0 && gameMode.noOfExtensions < 128)
                     {
-                        GameMode = addr;
+                        rent = ArrayPool<long>.Shared.Rent(gameMode.noOfExtensions);
+                        span = rent.AsSpan(0, gameMode.noOfExtensions);
 
-                        // Read current instance of GameModeExtension.
-                        if (process.Read(GameMode + 0xB0, out array) && array.size != 0 && array.size < 128)
+                        // Retrieve array of extensions
+                        if (process.ReadArray(gameMode.Extensions, span))
                         {
-                            GameModeExtensionCount = array.size;
-                            rent = ArrayPool<long>.Shared.Rent(GameModeExtensionCount);
-                            span = rent.AsSpan(0, GameModeExtensionCount);
-
-                            // Retrieve array of extensions, looking for GameModeHsmExtension.
-                            if (process.ReadArray(array.Entries, span))
+                            foreach (var entry in span)
                             {
-                                foreach (var entry in span)
-                                {
-                                    if (RTTI.Lookup((IntPtr)entry, out string value))
-                                    {
-                                        if (value == "GameModeHsmExtension")
-                                            GameModeHsmExtension = (IntPtr)entry;
-                                    }
-
-                                    if (GameModeHsmExtension.IsNotZero())
-                                        break;
-                                }
+                                if (RTTI.Lookup((IntPtr)entry, out string value))
+                                    _extensions[value] = (IntPtr)entry;
                             }
-                            ArrayPool<long>.Shared.Return(rent);
                         }
+
+                        ArrayPool<long>.Shared.Return(rent);
                     }
                 }
             }
         }
 
-        // Step 4: Check if in final boss fight by verifying level ID.
-        // This check is necessary in order to optimize memory by avoiding
-        // scanning the game objects array when not necessary.
-        Span<byte> levelID = stackalloc byte[6];
-        Span<byte> seq = stackalloc byte[6] { (byte)'w', (byte)'1', (byte)'4', (byte)'b', (byte)'1', (byte)'0' };
-        if (process.ReadArray(ApplicationSequenceExtension + 0xA0, levelID) && levelID.SequenceEqual(seq))
+        // Scan the game objects.
+        if (gameManager.noOfGameObjects > 0 && gameManager.noOfGameObjects < 2048)
         {
-            // Read BossPerfectBlackDoomFinal instance for final boss.
-            if (process.Read(GameManager + 0x130, out ArrayAndSize array) && array.size != 0 && array.size < 4096)
+            rent = ArrayPool<long>.Shared.Rent(gameManager.noOfGameObjects);
+            Span<long> span = rent.AsSpan(0, gameManager.noOfGameObjects);
+
+            if (process.ReadArray(gameManager.GameObjects, span))
             {
-                rent = ArrayPool<long>.Shared.Rent(array.size);
-                Span<long> span = rent.AsSpan(0, array.size);
-
-                // Search for boss-related objects.
-                if (process.ReadArray(array.Entries, span))
+                foreach (var entry in span)
                 {
-                    foreach (var entry in span)
+                    if (RTTI.Lookup((IntPtr)entry, out string value))
                     {
-                        if (RTTI.Lookup((IntPtr)entry, out string value))
-                        {
-                            if (value == "BossPerfectBlackDoomFinal")
-                                BossPerfectBlackDoomFinal = (IntPtr)entry;
-                            else if (value == "EventQTEInput")
-                                EventQTEInput = (IntPtr)entry;
-                        }
+                        // We are excluding elements starting with "Obj" because essentially useless
+                        if (value.Length > 2 && value[0] == 'O' && value[1] == 'b' && value[2] == 'j')
+                            continue;
 
-                        // Break if both critical objects are found.
-                        if (BossPerfectBlackDoomFinal.IsNotZero() && EventQTEInput.IsNotZero())
-                            break;
+                        _objects[value] = (IntPtr)entry;
                     }
                 }
-                ArrayPool<long>.Shared.Return(rent);
             }
+
+            ArrayPool<long>.Shared.Return(rent);
         }
     }
 
-    [StructLayout(LayoutKind.Explicit)]
-    private readonly struct ArrayAndSize
+    /// <summary>
+    /// Retrieves a cached instance pointer of a game service by name.
+    /// </summary>
+    /// <param name="name">The name of the service to retrieve.</param>
+    /// <param name="instance">The instance pointer of the service, if found.</param>
+    /// <returns>True if the service is found; otherwise, false.</returns>
+    public bool GetService(string name, out IntPtr instance)
     {
-        [FieldOffset(0x0)] private readonly long _instance;
-        [FieldOffset(0x8)] public readonly int size;
+        return _services.TryGetValue(name, out instance);
+    }
 
-        public IntPtr Entries => (IntPtr)_instance;
+    /// <summary>
+    /// Retrieves a cached instance pointer of a game object by name.
+    /// </summary>
+    /// <param name="name">The name of the object to retrieve.</param>
+    /// <param name="instance">The instance pointer of the object, if found.</param>
+    /// <returns>True if the object is found; otherwise, false.</returns>
+    public bool GetObject(string name, out IntPtr instance)
+    {
+        return _objects.TryGetValue(name, out instance);
+    }
+
+    /// <summary>
+    /// Retrieves a cached instance pointer of an application extension by name.
+    /// </summary>
+    /// <param name="name">The name of the extension to retrieve.</param>
+    /// <param name="instance">The instance pointer of the extension, if found.</param>
+    /// <returns>True if the extension is found; otherwise, false.</returns>
+    public bool GetExtension(string name, out IntPtr instance)
+    {
+        return _extensions.TryGetValue(name, out instance);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 using Helper.Common.ProcessInterop.API.Definitions;
@@ -16,11 +17,11 @@ internal static partial class WinAPI
     /// <param name="address">The memory address to read from in the external process.</param>
     /// <param name="value">The read value output.</param>
     /// <returns>True if the value is successfully read, false otherwise.</returns>
-    public unsafe static bool ReadProcessMemory<T>(IntPtr processHandle, IntPtr address, out T value) where T: unmanaged
+    internal unsafe static bool ReadProcessMemory<T>(IntPtr processHandle, IntPtr address, out T value) where T: unmanaged
     {
         fixed (void* valuePtr = &value)
         {
-            Span<byte> valueBuffer = new(valuePtr, Marshal.SizeOf<T>());
+            Span<byte> valueBuffer = new(valuePtr, Unsafe.SizeOf<T>());
             return ReadProcessMemory(processHandle, address, valueBuffer);
         }
     }
@@ -34,7 +35,7 @@ internal static partial class WinAPI
     /// <param name="buffer">The buffer where the memory will be written.</param>
     /// <returns>True if the memory is successfully read, false otherwise.</returns>
     /// <exception cref="ArgumentException">Thrown when the buffer is empty.</exception>
-    public static bool ReadProcessMemory<T>(IntPtr processHandle, IntPtr address, Span<T> buffer) where T: unmanaged
+    internal static bool ReadProcessMemory<T>(IntPtr processHandle, IntPtr address, Span<T> buffer) where T: unmanaged
     {
         Span<byte> byteBuffer = MemoryMarshal.Cast<T, byte>(buffer);
         return ReadProcessMemory(processHandle, address, byteBuffer);
@@ -48,7 +49,7 @@ internal static partial class WinAPI
     /// <param name="buffer">The buffer where the memory will be written.</param>
     /// <returns>True if the memory is successfully read, false otherwise.</returns>
     /// <exception cref="ArgumentException">Thrown when the buffer is empty.</exception>
-    public static bool ReadProcessMemory(IntPtr processHandle, IntPtr address, Span<byte> buffer)
+    internal static bool ReadProcessMemory(IntPtr processHandle, IntPtr address, Span<byte> buffer)
     {
         if (processHandle == IntPtr.Zero)
             throw new InvalidOperationException("Invalid process handle.");
@@ -61,15 +62,14 @@ internal static partial class WinAPI
         unsafe
         {
             fixed (byte* pBuf = buffer)
-                //return ReadProcessMemory(processHandle, address, pBuf, size, out int bytesRead) && bytesRead == size;
-                return NtReadVirtualMemory(processHandle, address, pBuf, size, out nint bytesRead) == 0 && bytesRead == size;
+                return ReadProcessMemory(processHandle, address, pBuf, size, out nint bytesRead) != 0 && bytesRead == size;
         }
 
         // Import the ReadProcessMemory function from kernel32.dll.
         // It is used to read memory from the external process into a local buffer.
-        [DllImport(Libs.Ntdll)]
+        [DllImport(Libs.Kernel32)]
         [SuppressUnmanagedCodeSecurity]
-        static unsafe extern int NtReadVirtualMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte* lpBuffer, nint dwSize, out nint lpNumberOfBytesRead);
+        static unsafe extern int ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte* lpBuffer, nint dwSize, out nint lpNumberOfBytesRead);
     }
 
     /// <summary>
@@ -83,7 +83,8 @@ internal static partial class WinAPI
     /// <param name="defaultValue">Optional default string to return if the read fails or the length is zero.</param>
     /// <returns>Returns true if the string is successfully read and decoded, false otherwise.</returns>
     /// <exception cref="ArgumentException">Thrown when maxLength is less than 0.</exception>
-    public static unsafe bool ReadString(IntPtr processHandle, IntPtr address, int maxLength, StringType stringType, out string result, string defaultValue = "")
+    [SkipLocalsInit]
+    internal static unsafe bool ReadString(IntPtr processHandle, IntPtr address, int maxLength, StringType stringType, out string result, string defaultValue = "")
     {
         if (maxLength < 0)
             throw new ArgumentException("String length cannot be lower than 0.");
@@ -109,6 +110,7 @@ internal static partial class WinAPI
                 result = defaultValue;
                 return false;
             }
+
             result = DecodeString(stringBuffer, stringType);
             return true;
         }
@@ -195,9 +197,9 @@ internal static partial class WinAPI
     /// <param name="address">The memory address to write to in the external process.</param>
     /// <param name="value">The value to write.</param>
     /// <returns>True if the value is successfully written, false otherwise.</returns>
-    public static unsafe bool WriteProcessMemory<T>(IntPtr processHandle, IntPtr address, T value) where T : unmanaged
+    internal static unsafe bool WriteProcessMemory<T>(IntPtr processHandle, IntPtr address, T value) where T : unmanaged
     {
-        ReadOnlySpan<byte> valueBuffer = new ReadOnlySpan<byte>(&value, Marshal.SizeOf<T>());
+        ReadOnlySpan<byte> valueBuffer = new ReadOnlySpan<byte>(&value, Unsafe.SizeOf<T>());
         return WriteProcessMemory(processHandle, address, valueBuffer);
     }
 
@@ -210,7 +212,7 @@ internal static partial class WinAPI
     /// <param name="buffer">The buffer to write from.</param>
     /// <returns>True if the buffer is successfully written, false otherwise.</returns>
     /// <exception cref="ArgumentException">Thrown when the buffer is empty.</exception>
-    public static bool WriteProcessMemory<T>(IntPtr processHandle, IntPtr address, ReadOnlySpan<T> buffer) where T : unmanaged
+    internal static bool WriteProcessMemory<T>(IntPtr processHandle, IntPtr address, ReadOnlySpan<T> buffer) where T : unmanaged
     {
         ReadOnlySpan<byte> byteBuffer = MemoryMarshal.Cast<T, byte>(buffer);
         return WriteProcessMemory(processHandle, address, byteBuffer);
@@ -224,7 +226,7 @@ internal static partial class WinAPI
     /// <param name="buffer">The buffer containing bytes to write.</param>
     /// <returns>True if the buffer is successfully written, false otherwise.</returns>
     /// <exception cref="ArgumentException">Thrown when the buffer is empty.</exception>
-    public static unsafe bool WriteProcessMemory(IntPtr processHandle, IntPtr address, ReadOnlySpan<byte> buffer)
+    internal static unsafe bool WriteProcessMemory(IntPtr processHandle, IntPtr address, ReadOnlySpan<byte> buffer)
     {
         if (processHandle == IntPtr.Zero)
             throw new InvalidOperationException("Invalid process handle.");
@@ -238,8 +240,6 @@ internal static partial class WinAPI
 
         // Import the WriteProcessMemory function from kernel32.dll.
         // It is used to write memory to the external process from a local buffer.
-        // [DllImport(Libs.Kernel32)]
-        // static unsafe extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte* lpBuffer, int dwSize, out int lpNumberOfBytesWritten);
         [DllImport(Libs.Kernel32)]
         [SuppressUnmanagedCodeSecurity]
         static unsafe extern int WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte* lpBuffer, nint dwSize, out nint lpNumberOfBytesWritten);

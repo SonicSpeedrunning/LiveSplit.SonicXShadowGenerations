@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Helper.Common.ProcessInterop.API;
 
 namespace Helper.Common.ProcessInterop;
@@ -49,6 +50,7 @@ public readonly struct MemoryPagesSnapshot : IEnumerable<MemoryPage>
 /// Represents a single memory page (or region) in the process memory.
 /// Contains metadata about the memory region and allows scanning it for patterns.
 /// </summary>
+[SkipLocalsInit]
 public record MemoryPage
 {
     private readonly IntPtr pHandle;

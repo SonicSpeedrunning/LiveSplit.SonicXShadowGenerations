@@ -74,8 +74,7 @@ public partial class ProcessMemory : IDisposable
     {
         get
         {
-            if (mainModule is null)
-                mainModule = Modules.First();
+            mainModule ??= Modules.First();
             return mainModule;
         }
     }
@@ -84,15 +83,15 @@ public partial class ProcessMemory : IDisposable
     /// <summary>
     /// Gets the collection of loaded modules (DLLs or shared libraries) in the process.
     /// </summary>
-    public ProcessModuleVollection Modules
+    public ProcessModuleCollection Modules
     {
         get
         {
-            modules ??= new ProcessModuleVollection(pHandle, false);
+            modules ??= new ProcessModuleCollection(pHandle, false);
             return modules.Value;
         }
     }
-    private ProcessModuleVollection? modules = null;
+    private ProcessModuleCollection? modules = null;
 
     /// <summary>
     /// Gets a collection of the memory pages in the process.

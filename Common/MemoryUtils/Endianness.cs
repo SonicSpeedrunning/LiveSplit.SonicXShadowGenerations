@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Helper.Common.MemoryUtils;
 
@@ -37,9 +38,10 @@ public static class Endian
     /// <typeparam name="T">The unmanaged type whose byte order will be swapped.</typeparam>
     /// <param name="value">The value whose byte order will be swapped.</param>
     /// <returns>The value with its byte order swapped.</returns>
+    [SkipLocalsInit]
     public unsafe static T SwapEndianness<T>(this T value) where T : unmanaged
     {
-        int size = sizeof(T);
+        int size = Unsafe.SizeOf<T>();
 
         // If the size of the type is 1 byte, no swapping is needed (1 byte has no endianness).
         if (size == 1)

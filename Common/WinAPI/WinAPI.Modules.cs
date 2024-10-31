@@ -2,6 +2,7 @@
 using System.Buffers;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 using Helper.Common.ProcessInterop.API.Definitions;
@@ -17,6 +18,7 @@ internal static partial class WinAPI
     /// <param name="firstModuleOnly">Indicates whether to return only the first module.</param>
     /// <returns>An enumerable collection of <see cref="ProcessModule"/> objects representing the modules.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the process handle is invalid.</exception>
+    [SkipLocalsInit]
     public static IEnumerable<ProcessModule> EnumProcessModules(IntPtr pHandle, bool firstModuleOnly)
     {
         if (pHandle == IntPtr.Zero)
@@ -27,22 +29,22 @@ internal static partial class WinAPI
         const int initialHandleArraySize = 1024;    // Initial size for the module handles array
         const int allocSize = 512;
 
-        IntPtr moduleNameBuffer = IntPtr.Zero;
+        char[]? moduleNameBuffer = null;
         IntPtr[]? moduleHandles = null;
 
         try
         {
             // Allocate an array to store module handles, using a shared array pool
             moduleHandles = ArrayPool<IntPtr>.Shared.Rent(initialHandleArraySize);
-            int handleArraySize = initialHandleArraySize;
+            int handleArraySize = moduleHandles.Length;
 
-            // Allocate unmanaged memory for storing module names
-            moduleNameBuffer = Marshal.AllocHGlobal(allocSize * 2);
+            // Allocate an array to store module names
+            moduleNameBuffer = ArrayPool<char>.Shared.Rent(allocSize);
 
-            uint bufferSize = (uint)(moduleHandles.Length * IntPtr.Size); // Size of the moduleHandles array in bytes
+            uint bufferSize = (uint)(handleArraySize * IntPtr.Size); // Size of the moduleHandles array in bytes
 
             // Call the EnumProcessModulesEx function to get the module handles
-            bool enumSuccess = EnumProcessModulesEx(pHandle, moduleHandles, bufferSize, out uint bytesNeeded, LIST_MODULES_ALL);
+            bool enumSuccess = EnumProcessModulesEx(pHandle, moduleHandles, bufferSize, out uint bytesNeeded, LIST_MODULES_ALL) != 0;
 
             if (enumSuccess)
             {
@@ -54,12 +56,12 @@ internal static partial class WinAPI
                 {
                     ArrayPool<IntPtr>.Shared.Return(moduleHandles); // Return the old array to the pool
                     moduleHandles = ArrayPool<IntPtr>.Shared.Rent(moduleCount); // Rent a new larger array
-                    handleArraySize = moduleCount;
+                    handleArraySize = moduleHandles.Length;
 
-                    bufferSize = (uint)(moduleCount * IntPtr.Size); // Update the buffer size
+                    bufferSize = (uint)(handleArraySize * IntPtr.Size); // Update the buffer size
 
                     // Call the enumeration function again with the resized array
-                    enumSuccess = EnumProcessModulesEx(pHandle, moduleHandles, bufferSize, out bytesNeeded, LIST_MODULES_ALL);
+                    enumSuccess = EnumProcessModulesEx(pHandle, moduleHandles, bufferSize, out bytesNeeded, LIST_MODULES_ALL) != 0;
                     moduleCount = (int)(bytesNeeded / IntPtr.Size);
                 }
 
@@ -85,7 +87,10 @@ internal static partial class WinAPI
                         GetModuleFileNameExW(pHandle, moduleHandle, moduleNameBuffer, allocSize);
 
                         // Convert the unmanaged module name buffer to a managed string
-                        string moduleFileName = Marshal.PtrToStringUni(moduleNameBuffer);
+                        int stringLength = moduleNameBuffer.AsSpan().IndexOf('\0');
+                        if (stringLength == -1)
+                            stringLength = moduleNameBuffer.Length;
+                        string moduleFileName = new(moduleNameBuffer, 0, stringLength);
 
                         // Yield a new Module object containing information about the current module
                         yield return new ProcessModule(
@@ -102,9 +107,9 @@ internal static partial class WinAPI
         }
         finally
         {
-            // Clean up: Free the allocated unmanaged memory for the module name buffer
-            if (moduleNameBuffer != IntPtr.Zero)
-                Marshal.FreeHGlobal(moduleNameBuffer);
+            // Clean up: Free the allocated memory for the module name buffer
+            if (moduleNameBuffer is not null)
+                ArrayPool<char>.Shared.Return(moduleNameBuffer);
 
             // Return the rented array of module handles back to the pool
             if (moduleHandles is not null)
@@ -114,11 +119,11 @@ internal static partial class WinAPI
         // External methods imported from the Windows API
         [DllImport(Libs.Psapi)]
         [SuppressUnmanagedCodeSecurity]
-        static extern bool EnumProcessModulesEx(IntPtr hProcess, IntPtr[] lphModule, uint cb, out uint lpcbNeeded, uint dwFilterFlag);
+        static extern int EnumProcessModulesEx(IntPtr hProcess, IntPtr[] lphModule, uint cb, out uint lpcbNeeded, uint dwFilterFlag);
 
-        [DllImport(Libs.Psapi)]
+        [DllImport(Libs.Psapi, CharSet = CharSet.Unicode)]
         [SuppressUnmanagedCodeSecurity]
-        static extern uint GetModuleFileNameExW(IntPtr hProcess, IntPtr hModule, IntPtr lpBaseName, uint nSize);
+        static extern uint GetModuleFileNameExW(IntPtr hProcess, IntPtr hModule, char[] lpBaseName, uint nSize);
 
         [DllImport(Libs.Psapi)]
         [SuppressUnmanagedCodeSecurity]
@@ -126,6 +131,7 @@ internal static partial class WinAPI
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    [SkipLocalsInit]
     private readonly struct MODULEINFO
     {
         public readonly IntPtr lpBaseOfDll;

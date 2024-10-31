@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 using Helper.Common.ProcessInterop.API.Definitions;
@@ -14,7 +15,8 @@ internal static partial class WinAPI
     /// <param name="pHandle">Handle to the target process.</param>
     /// <param name="includeMapped">Whether to include mapped memory regions in the enumeration.</param>
     /// <returns>An enumerable collection of <see cref="MemoryPage"/> objects representing memory pages.</returns>
-    public static IEnumerable<MemoryPage> MemoryPages(IntPtr pHandle, bool includeMapped = false)
+    [SkipLocalsInit]
+    internal static IEnumerable<MemoryPage> MemoryPages(IntPtr pHandle, bool includeMapped = false)
     {
         // If the process handle is invalid, throw an exception.
         if (pHandle == IntPtr.Zero)
@@ -30,7 +32,7 @@ internal static partial class WinAPI
         nint address = min;
 
         // Size of the MemoryBasicInformation structure (used in VirtualQueryEx).
-        int memInfoSize = Marshal.SizeOf<MemoryBasicInformation>();
+        int memInfoSize = Unsafe.SizeOf<MemoryBasicInformation>();
 
         while (address < max && VirtualQueryEx(pHandle, address, out MemoryBasicInformation memInfo, memInfoSize) != 0)
         {
@@ -57,7 +59,7 @@ internal static partial class WinAPI
 
         [DllImport(Libs.Kernel32)]
         [SuppressUnmanagedCodeSecurity]
-        static extern int VirtualQueryEx(IntPtr hProcess, nint lpAddress, out MemoryBasicInformation lpBuffer, int dwLength);
+        static extern nint VirtualQueryEx(IntPtr hProcess, nint lpAddress, out MemoryBasicInformation lpBuffer, nint dwLength);
     }
 }
 

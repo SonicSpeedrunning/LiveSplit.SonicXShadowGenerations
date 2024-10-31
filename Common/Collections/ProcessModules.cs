@@ -11,17 +11,17 @@ namespace Helper.Common.ProcessInterop;
 /// Represents a collection of modules in an external process.
 /// Implements <see cref="IEnumerable{Module}"/> to allow enumeration of modules.
 /// </summary>
-public readonly struct ProcessModuleVollection : IEnumerable<ProcessModule>
+public readonly struct ProcessModuleCollection : IEnumerable<ProcessModule>
 {
     private readonly IntPtr pHandle;
     private readonly bool firstModuleOnly;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProcessModuleVollection"/> struct.
+    /// Initializes a new instance of the <see cref="ProcessModuleCollection"/> struct.
     /// </summary>
     /// <param name="processHandle">The handle to the target process.</param>
     /// <param name="firstModuleOnly">Whether to only retrieve the first module.</param>
-    public ProcessModuleVollection(IntPtr processHandle, bool firstModuleOnly)
+    public ProcessModuleCollection(IntPtr processHandle, bool firstModuleOnly)
     {
         this.pHandle = processHandle;
         this.firstModuleOnly = firstModuleOnly;

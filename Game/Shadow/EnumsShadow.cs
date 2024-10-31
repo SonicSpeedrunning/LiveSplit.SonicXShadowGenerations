@@ -6,12 +6,6 @@ internal enum GameVersion
     v1_1_0_0,
 }
 
-internal enum FinalBossState
-{
-    NotDead,
-    Dead,
-}
-
 internal enum LevelID
 {
     Unknown,

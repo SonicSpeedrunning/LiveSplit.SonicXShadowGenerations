@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Helper.Common.MemoryUtils;
 using Helper.Common.ProcessInterop;
 using Helper.Common.ProcessInterop.API;
@@ -84,7 +85,8 @@ internal class MemoryShadow : Memory
             Span<long> buf = stackalloc long[2]; // Buffer to read memory
 
             // Check for valid game mode and read status from memory
-            if (Engine.GameModeExtensionCount == 0 || Engine.GameModeHsmExtension == IntPtr.Zero || !process.ReadArray(Engine.GameModeHsmExtension + 0x38, buf))
+            if (!Engine.GetExtension("GameModeHsmExtension", out IntPtr instance)
+                || !process.ReadArray(instance + 0x38, buf))
             {
                 // Return the current status if read fails
                 ret[0] = current[0];
@@ -130,7 +132,7 @@ internal class MemoryShadow : Memory
             if (GameMode.Current == "GameModeOpening")
                 return false;
 
-            if (Engine.GameModeExtensionCount == 0 || Engine.GameModeHsmExtension == IntPtr.Zero)
+            if (!Engine.GetExtension("GameModeHsmExtension", out IntPtr _))
                 return true;
 
             return HsmStatus.Current[1] == "Build"
@@ -141,13 +143,30 @@ internal class MemoryShadow : Memory
         LevelID = new LazyWatcher<LevelID>(StateTracker, Shadow.LevelID.MainMenu, (current, _) =>
         {
             // Read the current level ID from memory
-            if (!process.ReadString(Engine.ApplicationSequenceExtension + 0xA0, 6, StringType.ASCII, out string id))
+            if (GameMode.Current == "GameModeTitle")
+                return Shadow.LevelID.MainMenu;
+
+            if (!Engine.GetService("LevelInfo", out IntPtr plevelInfo)
+                || !process.Read(plevelInfo, out LevelInfo levelInfo)
+                || levelInfo.StageData.IsZero()
+                || !process.Read(levelInfo.StageData, out StageData stageData)
+                || stageData.Name.IsZero()
+                || !process.ReadString(stageData.Name, 6, StringType.ASCII, out string id))
                 return current;
+
+            /*
+                if (Engine.LevelInfo.IsZero()
+                || !process.Read(Engine.LevelInfo, out LevelInfo levelInfo)
+                || levelInfo.StageData.IsZero()
+                || !process.Read(levelInfo.StageData, out StageData stageData)
+                || stageData.Name.IsZero()
+                || !process.ReadString(stageData.Name, 6, StringType.ASCII, out string id))
+                return current;
+            */
 
             // Map the read ID to the corresponding LevelID enum
             return id switch
             {
-                "w00r01" => Shadow.LevelID.MainMenu,
                 "w09a10" => Shadow.LevelID.WhiteWorld,
                 "w01a11" => Shadow.LevelID.SpaceColonyArk1,
                 "w01c11" => Shadow.LevelID.SpaceColonyArk1_Challenge1,
@@ -205,7 +224,9 @@ internal class MemoryShadow : Memory
         IsInFinalQTE = new LazyWatcher<bool>(StateTracker, false, (_, _) =>
         {
             // Check if the player is in the final QTE based on the current level and events
-            return LevelID.Current == Shadow.LevelID.BlackDoom && Engine.EventQTEInput.IsNotZero() && Engine.BossPerfectBlackDoomFinal.IsNotZero();
+            return LevelID.Current == Shadow.LevelID.BlackDoom
+                && Engine.GetObject("EventQTEInput", out IntPtr _)
+                && Engine.GetObject("BossPerfectBlackDoomFinal", out IntPtr _);
         });
 
         FinalQTECount = new LazyWatcher<int>(StateTracker, 0, (current, _) =>
