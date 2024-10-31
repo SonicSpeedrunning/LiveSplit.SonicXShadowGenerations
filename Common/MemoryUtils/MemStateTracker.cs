@@ -18,10 +18,13 @@ public sealed class MemStateTracker
     /// </summary>
     public uint CurrentTick { get; private set; } = uint.MinValue;
 
+    // Delegate type for the callback that gets invoked when the CurrentTick is increased
+    public delegate void Callback();
+
     /// <summary>
-    /// Occurs when the tick count is incremented.
+    /// An optional function that runs when the CurrentTick is increased.
     /// </summary>
-    public event EventHandler? OnTick;
+    public Callback? OnTick { get; set; }
 
 
     /// <summary>
@@ -42,7 +45,7 @@ public sealed class MemStateTracker
         else
             CurrentTick++;
 
-        OnTick?.Invoke(this, EventArgs.Empty);
+        OnTick?.Invoke();
     }
 
     /// <summary>

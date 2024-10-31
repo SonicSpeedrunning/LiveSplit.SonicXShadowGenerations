@@ -5,6 +5,7 @@ using Helper.Common.ProcessInterop;
 using Helper.Common.ProcessInterop.API;
 using LiveSplit.SonicXShadowGenerations.Common;
 using LiveSplit.SonicXShadowGenerations.GameEngine;
+using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.SonicXShadowGenerations.Game.Shadow;
 
@@ -62,6 +63,7 @@ internal class MemoryShadow : Memory
         : base()
     {
         Engine = new HedgehogEngine2(process);
+        StateTracker.OnTick = () => Engine.Update(process);
 
         // Determine the game version based on module memory size.
         // Currently unused in the autosplitter, might be needed in the future.
@@ -79,10 +81,11 @@ internal class MemoryShadow : Memory
             return Engine.RTTI.Lookup(Engine.GameMode, out string gm) ? gm : current;
         });
 
-        HsmStatus = new LazyWatcher<string[]>(StateTracker, [string.Empty, string.Empty, string.Empty, string.Empty], (current, _) =>
+        HsmStatus = new LazyWatcher<string[]>(StateTracker, new string[] { string.Empty, string.Empty, string.Empty, string.Empty }, new string[] { string.Empty, string.Empty, string.Empty, string.Empty }, (current, old) =>
         {
-            string[] ret = new string[4]; // Array to hold status strings
-            Span<long> buf = stackalloc long[2]; // Buffer to read memory
+            string[] ret = old; // Array to hold status strings (yes, we're borrowing the old string so we can avoid making a new one)
+            
+            Span<byte> buf = stackalloc byte[9]; // Buffer to read memory
 
             // Check for valid game mode and read status from memory
             if (!Engine.GetExtension("GameModeHsmExtension", out IntPtr instance)
@@ -97,13 +100,22 @@ internal class MemoryShadow : Memory
             }
 
             // Determine the number of details to read (max 4)
-            int no_of_details = (int)buf[1] & 0xF;
-            if (no_of_details > 4)
+            int no_of_details = buf[8];
+            if (no_of_details > 128)
+                no_of_details = 0;
+            else if (no_of_details > 4)
                 no_of_details = 4;
+
+            IntPtr addr;
+            unsafe
+            {
+                fixed (byte* ptr = buf)
+                    addr = (IntPtr)(*(long*)ptr);
+            }
 
             Span<long> details = stackalloc long[no_of_details];
             // Read the details from memory
-            if (!process.ReadArray((IntPtr)buf[0], details))
+            if (!process.ReadArray(addr, details))
             {
                 // Return the current status if read fails
                 ret[0] = current[0];
@@ -153,16 +165,6 @@ internal class MemoryShadow : Memory
                 || stageData.Name.IsZero()
                 || !process.ReadString(stageData.Name, 6, StringType.ASCII, out string id))
                 return current;
-
-            /*
-                if (Engine.LevelInfo.IsZero()
-                || !process.Read(Engine.LevelInfo, out LevelInfo levelInfo)
-                || levelInfo.StageData.IsZero()
-                || !process.Read(levelInfo.StageData, out StageData stageData)
-                || stageData.Name.IsZero()
-                || !process.ReadString(stageData.Name, 6, StringType.ASCII, out string id))
-                return current;
-            */
 
             // Map the read ID to the corresponding LevelID enum
             return id switch
@@ -226,7 +228,7 @@ internal class MemoryShadow : Memory
             // Check if the player is in the final QTE based on the current level and events
             return LevelID.Current == Shadow.LevelID.BlackDoom
                 && Engine.GetObject("EventQTEInput", out IntPtr _)
-                && Engine.GetObject("BossPerfectBlackDoomFinal", out IntPtr _);
+                && Engine.GetObject("BossPerfectblackdoomFinal", out IntPtr _);
         });
 
         FinalQTECount = new LazyWatcher<int>(StateTracker, 0, (current, _) =>
@@ -249,7 +251,6 @@ internal class MemoryShadow : Memory
     {
         ApplyHWNDpatch(process, settings);  // Applies or removes patches
         StateTracker.Tick();                // Update the state tracker
-        Engine.Update(process);             // Update the engine with the current process memory
     }
 
     /// <summary>
