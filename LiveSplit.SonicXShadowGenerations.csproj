@@ -7,16 +7,25 @@
     <RootNamespace>LiveSplit.SonicXShadowGenerations</RootNamespace>
     <Nullable>enable</Nullable>
     <Version></Version>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Configurations>Release</Configurations>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>none</DebugType>
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <Deterministic>True</Deterministic>
   </PropertyGroup>
 
   <ItemGroup>

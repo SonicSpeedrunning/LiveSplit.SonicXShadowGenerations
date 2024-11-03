@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Helper.Common.ProcessInterop;
-using LiveSplit.SonicXShadowGenerations.Common;
 
 namespace LiveSplit.SonicXShadowGenerations.GameEngine;
 
@@ -23,7 +22,7 @@ internal class HedgehogEngine2
     /// <summary>
     /// Address of the game's routine responsible for pausing the game when the main window goes out of focus
     /// </summary>
-    internal IntPtr hWndAddress { get; }
+    internal IntPtr HWndAddress { get; }
 
     /// <summary>
     /// Runtime Type Information instance used to look up and identify in-memory types.
@@ -33,17 +32,17 @@ internal class HedgehogEngine2
     /// <summary>
     /// Dictionary that stores cached addresses for various game services.
     /// </summary>
-    private readonly Dictionary<string, IntPtr> _services = new();
+    private readonly Dictionary<string, IntPtr> _services = [];
 
     /// <summary>
     /// Dictionary that stores cached addresses for different in-game objects.
     /// </summary>
-    private readonly Dictionary<string, IntPtr> _objects = new();
+    private readonly Dictionary<string, IntPtr> _objects = [];
 
     /// <summary>
-    /// Dictionary that stores cached addresses for various application extensions.
+    /// Dictionary that stores cached addresses for application extensions.
     /// </summary>
-    private readonly Dictionary<string, IntPtr> _extensions = new();
+    private readonly Dictionary<string, IntPtr> _extensions = [];
 
     /// <summary>
     /// Pointer to the current running instance of app::game::GameMode.
@@ -63,7 +62,7 @@ internal class HedgehogEngine2
             .ScanAll(new MemoryScanPattern(7, "48 89 41 18 48 89 2D") { OnFound = addr => addr + 0x4 + process.Read<int>(addr) })
             .First();
 
-        hWndAddress = process
+        HWndAddress = process
             .MainModule
             .ScanAll(new MemoryScanPattern(0, "?? 4A C0 E8 03"))
             .First();
@@ -149,7 +148,7 @@ internal class HedgehogEngine2
             ArrayPool<long>.Shared.Return(rent);
 
             // If ApplicationSequenceExtension is found, locate GameMode.
-            if (ase.IsNotZero())
+            if (ase != IntPtr.Zero)
             {
                 // Try to read the pointer for GameMode instance.
                 if (process.Read(ase, out ApplicationSequenceExtension extension))
@@ -157,7 +156,7 @@ internal class HedgehogEngine2
                     GameMode = extension.GameMode;
 
                     // Read current instance of GameModeExtension.
-                    if (process.Read(GameMode, out GameMode gameMode) && gameMode.noOfExtensions > 0 && gameMode.noOfExtensions < 128)
+                    if (process.Read(extension.GameMode, out GameMode gameMode) && gameMode.noOfExtensions > 0 && gameMode.noOfExtensions < 128)
                     {
                         rent = ArrayPool<long>.Shared.Rent(gameMode.noOfExtensions);
                         span = rent.AsSpan(0, gameMode.noOfExtensions);
@@ -190,7 +189,7 @@ internal class HedgehogEngine2
                 {
                     if (RTTI.Lookup((IntPtr)entry, out string value))
                     {
-                        // We are excluding elements starting with "Obj" because essentially useless
+                        // We are excluding elements starting with "Obj"
                         if (value.Length > 2 && value[0] == 'O' && value[1] == 'b' && value[2] == 'j')
                             continue;
 

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using Helper.Common.MemoryUtils;
 using Helper.Common.ProcessInterop;
 using Helper.Common.ProcessInterop.API;
-using LiveSplit.SonicXShadowGenerations.Common;
 using LiveSplit.SonicXShadowGenerations.GameEngine;
-using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.SonicXShadowGenerations.Game.Shadow;
 
@@ -81,7 +78,7 @@ internal class MemoryShadow : Memory
             return Engine.RTTI.Lookup(Engine.GameMode, out string gm) ? gm : current;
         });
 
-        HsmStatus = new LazyWatcher<string[]>(StateTracker, new string[] { string.Empty, string.Empty, string.Empty, string.Empty }, new string[] { string.Empty, string.Empty, string.Empty, string.Empty }, (current, old) =>
+        HsmStatus = new LazyWatcher<string[]>(StateTracker, [string.Empty, string.Empty, string.Empty, string.Empty], [string.Empty, string.Empty, string.Empty, string.Empty], (current, old) =>
         {
             string[] ret = old; // Array to hold status strings (yes, we're borrowing the old string so we can avoid making a new one)
             
@@ -160,9 +157,9 @@ internal class MemoryShadow : Memory
 
             if (!Engine.GetService("LevelInfo", out IntPtr plevelInfo)
                 || !process.Read(plevelInfo, out LevelInfo levelInfo)
-                || levelInfo.StageData.IsZero()
+                || levelInfo.StageData == IntPtr.Zero
                 || !process.Read(levelInfo.StageData, out StageData stageData)
-                || stageData.Name.IsZero()
+                || stageData.Name == IntPtr.Zero
                 || !process.ReadString(stageData.Name, 6, StringType.ASCII, out string id))
                 return current;
 
@@ -260,18 +257,18 @@ internal class MemoryShadow : Memory
     /// <param name="settings">The settings specifying whether to apply the patch.</param>
     private void ApplyHWNDpatch(ProcessMemory process, Settings settings)
     {
-        IntPtr address = Engine.hWndAddress;
+        IntPtr address = Engine.HWndAddress;
         bool setting = settings.ShadowFocusPatch;
 
         if (process.Read<byte>(address, out byte val))
         {
             // If the game is unpatched and we want the patch to be applied
             if (val == 0x75 && setting)
-                process.Write<byte>(Engine.hWndAddress, 0xEB); // Apply patch
+                process.Write<byte>(Engine.HWndAddress, 0xEB); // Apply patch
 
             // If the game is patched and we want the patch to be removed
             else if (val == 0xEB && !setting)
-                process.Write<byte>(Engine.hWndAddress, 0x75); // Remove patch
+                process.Write<byte>(Engine.HWndAddress, 0x75); // Remove patch
         }
     }
 

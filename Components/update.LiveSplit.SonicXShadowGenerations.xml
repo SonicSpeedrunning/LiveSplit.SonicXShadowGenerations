@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <updates>
+	<update version="1.0.0.3">
+		<files>
+			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Fixed autosplitter randomly stopping to work (hopefully)</change>
+		</changelog>
+	</update>
 	<update version="1.0.0.2">
 		<files>
 			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>

@@ -6,16 +6,16 @@ namespace LiveSplit.SonicXShadowGenerations.GameEngine;
 [StructLayout(LayoutKind.Explicit, Size = 0x358)]
 public readonly struct GameManager
 {
-    [FieldOffset(0x130)] private readonly long _gameObjects;
+    [FieldOffset(0x130)] private readonly long _pGameObjects;
     [FieldOffset(0x138)] public readonly int noOfGameObjects;
 
-    [FieldOffset(0x150)] private readonly long _gameServices;
+    [FieldOffset(0x150)] private readonly long _pGameServices;
     [FieldOffset(0x158)] public readonly int noOfGameServices;
 
     [FieldOffset(0x350)] private readonly long _gameApplication;
 
-    public IntPtr GameObjects => (IntPtr) _gameObjects;
-    public IntPtr GameServices => (IntPtr) _gameServices;
+    public IntPtr GameObjects => (IntPtr) _pGameObjects;
+    public IntPtr GameServices => (IntPtr) _pGameServices;
     public IntPtr GameApplication => (IntPtr) _gameApplication;
 }
 
@@ -36,9 +36,6 @@ public readonly struct ApplicationSequenceExtension
     public IntPtr GameMode => (IntPtr) _gameMode;
 }
 
-/// <summary>
-/// A struct representation of `app::game::GameMode`.
-/// </summary>
 [StructLayout(LayoutKind.Explicit)]
 public readonly struct GameMode
 {

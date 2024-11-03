@@ -27,7 +27,7 @@ internal class RTTI(ProcessMemory process)
     /// <summary>
     /// Base address of the main module in the target process.
     /// </summary>
-    private readonly long mainModuleBase = (long)process.MainModule.BaseAddress;
+    private readonly nint mainModuleBase = process.MainModule.BaseAddress;
 
     /// <summary>
     /// Size of the main module in the target process.
@@ -43,7 +43,7 @@ internal class RTTI(ProcessMemory process)
     /// A cache for storing previously identified RTTI type names, 
     /// mapped by memory offset, to reduce redundant lookups.
     /// </summary>
-    private readonly Dictionary<int, string> cache = [];
+    private readonly Dictionary<IntPtr, string> cache = [];
 
     /// <summary>
     /// Looks up the RTTI (Run-Time Type Information) name for an object
@@ -60,20 +60,15 @@ internal class RTTI(ProcessMemory process)
             return false;
         }
 
-        // Calculate the offset of the vtable relative to the base address
-        long loffset = (long)vtable - mainModuleBase;
-
-        // Ensure the offset is within bounds and non-zero
-        if (loffset > mainModuleSize || loffset <= 0)
+        // Ensure the vtable address is within bounds and non-zero
+        if (vtable == IntPtr.Zero || vtable < mainModuleBase || vtable > mainModuleBase + mainModuleSize)
         {
             value = string.Empty;
             return false;
         }
 
-        int offset = (int)loffset;
-
         // Check if the type name for this offset is already cached
-        if (cache.TryGetValue(offset, out value))
+        if (cache.TryGetValue(vtable, out value))
             return true;
 
         // Adjust pointer calculations and offsets based on bitness
@@ -88,13 +83,13 @@ internal class RTTI(ProcessMemory process)
             return false;
 
         // Calculate the final address for reading the RTTI type name string
-        IntPtr typeNameAddress = (IntPtr)(mainModuleBase + val + 0x4 + (is64Bit ? 0x10 : 0x8));
+        IntPtr typeNameAddress = mainModuleBase + val + 0x4 + (is64Bit ? 0x10 : 0x8);
         if (!process.ReadString(typeNameAddress, 128, StringType.ASCII, out string finalValue))
             return false;
 
         // Parse the type name and cache it
         value = finalValue.Contains('@') ? finalValue.Split('@')[0] : finalValue;
-        cache[offset] = value;
+        cache[vtable] = value;
         return true;
     }
 }
