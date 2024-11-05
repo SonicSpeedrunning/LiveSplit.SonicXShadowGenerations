@@ -1,7 +1,7 @@
 ﻿using System;
-using Helper.Common.MemoryUtils;
-using Helper.Common.ProcessInterop;
-using Helper.Common.ProcessInterop.API;
+using JHelper.Common.MemoryUtils;
+using JHelper.Common.ProcessInterop;
+using JHelper.Common.ProcessInterop.API;
 using LiveSplit.SonicXShadowGenerations.GameEngine;
 
 namespace LiveSplit.SonicXShadowGenerations.Game.Shadow;

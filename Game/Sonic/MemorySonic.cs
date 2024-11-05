@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Helper.Common.MemoryUtils;
-using Helper.Common.ProcessInterop;
+using JHelper.Common.MemoryUtils;
+using JHelper.Common.ProcessInterop;
 
 namespace LiveSplit.SonicXShadowGenerations.Game.Sonic;
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Helper.Common.ProcessInterop;
-using Helper.Common.ProcessInterop.API;
+using System.Text.RegularExpressions;
+using JHelper.Common.ProcessInterop;
+using JHelper.Common.ProcessInterop.API;
 
 namespace LiveSplit.SonicXShadowGenerations.GameEngine;
 
@@ -12,38 +12,49 @@ namespace LiveSplit.SonicXShadowGenerations.GameEngine;
 /// identifies object types by analyzing RTTI descriptors in memory 
 /// based on the object's vtable address.
 /// </summary>
-/// <remarks>
-/// Initializes an instance of the RTTI class with a given process.
-/// </remarks>
-/// <param name="process">The process memory interface for reading data.</param>
-internal class RTTI(ProcessMemory process)
+internal class RTTI
 {
+    // Regex to validate the RTTI signature format. Specifically matches RTTI names that follow the pattern 
+    // ".?AV" followed by the class name (which does not contain '@') and ending with one or more '@' characters.
+    private static readonly Regex regex = new(@"^\.\?AV([^@]+)@.*@@$", RegexOptions.Compiled);
+
     /// <summary>
-    /// Represents the process memory interface used for reading data 
-    /// from a target process.
+    /// The process memory class used to read memory from the target process
     /// </summary>
-    private readonly ProcessMemory process = process;
+    private readonly ProcessMemory process;
 
     /// <summary>
     /// Base address of the main module in the target process.
     /// </summary>
-    private readonly nint mainModuleBase = process.MainModule.BaseAddress;
+    private readonly nint mainModuleBase;
 
     /// <summary>
     /// Size of the main module in the target process.
     /// </summary>
-    private readonly int mainModuleSize = process.MainModule.ModuleMemorySize;
+    private readonly int mainModuleSize;
 
     /// <summary>
     /// Determines if the target process is 64-bit or 32-bit.
     /// </summary>
-    private readonly bool is64Bit = process.Is64Bit;
+    private readonly bool is64Bit;
 
     /// <summary>
     /// A cache for storing previously identified RTTI type names, 
     /// mapped by memory offset, to reduce redundant lookups.
     /// </summary>
     private readonly Dictionary<IntPtr, string> cache = [];
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RTTI"/> class with the specified process memory interface.
+    /// </summary>
+    /// <param name="process">The process memory interface for reading data.</param>
+    internal RTTI(ProcessMemory process)
+    {
+        this.process = process;
+        mainModuleBase = process.MainModule.BaseAddress;
+        mainModuleSize = process.MainModule.ModuleMemorySize;
+        is64Bit = process.Is64Bit;
+    }
 
     /// <summary>
     /// Looks up the RTTI (Run-Time Type Information) name for an object
@@ -54,41 +65,45 @@ internal class RTTI(ProcessMemory process)
     /// <returns>True if the lookup succeeds; otherwise, false.</returns>
     public bool Lookup(IntPtr instanceAddress, out string value)
     {
+        value = string.Empty;
+
+        // Validate the instance address and read the vtable pointer.
         if (instanceAddress == IntPtr.Zero || !process.ReadPointer(instanceAddress, out IntPtr vtable))
-        {
-            value = string.Empty;
             return false;
-        }
 
         // Ensure the vtable address is within bounds and non-zero
         if (vtable == IntPtr.Zero || vtable < mainModuleBase || vtable > mainModuleBase + mainModuleSize)
-        {
-            value = string.Empty;
             return false;
-        }
 
         // Check if the type name for this offset is already cached
         if (cache.TryGetValue(vtable, out value))
             return true;
 
-        // Adjust pointer calculations and offsets based on bitness
+        // Adjust pointer calculations and offsets based on the process architecture.
         IntPtr rttiDescriptorAddress = vtable - (is64Bit ? 0x8 : 0x4);
 
+        // Read the RTTI descriptor pointer.
         if (!process.ReadPointer(rttiDescriptorAddress, out IntPtr addr))
             return false;
 
-        // Offset to the RTTI type name location depends on process architecture
+        // Offset to the RTTI type name location depends on process architecture.
         int typeNameOffset = is64Bit ? 0xC : 0x4;
         if (!process.Read(addr + typeNameOffset, out int val))
             return false;
 
-        // Calculate the final address for reading the RTTI type name string
-        IntPtr typeNameAddress = mainModuleBase + val + 0x4 + (is64Bit ? 0x10 : 0x8);
+        // Calculate the final address for reading the RTTI type name string.
+        IntPtr typeNameAddress = mainModuleBase + val + (is64Bit ? 0x10 : 0x8);
         if (!process.ReadString(typeNameAddress, 128, StringType.ASCII, out string finalValue))
             return false;
 
-        // Parse the type name and cache it
-        value = finalValue.Contains('@') ? finalValue.Split('@')[0] : finalValue;
+        // Use regex to match and extract the actual type name from the RTTI string.
+        Match match = regex.Match(finalValue);
+
+        // Return false if the regex does not match
+        if (!match.Success)
+            return false;
+
+        value = match.Groups[1].Value;
         cache[vtable] = value;
         return true;
     }

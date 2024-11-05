@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Threading;
 using LiveSplit.UI.Components;
-using Helper.Common.ProcessInterop;
+using JHelper.Common.ProcessInterop;
 using LiveSplit.Model;
 using LiveSplit.SonicXShadowGenerations.Game;
 using LiveSplit.SonicXShadowGenerations.Game.Shadow;

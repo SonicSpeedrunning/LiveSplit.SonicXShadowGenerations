@@ -1,6 +1,6 @@
 ﻿using System;
-using Helper.Common.Collections;
-using Helper.Common.ProcessInterop;
+using JHelper.Common.Collections;
+using JHelper.Common.ProcessInterop;
 
 namespace LiveSplit.SonicXShadowGenerations.Game;
 
