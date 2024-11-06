@@ -4,6 +4,7 @@ internal enum GameVersion
 {
     Unknown,
     v1_1_0_0,
+    v1_1_0_1,
 }
 
 internal enum LevelID

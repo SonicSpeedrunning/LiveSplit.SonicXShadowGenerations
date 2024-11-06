@@ -53,6 +53,7 @@ internal class MemorySonic : Memory
         Version = process.MainModule.ModuleMemorySize switch
         {
             0x18182000 => GameVersion.v1_1_0_0,
+            0x16951000 => GameVersion.v1_1_0_1,
             _  => GameVersion.Unknown,
         };
 

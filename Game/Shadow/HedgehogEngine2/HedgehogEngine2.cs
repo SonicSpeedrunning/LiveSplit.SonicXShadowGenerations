@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using JHelper.Common.MemoryUtils;
 using JHelper.Common.ProcessInterop;
 
 namespace LiveSplit.SonicXShadowGenerations.GameEngine;
@@ -90,8 +90,6 @@ internal class HedgehogEngine2
     [SkipLocalsInit]
     public void Update(ProcessMemory process)
     {
-        long[] rent;
-
         // Step 1: Reset the cached addresses at the beginning of each update cycle.
         ResetCache();
 
@@ -99,53 +97,76 @@ internal class HedgehogEngine2
         if (!process.ReadPointer(pGameManager, out IntPtr _gameManager))
             return; // Return early if GameManager address is invalid.
 
-        if (!process.Read(_gameManager, out GameManager gameManager))
-            return;
+        IntPtr gameObjects;
+        int noOfGameObjects;
 
-        // Scan the game services
-        if (gameManager.noOfGameServices > 0 && gameManager.noOfGameServices < 1024)
+        IntPtr gameServices;
+        int noOfGameServices;
+
+        IntPtr gameApplication;
+        
+        // This is a very large structure so we rather use an ArrayPool than a struct
+        using (ArrayRental<byte> rent = new ArrayRental<byte>(0x358))
         {
-            rent = ArrayPool<long>.Shared.Rent(gameManager.noOfGameServices);
-            Span<long> span = rent.AsSpan(0, gameManager.noOfGameServices);
+            if (!process.ReadArray(_gameManager, rent.Span))
+                return;
 
-            if (process.ReadArray(gameManager.GameServices, span))
+            unsafe
             {
-                foreach (var entry in span)
+                fixed (byte* ptr = rent.Span)
                 {
-                    if (RTTI.Lookup((IntPtr)entry, out string value))
-                        _services[value] = (IntPtr)entry;
+                    gameObjects = (IntPtr)(*(long*)(ptr + 0x130));
+                    noOfGameObjects = *(short*)(ptr + 0x138);
+                    gameServices = (IntPtr)(*(long*)(ptr + 0x150));
+                    noOfGameServices = *(short*)(ptr + 0x158);
+                    gameApplication = (IntPtr)(*(long*)(ptr + 0x350));
                 }
             }
-            ArrayPool<long>.Shared.Return(rent);
+        }
+
+
+        // Scan the game services
+        if (noOfGameServices > 0 && noOfGameServices < 1024)
+        {
+            using (ArrayRental<long> rent = new(noOfGameServices))
+            {
+                if (process.ReadArray(gameServices, rent.Span))
+                {
+                    foreach (var entry in rent.Span)
+                    {
+                        if (RTTI.Lookup((IntPtr)entry, out string value))
+                            _services[value] = (IntPtr)entry;
+                    }
+                }
+            }
         }
 
         // Scan game application extensions.
-        if (process.Read(gameManager.GameApplication, out GameApplication gameApplication)
-            && gameApplication.noOfApplicationExtensions > 0
-            && gameApplication.noOfApplicationExtensions < 64)
+        if (process.Read(gameApplication, out GameApplication ggameApplication)
+            && ggameApplication.noOfApplicationExtensions > 0
+            && ggameApplication.noOfApplicationExtensions < 64)
         {
-            rent = ArrayPool<long>.Shared.Rent(gameApplication.noOfApplicationExtensions);
-            Span<long> span = rent.AsSpan(0, gameApplication.noOfApplicationExtensions);
-
             IntPtr ase = IntPtr.Zero;
 
-            // Read array of pointers for ApplicationSequenceExtension
-            if (process.ReadArray(gameApplication.ApplicationExtensions, span))
+            using (ArrayRental<long> rent = new(ggameApplication.noOfApplicationExtensions))
             {
-                foreach (var entry in span)
+                // Read array of pointers for ApplicationSequenceExtension
+                if (process.ReadArray(ggameApplication.ApplicationExtensions, rent.Span))
                 {
-                    // Identify ApplicationSequenceExtension using RTTI lookup.
-                    if (RTTI.Lookup((IntPtr)entry, out string value))
+                    foreach (var entry in rent.Span)
                     {
-                        if (value == "ApplicationSequenceExtension")
+                        // Identify ApplicationSequenceExtension using RTTI lookup.
+                        if (RTTI.Lookup((IntPtr)entry, out string value))
                         {
-                            ase = (IntPtr)entry;
-                            break;
+                            if (value == "ApplicationSequenceExtension")
+                            {
+                                ase = (IntPtr)entry;
+                                break;
+                            }
                         }
                     }
                 }
             }
-            ArrayPool<long>.Shared.Return(rent);
 
             // If ApplicationSequenceExtension is found, locate GameMode.
             if (ase != IntPtr.Zero)
@@ -158,47 +179,43 @@ internal class HedgehogEngine2
                     // Read current instance of GameModeExtension.
                     if (process.Read(extension.GameMode, out GameMode gameMode) && gameMode.noOfExtensions > 0 && gameMode.noOfExtensions < 128)
                     {
-                        rent = ArrayPool<long>.Shared.Rent(gameMode.noOfExtensions);
-                        span = rent.AsSpan(0, gameMode.noOfExtensions);
-
-                        // Retrieve array of extensions
-                        if (process.ReadArray(gameMode.Extensions, span))
+                        using (ArrayRental<long> rent = gameMode.noOfExtensions < 25 ? new(stackalloc long[gameMode.noOfExtensions]) : new(gameMode.noOfExtensions))
                         {
-                            foreach (var entry in span)
+                            // Retrieve array of extensions
+                            if (process.ReadArray(gameMode.Extensions, rent.Span))
                             {
-                                if (RTTI.Lookup((IntPtr)entry, out string value))
-                                    _extensions[value] = (IntPtr)entry;
+                                foreach (var entry in rent.Span)
+                                {
+                                    if (RTTI.Lookup((IntPtr)entry, out string value))
+                                        _extensions[value] = (IntPtr)entry;
+                                }
                             }
                         }
-
-                        ArrayPool<long>.Shared.Return(rent);
                     }
                 }
             }
         }
 
         // Scan the game objects.
-        if (gameManager.noOfGameObjects > 0 && gameManager.noOfGameObjects < 2048)
+        if (noOfGameObjects > 0 && noOfGameObjects < 2048)
         {
-            rent = ArrayPool<long>.Shared.Rent(gameManager.noOfGameObjects);
-            Span<long> span = rent.AsSpan(0, gameManager.noOfGameObjects);
-
-            if (process.ReadArray(gameManager.GameObjects, span))
+            using (ArrayRental<long> rent = new(noOfGameObjects))
             {
-                foreach (var entry in span)
+                if (process.ReadArray(gameObjects, rent.Span))
                 {
-                    if (RTTI.Lookup((IntPtr)entry, out string value))
+                    foreach (var entry in rent.Span)
                     {
-                        // We are excluding elements starting with "Obj"
-                        if (value.Length > 2 && value[0] == 'O' && value[1] == 'b' && value[2] == 'j')
-                            continue;
+                        if (RTTI.Lookup((IntPtr)entry, out string value))
+                        {
+                            // We are excluding elements starting with "Obj"
+                            if (value.Length > 2 && value[0] == 'O' && value[1] == 'b' && value[2] == 'j')
+                                continue;
 
-                        _objects[value] = (IntPtr)entry;
+                            _objects[value] = (IntPtr)entry;
+                        }
                     }
                 }
             }
-
-            ArrayPool<long>.Shared.Return(rent);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace LiveSplit.SonicXShadowGenerations.GameEngine;
 
+/*
 [StructLayout(LayoutKind.Explicit, Size = 0x358)]
 public readonly struct GameManager
 {
@@ -18,12 +19,13 @@ public readonly struct GameManager
     public IntPtr GameServices => (IntPtr) _pGameServices;
     public IntPtr GameApplication => (IntPtr) _gameApplication;
 }
+*/
 
 [StructLayout(LayoutKind.Explicit, Size = 0x94)]
 public readonly struct GameApplication
 {
     [FieldOffset(0x88)] private readonly long _applicationExtensions;
-    [FieldOffset(0x90)] public readonly int noOfApplicationExtensions;
+    [FieldOffset(0x90)] public readonly short noOfApplicationExtensions;
 
     public IntPtr ApplicationExtensions => (IntPtr) _applicationExtensions;
 }
@@ -40,7 +42,7 @@ public readonly struct ApplicationSequenceExtension
 public readonly struct GameMode
 {
     [FieldOffset(0xB0)] public readonly long _extensions;
-    [FieldOffset(0xB8)] public readonly int noOfExtensions;
+    [FieldOffset(0xB8)] public readonly short noOfExtensions;
 
     public IntPtr Extensions => (IntPtr) _extensions;
 }

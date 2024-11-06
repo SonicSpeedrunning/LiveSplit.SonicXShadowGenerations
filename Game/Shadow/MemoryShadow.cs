@@ -67,6 +67,7 @@ internal class MemoryShadow : Memory
         Version = process.MainModule.ModuleMemorySize switch
         {
             0x1CA2A000 => GameVersion.v1_1_0_0,
+            0x18BEC000 => GameVersion.v1_1_0_1,
             _ => GameVersion.Unknown
         };
 
@@ -80,59 +81,60 @@ internal class MemoryShadow : Memory
 
         HsmStatus = new LazyWatcher<string[]>(StateTracker, [string.Empty, string.Empty, string.Empty, string.Empty], [string.Empty, string.Empty, string.Empty, string.Empty], (current, old) =>
         {
-            string[] ret = old; // Array to hold status strings (yes, we're borrowing the old string so we can avoid making a new one)
-            
-            Span<byte> buf = stackalloc byte[9]; // Buffer to read memory
-
-            // Check for valid game mode and read status from memory
-            if (!Engine.GetExtension("GameModeHsmExtension", out IntPtr instance)
-                || !process.ReadArray(instance + 0x38, buf))
-            {
-                // Return the current status if read fails
-                ret[0] = current[0];
-                ret[1] = current[1];
-                ret[2] = current[2];
-                ret[3] = current[3];
-                return ret;
-            }
-
-            // Determine the number of details to read (max 4)
-            int no_of_details = buf[8];
-            if (no_of_details > 128)
-                no_of_details = 0;
-            else if (no_of_details > 4)
-                no_of_details = 4;
-
+            int no_of_details;
             IntPtr addr;
-            unsafe
+
+            using (ArrayRental<byte> buf = new(stackalloc byte[9]))
             {
-                fixed (byte* ptr = buf)
-                    addr = (IntPtr)(*(long*)ptr);
+                // Check for valid game mode and read status from memory
+                if (!Engine.GetExtension("GameModeHsmExtension", out IntPtr instance)
+                    || !process.ReadArray(instance + 0x38, buf.Span))
+                {
+                    // Return the current status if read fails
+                    for (int i = 0; i < 4; i++)
+                        old[i] = current[i];
+
+                    return old;
+                }
+
+                // Determine the number of details to read (max 4)
+                no_of_details = buf.Span[8];
+                if (no_of_details > 128)
+                    no_of_details = 0;
+                else if (no_of_details > 4)
+                    no_of_details = 4;
+
+                unsafe
+                {
+                    fixed (byte* ptr = buf.Span)
+                        addr = (IntPtr)(*(long*)ptr);
+                }
             }
 
-            Span<long> details = stackalloc long[no_of_details];
-            // Read the details from memory
-            if (!process.ReadArray(addr, details))
+            using (ArrayRental<long> details = new(stackalloc long[no_of_details]))
             {
-                // Return the current status if read fails
-                ret[0] = current[0];
-                ret[1] = current[1];
-                ret[2] = current[2];
-                ret[3] = current[3];
-                return ret;
-            }
+                // Read the details from memory
+                if (!process.ReadArray(addr, details.Span))
+                {
+                    // Return the current status if read fails
+                    for (int i = 0; i < 4; i++)
+                        old[i] = current[i];
 
-            // Look up each detail and store it in the return array
-            for (int i = 0; i < no_of_details; i++)
-            {
-                if (Engine.RTTI.Lookup((IntPtr)details[i], out string value))
-                    ret[i] = value;
+                    return old;
+                }
+
+                // Look up each detail and store it in the return array
+                for (int i = 0; i < no_of_details; i++)
+                {
+                    if (Engine.RTTI.Lookup((IntPtr)details.Span[i], out string value))
+                        old[i] = value;
+                }
             }
 
             for (int i = no_of_details; i < 4; i++)
-                ret[i] = string.Empty;
+                old[i] = string.Empty;
 
-            return ret;
+            return old;
         });
 
         Is_Loading = new LazyWatcher<bool>(StateTracker, false, (current, _) =>

@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <updates>
+	<update version="1.0.0.4">
+		<files>
+			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Added internal code to identify v1.1.0.1 of the game</change>
+			<change>Memory optimization</change>
+		</changelog>
+	</update>
 	<update version="1.0.0.3">
 		<files>
 			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
