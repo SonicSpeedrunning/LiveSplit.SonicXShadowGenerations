@@ -111,6 +111,15 @@ internal class MemoryShadow : Memory
                 }
             }
 
+            // If the number of states is 0, copy the values from the previous cycle and return
+            if (no_of_details == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                    old[i] = current[i];
+
+                return old;
+            }
+
             using (ArrayRental<long> details = new(stackalloc long[no_of_details]))
             {
                 // Read the details from memory
