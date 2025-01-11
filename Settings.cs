@@ -357,9 +357,9 @@ public partial class Settings : UserControl
         chkMephiles.DataBindings.Add("Checked", this, "Mephiles", false, DataSourceUpdateMode.OnPropertyChanged);
         chkMephiles_Hard.DataBindings.Add("Checked", this, "Mephiles_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
         chkBlackDoom.DataBindings.Add("Checked", this, "BlackDoom", false, DataSourceUpdateMode.OnPropertyChanged);
-        chkBlackDoom.DataBindings.Add("Checked", this, "Tokio1", false, DataSourceUpdateMode.OnPropertyChanged);
-        chkBlackDoom.DataBindings.Add("Checked", this, "Tokio1_1", false, DataSourceUpdateMode.OnPropertyChanged);
-        chkBlackDoom.DataBindings.Add("Checked", this, "Tokio1_2", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkTokio1.DataBindings.Add("Checked", this, "Tokio1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkTokio1_1.DataBindings.Add("Checked", this, "Tokio1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkTokio1_2.DataBindings.Add("Checked", this, "Tokio1_2", false, DataSourceUpdateMode.OnPropertyChanged);
 
 
         // Default Values
