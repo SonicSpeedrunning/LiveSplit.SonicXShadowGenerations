@@ -227,6 +227,9 @@ internal class MemoryShadow : Memory
                 "w06a10" => Shadow.LevelID.RadicalHighway1,
                 "w06a20" => Shadow.LevelID.RadicalHighway2,
                 "w14b10" => Shadow.LevelID.BlackDoom,
+                "w20a10" => Shadow.LevelID.Tokio1,
+                "w20c11" => Shadow.LevelID.Tokio1_Challenge1,
+                "w20c12" => Shadow.LevelID.Tokio1_Challenge2,
                 _ => Shadow.LevelID.Unknown,
             };
         });
@@ -362,6 +365,9 @@ internal class MemoryShadow : Memory
                 Shadow.LevelID.MetalOverlordHard => settings.MetalOverlord_Hard,
                 Shadow.LevelID.Mephiles => settings.Mephiles,
                 Shadow.LevelID.MephilesHard => settings.Mephiles_Hard,
+                Shadow.LevelID.Tokio1 => settings.Tokio1,
+                Shadow.LevelID.Tokio1_Challenge1 => settings.Tokio1_1,
+                Shadow.LevelID.Tokio1_Challenge2 => settings.Tokio1_2,
                 _ => false,
             };
         }

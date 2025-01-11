@@ -61,4 +61,7 @@ internal enum LevelID
     RadicalHighway1,
     RadicalHighway2,
     BlackDoom,
+    Tokio1,
+    Tokio1_Challenge1,
+    Tokio1_Challenge2,
 }

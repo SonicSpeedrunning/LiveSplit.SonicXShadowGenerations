@@ -177,6 +177,9 @@ public partial class Settings : UserControl
     public bool Mephiles { get; set; }
     public bool Mephiles_Hard { get; set; }
     public bool BlackDoom { get; set; }
+    public bool Tokio1 { get; set; }
+    public bool Tokio1_1 { get; set; }
+    public bool Tokio1_2 { get; set; }
 
     public Settings()
     {
@@ -354,6 +357,9 @@ public partial class Settings : UserControl
         chkMephiles.DataBindings.Add("Checked", this, "Mephiles", false, DataSourceUpdateMode.OnPropertyChanged);
         chkMephiles_Hard.DataBindings.Add("Checked", this, "Mephiles_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
         chkBlackDoom.DataBindings.Add("Checked", this, "BlackDoom", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkBlackDoom.DataBindings.Add("Checked", this, "Tokio1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkBlackDoom.DataBindings.Add("Checked", this, "Tokio1_1", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkBlackDoom.DataBindings.Add("Checked", this, "Tokio1_2", false, DataSourceUpdateMode.OnPropertyChanged);
 
 
         // Default Values
@@ -401,6 +407,7 @@ public partial class Settings : UserControl
         MetalOverlord = MetalOverlord_Hard = true;
         Mephiles = Mephiles_Hard = true;
         BlackDoom = true;
+        Tokio1 = Tokio1_1 = Tokio1_2 = true;
         ShadowFocusPatch = false;
     }
 
@@ -577,6 +584,9 @@ public partial class Settings : UserControl
         settingsNode.AppendChild(ToElement(doc, "Mephiles", Mephiles));
         settingsNode.AppendChild(ToElement(doc, "Mephiles_Hard", Mephiles_Hard));
         settingsNode.AppendChild(ToElement(doc, "BlackDoom", BlackDoom));
+        settingsNode.AppendChild(ToElement(doc, "Tokio1", Tokio1));
+        settingsNode.AppendChild(ToElement(doc, "Tokio1_1", Tokio1_1));
+        settingsNode.AppendChild(ToElement(doc, "Tokio1_2", Tokio1_2));
         return settingsNode;
     }
 
@@ -751,6 +761,9 @@ public partial class Settings : UserControl
         Mephiles = ParseBool(settings, "Mephiles", true);
         Mephiles_Hard = ParseBool(settings, "Mephiles_Hard", true);
         BlackDoom = ParseBool(settings, "BlackDoom", true);
+        Tokio1 = ParseBool(settings, "Tokio1", true);
+        Tokio1_1 = ParseBool(settings, "Tokio1_1", true);
+        Tokio1_2 = ParseBool(settings, "Tokio1_2", true);
     }
 
     static bool ParseBool(XmlNode settings, string setting, bool default_ = false)
@@ -818,6 +831,7 @@ public partial class Settings : UserControl
         chkMetalOverlord.Checked = chkMetalOverlord_Hard.Checked = true;
         chkMephiles.Checked = chkMephiles_Hard.Checked = true;
         chkBlackDoom.Checked = true;
+        chkTokio1.Checked = chkTokio1_1.Checked = chkTokio1_2.Checked = true;
     }
 
     private void ShadowButton_Click(object sender, EventArgs e)

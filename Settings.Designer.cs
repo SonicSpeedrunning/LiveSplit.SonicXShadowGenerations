@@ -216,6 +216,8 @@
             this.chkSpaceColonyArk2 = new System.Windows.Forms.CheckBox();
             this.chkSpaceColonyArk1 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.chkShadowFocusPatch = new System.Windows.Forms.CheckBox();
             this.ShadowMiscButton = new System.Windows.Forms.Button();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.chkBlackDoom = new System.Windows.Forms.CheckBox();
@@ -231,8 +233,10 @@
             this.chkShadowStart = new System.Windows.Forms.CheckBox();
             this.autosplitterVersion = new System.Windows.Forms.Label();
             this.DiscordLink = new System.Windows.Forms.LinkLabel();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.chkShadowFocusPatch = new System.Windows.Forms.CheckBox();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.chkTokio1_1 = new System.Windows.Forms.CheckBox();
+            this.chkTokio1 = new System.Windows.Forms.CheckBox();
+            this.chkTokio1_2 = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -258,9 +262,10 @@
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.groupBox20.SuspendLayout();
             this.groupBox24.SuspendLayout();
-            this.groupBox21.SuspendLayout();
+            this.groupBox22.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -2478,6 +2483,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox22);
             this.tabPage3.Controls.Add(this.groupBox21);
             this.tabPage3.Controls.Add(this.ShadowMiscButton);
             this.tabPage3.Controls.Add(this.groupBox20);
@@ -2488,6 +2494,29 @@
             this.tabPage3.TabIndex = 7;
             this.tabPage3.Text = "Shadow Generations (Bosses and Misc.)";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.AutoSize = true;
+            this.groupBox21.Controls.Add(this.chkShadowFocusPatch);
+            this.groupBox21.Location = new System.Drawing.Point(230, 3);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox21.Size = new System.Drawing.Size(194, 89);
+            this.groupBox21.TabIndex = 34;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Other Options";
+            // 
+            // chkShadowFocusPatch
+            // 
+            this.chkShadowFocusPatch.AutoSize = true;
+            this.chkShadowFocusPatch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkShadowFocusPatch.Location = new System.Drawing.Point(10, 23);
+            this.chkShadowFocusPatch.Name = "chkShadowFocusPatch";
+            this.chkShadowFocusPatch.Size = new System.Drawing.Size(174, 30);
+            this.chkShadowFocusPatch.TabIndex = 4;
+            this.chkShadowFocusPatch.Text = "Prevent the game from pausing\r\nwhen it goes out of focus";
+            this.chkShadowFocusPatch.UseVisualStyleBackColor = true;
             // 
             // ShadowMiscButton
             // 
@@ -2666,28 +2695,51 @@
             this.DiscordLink.Text = "Need help setting this up? Ask on Discord";
             this.DiscordLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DiscordLink_LinkClicked);
             // 
-            // groupBox21
+            // groupBox22
             // 
-            this.groupBox21.AutoSize = true;
-            this.groupBox21.Controls.Add(this.chkShadowFocusPatch);
-            this.groupBox21.Location = new System.Drawing.Point(230, 3);
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox21.Size = new System.Drawing.Size(194, 89);
-            this.groupBox21.TabIndex = 34;
-            this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Other Options";
+            this.groupBox22.Controls.Add(this.chkTokio1_2);
+            this.groupBox22.Controls.Add(this.chkTokio1_1);
+            this.groupBox22.Controls.Add(this.chkTokio1);
+            this.groupBox22.Location = new System.Drawing.Point(3, 271);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox22.Size = new System.Drawing.Size(421, 53);
+            this.groupBox22.TabIndex = 35;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "DLCs";
             // 
-            // chkShadowFocusPatch
+            // chkTokio1_1
             // 
-            this.chkShadowFocusPatch.AutoSize = true;
-            this.chkShadowFocusPatch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowFocusPatch.Location = new System.Drawing.Point(10, 23);
-            this.chkShadowFocusPatch.Name = "chkShadowFocusPatch";
-            this.chkShadowFocusPatch.Size = new System.Drawing.Size(174, 30);
-            this.chkShadowFocusPatch.TabIndex = 4;
-            this.chkShadowFocusPatch.Text = "Prevent the game from pausing\r\nwhen it goes out of focus";
-            this.chkShadowFocusPatch.UseVisualStyleBackColor = true;
+            this.chkTokio1_1.AutoSize = true;
+            this.chkTokio1_1.Location = new System.Drawing.Point(161, 23);
+            this.chkTokio1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkTokio1_1.Name = "chkTokio1_1";
+            this.chkTokio1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkTokio1_1.TabIndex = 11;
+            this.chkTokio1_1.Text = "Challenge 1";
+            this.chkTokio1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkTokio1
+            // 
+            this.chkTokio1.AutoSize = true;
+            this.chkTokio1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkTokio1.Location = new System.Drawing.Point(10, 23);
+            this.chkTokio1.Name = "chkTokio1";
+            this.chkTokio1.Size = new System.Drawing.Size(401, 17);
+            this.chkTokio1.TabIndex = 8;
+            this.chkTokio1.Text = "[EXTRA] Tokyo - Act 1";
+            this.chkTokio1.UseVisualStyleBackColor = true;
+            // 
+            // chkTokio1_2
+            // 
+            this.chkTokio1_2.AutoSize = true;
+            this.chkTokio1_2.Location = new System.Drawing.Point(249, 23);
+            this.chkTokio1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkTokio1_2.Name = "chkTokio1_2";
+            this.chkTokio1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkTokio1_2.TabIndex = 12;
+            this.chkTokio1_2.Text = "Challenge 2";
+            this.chkTokio1_2.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -2746,12 +2798,14 @@
             this.groupBox14.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2963,5 +3017,9 @@
         private System.Windows.Forms.CheckBox chkSpaceColonyArk2_Hard;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.CheckBox chkShadowFocusPatch;
+        private System.Windows.Forms.GroupBox groupBox22;
+        private System.Windows.Forms.CheckBox chkTokio1_2;
+        private System.Windows.Forms.CheckBox chkTokio1_1;
+        private System.Windows.Forms.CheckBox chkTokio1;
     }
 }

@@ -7,7 +7,7 @@
     <RootNamespace>LiveSplit.SonicXShadowGenerations</RootNamespace>
     <Nullable>enable</Nullable>
     <Version></Version>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
+    <AssemblyVersion>1.0.0.6</AssemblyVersion>
     <OutputType>Library</OutputType>
     <ImplicitUsings>disable</ImplicitUsings>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -29,10 +29,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IndexRange" Version="1.0.3" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="MSBuild.ILMerge.Task" Version="1.1.3" />
-    <PackageReference Include="SkipLocalsInit" Version="1.1.0">
+    <PackageReference Include="PolySharp" Version="1.15.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
