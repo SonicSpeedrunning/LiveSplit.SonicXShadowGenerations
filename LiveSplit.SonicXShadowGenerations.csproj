@@ -14,7 +14,7 @@
     <Configurations>Release</Configurations>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
-	  <SignAssembly>False</SignAssembly>
+    <SignAssembly>False</SignAssembly>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisLevel>latest</AnalysisLevel>
@@ -23,9 +23,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	  <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <Deterministic>True</Deterministic>
   </PropertyGroup>
 
@@ -38,19 +37,19 @@
 
   <ItemGroup>
     <Reference Include="LiveSplit.Core">
-      <HintPath>D:\Games\Speedrunning\LiveSplit_1.8.29\LiveSplit.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\LiveSplit.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Buffers">
-      <HintPath>D:\Games\Speedrunning\LiveSplit_1.8.29\System.Buffers.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Buffers.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Memory">
-      <HintPath>D:\Games\Speedrunning\LiveSplit_1.8.29\System.Memory.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Memory.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>D:\Games\Speedrunning\LiveSplit_1.8.29\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
@@ -58,7 +57,7 @@
     </Reference>
     <Reference Include="System.Workflow.Runtime" />
     <Reference Include="UpdateManager">
-      <HintPath>D:\Games\Speedrunning\LiveSplit_1.8.29\UpdateManager.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\LiveSplit\UpdateManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
