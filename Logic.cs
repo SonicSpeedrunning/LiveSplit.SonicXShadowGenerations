@@ -77,6 +77,9 @@ internal partial class AutosplitterComponent : LogicComponent
             if (memory is null)
                 continue;
 
+            // Bool that determines whether the timer should pause in White Space
+            bool WhiteWorldPause = false;
+
             // Primary loop for updating and checking game memory while the process remains open
             while (!canceltoken.IsCancellationRequested && process.IsOpen)
             {
@@ -88,13 +91,16 @@ internal partial class AutosplitterComponent : LogicComponent
                 // Timer logic to manage game-time, loading status, and potential resets or splits
                 if (timer.CurrentState.CurrentPhase == TimerPhase.Running || timer.CurrentState.CurrentPhase == TimerPhase.Paused)
                 {
-                    // Check if the game is in a loading state and pause timer if so
+                    // Check if the game is in a loading state, or in White Space and pause timer if so
+                    bool isWhiteWorld = memory.isWhiteWorld(Settings, WhiteWorldPause);
                     bool? isLoading = memory.IsLoading(Settings);
-                    if (isLoading is not null)
-                        state.IsGameTimePaused = isLoading.Value;
+                    if (isLoading.Value || isWhiteWorld)
+                        state.IsGameTimePaused = true;
+                    else
+                        state.IsGameTimePaused = false;
 
-                    // Update in-game time if available
-                    TimeSpan? gameTime = memory.GameTime(Settings);
+                        // Update in-game time if available
+                        TimeSpan? gameTime = memory.GameTime(Settings);
                     if (gameTime is not null)
                         timer.CurrentState.SetGameTime(gameTime.Value);
 
@@ -106,8 +112,10 @@ internal partial class AutosplitterComponent : LogicComponent
                 }
 
                 // Start the timer if game start conditions are met and the timer is not running
-                if (timer.CurrentState.CurrentPhase == TimerPhase.NotRunning && memory.Start(Settings))
+                if (timer.CurrentState.CurrentPhase == TimerPhase.NotRunning && (memory.NewGameStart(Settings) || memory.LevelEntryStart(Settings)))
                 {
+                    // If the start was caused by level entry (e.g All Stages), allow the timer to pause in White Space; otherwise (e.g Any%), prevent the timer from pausing in White Space
+                    WhiteWorldPause = memory.LevelEntryStart(Settings);
                     timer.Start();
                     state.IsGameTimePaused = true;
 

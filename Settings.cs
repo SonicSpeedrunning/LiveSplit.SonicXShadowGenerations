@@ -125,7 +125,8 @@ public partial class Settings : UserControl
     public bool EggDragoon { get; set; }
     public bool TimeEater { get; set; }
     public bool ShadowLoadless { get; set; }
-    public bool ShadowStart { get; set; }
+    public bool ShadowNewGameStart { get; set; }
+    public bool ShadowLevelEnterStart { get; set; }
     public bool ShadowReset { get; set; }
     public bool SpacecolonyArk1 { get; set; }
     public bool SpacecolonyArk1_1 { get; set; }
@@ -347,7 +348,8 @@ public partial class Settings : UserControl
         chkChaosIsland2_Hard.DataBindings.Add("Checked", this, "ChaosIsland2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
         chkRadicalHighway1.DataBindings.Add("Checked", this, "RadicalHighway1", false, DataSourceUpdateMode.OnPropertyChanged);
         chkRadicalHighway2.DataBindings.Add("Checked", this, "RadicalHighway2", false, DataSourceUpdateMode.OnPropertyChanged);
-        chkShadowStart.DataBindings.Add("Checked", this, "ShadowStart", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowNewGameStart.DataBindings.Add("Checked", this, "ShadowNewGameStart", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowLevelEnterStart.DataBindings.Add("Checked", this, "ShadowLevelEnterStart", false, DataSourceUpdateMode.OnPropertyChanged);
         chkShadowReset.DataBindings.Add("Checked", this, "ShadowReset", false, DataSourceUpdateMode.OnPropertyChanged);
         chkShadowFocusPatch.DataBindings.Add("Checked", this, "ShadowFocusPatch", false, DataSourceUpdateMode.OnPropertyChanged);
         chkBiolizard.DataBindings.Add("Checked", this, "Biolizard", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -402,7 +404,7 @@ public partial class Settings : UserControl
         ChaosIsland1 = ChaosIsland1_1 = ChaosIsland1_2 = ChaosIsland1_Hard = true;
         ChaosIsland2 = ChaosIsland2_1 = ChaosIsland2_2 = ChaosIsland2_Hard = true;
         RadicalHighway1 = RadicalHighway2 = true;
-        ShadowStart = ShadowReset = true;
+        ShadowNewGameStart = ShadowReset = ShadowLevelEnterStart = true;
         Biolizard = Biolizard_Hard = true;
         MetalOverlord = MetalOverlord_Hard = true;
         Mephiles = Mephiles_Hard = true;
@@ -574,7 +576,8 @@ public partial class Settings : UserControl
         settingsNode.AppendChild(ToElement(doc, "ChaosIsland2_Hard", ChaosIsland2_Hard));
         settingsNode.AppendChild(ToElement(doc, "RadicalHighway1", RadicalHighway1));
         settingsNode.AppendChild(ToElement(doc, "RadicalHighway2", RadicalHighway2));
-        settingsNode.AppendChild(ToElement(doc, "ShadowStart", ShadowStart));
+        settingsNode.AppendChild(ToElement(doc, "ShadowNewGameStart", ShadowNewGameStart));
+        settingsNode.AppendChild(ToElement(doc, "ShadowLevelEnterStart", ShadowLevelEnterStart));
         settingsNode.AppendChild(ToElement(doc, "ShadowReset", ShadowReset));
         settingsNode.AppendChild(ToElement(doc, "ShadowFocusPatch", ShadowFocusPatch));
         settingsNode.AppendChild(ToElement(doc, "Biolizard", Biolizard));
@@ -751,7 +754,8 @@ public partial class Settings : UserControl
         ChaosIsland2_Hard = ParseBool(settings, "ChaosIsland2_Hard", true);
         RadicalHighway1 = ParseBool(settings, "RadicalHighway1", true);
         RadicalHighway2 = ParseBool(settings, "RadicalHighway2", true);
-        ShadowStart = ParseBool(settings, "ShadowStart", true);
+        ShadowNewGameStart = ParseBool(settings, "ShadowNewGameStart", true);
+        ShadowLevelEnterStart = ParseBool(settings, "ShadowLevelEnterStart", true);
         ShadowReset = ParseBool(settings, "ShadowReset", true);
         ShadowFocusPatch = ParseBool(settings, "ShadowFocusPatch", true);
         Biolizard = ParseBool(settings, "Biolizard", true);
@@ -824,7 +828,7 @@ public partial class Settings : UserControl
 
     private void ShadowMiscButton_Click(object sender, EventArgs e)
     {
-        chkShadowStart.Checked = chkShadowReset.Checked = true;
+        chkShadowNewGameStart.Checked = chkShadowReset.Checked = chkShadowLevelEnterStart.Checked = true;
         chkShadowFocusPatch.Checked = false;
         chkShadowLoadless.Checked = true;
         chkBiolizard.Checked = chkBiolizard_Hard.Checked = true;

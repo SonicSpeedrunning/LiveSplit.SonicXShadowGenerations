@@ -299,9 +299,19 @@ internal class MemoryShadow : Memory
     /// Determines if the game has transitioned from the title screen to the opening cutscene.
     /// </summary>
     /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
-    internal override bool Start(Settings settings)
+    internal override bool NewGameStart(Settings settings)
     {
-        return settings.ShadowStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening";
+        return settings.ShadowNewGameStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening";
+    }
+
+    /// <summary>
+    /// Determines if the game has transitioned from White Space to a level.
+    /// </summary>
+    /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
+    internal override bool LevelEntryStart(Settings settings)
+    {
+        // Additional GameMode check prevents the timer from autostarting when quitting from White Space to the title screen
+        return settings.ShadowLevelEnterStart && LevelID.Old == Shadow.LevelID.WhiteWorld && LevelID.Current != Shadow.LevelID.WhiteWorld && GameMode.Current != "GameModeTitle";
     }
 
     /// <summary>
@@ -371,6 +381,17 @@ internal class MemoryShadow : Memory
                 _ => false,
             };
         }
+        return false;
+    }
+
+    /// <summary>
+    /// Determines if game is in White Space
+    /// </summary>
+    /// <returns>True if in White Space; otherwise, false.</returns>
+    internal override bool isWhiteWorld(Settings settings, bool WhiteSpacePause)
+    {
+        if (LevelID.Current == Shadow.LevelID.WhiteWorld && WhiteSpacePause)
+            return true;
         return false;
     }
 

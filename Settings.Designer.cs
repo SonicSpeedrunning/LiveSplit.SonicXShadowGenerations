@@ -1,4 +1,6 @@
-﻿namespace LiveSplit.SonicXShadowGenerations
+﻿using Microsoft.Win32;
+
+namespace LiveSplit.SonicXShadowGenerations
 {
     partial class Settings
     {
@@ -230,7 +232,8 @@
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.chkShadowLoadless = new System.Windows.Forms.CheckBox();
             this.chkShadowReset = new System.Windows.Forms.CheckBox();
-            this.chkShadowStart = new System.Windows.Forms.CheckBox();
+            this.chkShadowNewGameStart = new System.Windows.Forms.CheckBox();
+            this.chkShadowLevelEnterStart = new System.Windows.Forms.CheckBox();
             this.autosplitterVersion = new System.Windows.Forms.Label();
             this.DiscordLink = new System.Windows.Forms.LinkLabel();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
@@ -2502,7 +2505,7 @@
             this.groupBox21.Location = new System.Drawing.Point(230, 3);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox21.Size = new System.Drawing.Size(194, 89);
+            this.groupBox21.Size = new System.Drawing.Size(194, 100);
             this.groupBox21.TabIndex = 34;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Other Options";
@@ -2538,7 +2541,7 @@
             this.groupBox20.Controls.Add(this.chkMetalOverlord);
             this.groupBox20.Controls.Add(this.chkBiolizard_Hard);
             this.groupBox20.Controls.Add(this.chkBiolizard);
-            this.groupBox20.Location = new System.Drawing.Point(3, 98);
+            this.groupBox20.Location = new System.Drawing.Point(3, 109);
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox20.Size = new System.Drawing.Size(421, 167);
@@ -2631,11 +2634,12 @@
             this.groupBox24.AutoSize = true;
             this.groupBox24.Controls.Add(this.chkShadowLoadless);
             this.groupBox24.Controls.Add(this.chkShadowReset);
-            this.groupBox24.Controls.Add(this.chkShadowStart);
+            this.groupBox24.Controls.Add(this.chkShadowNewGameStart);
+            this.groupBox24.Controls.Add(this.chkShadowLevelEnterStart);
             this.groupBox24.Location = new System.Drawing.Point(3, 3);
             this.groupBox24.Name = "groupBox24";
             this.groupBox24.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox24.Size = new System.Drawing.Size(221, 89);
+            this.groupBox24.Size = new System.Drawing.Size(221, 100);
             this.groupBox24.TabIndex = 6;
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "General Options";
@@ -2644,7 +2648,7 @@
             // 
             this.chkShadowLoadless.AutoSize = true;
             this.chkShadowLoadless.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowLoadless.Location = new System.Drawing.Point(10, 62);
+            this.chkShadowLoadless.Location = new System.Drawing.Point(10, 55);
             this.chkShadowLoadless.Name = "chkShadowLoadless";
             this.chkShadowLoadless.Size = new System.Drawing.Size(201, 17);
             this.chkShadowLoadless.TabIndex = 0;
@@ -2655,7 +2659,7 @@
             // 
             this.chkShadowReset.AutoSize = true;
             this.chkShadowReset.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowReset.Location = new System.Drawing.Point(10, 40);
+            this.chkShadowReset.Location = new System.Drawing.Point(10, 33);
             this.chkShadowReset.Name = "chkShadowReset";
             this.chkShadowReset.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.chkShadowReset.Size = new System.Drawing.Size(201, 22);
@@ -2663,16 +2667,27 @@
             this.chkShadowReset.Text = "Auto reset";
             this.chkShadowReset.UseVisualStyleBackColor = true;
             // 
-            // chkShadowStart
+            // chkShadowNewGameStart
             // 
-            this.chkShadowStart.AutoSize = true;
-            this.chkShadowStart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowStart.Location = new System.Drawing.Point(10, 23);
-            this.chkShadowStart.Name = "chkShadowStart";
-            this.chkShadowStart.Size = new System.Drawing.Size(201, 17);
-            this.chkShadowStart.TabIndex = 4;
-            this.chkShadowStart.Text = "Auto start";
-            this.chkShadowStart.UseVisualStyleBackColor = true;
+            this.chkShadowNewGameStart.AutoSize = true;
+            this.chkShadowNewGameStart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkShadowNewGameStart.Location = new System.Drawing.Point(10, 20);
+            this.chkShadowNewGameStart.Name = "chkShadowNewGameStart";
+            this.chkShadowNewGameStart.Size = new System.Drawing.Size(51, 17);
+            this.chkShadowNewGameStart.TabIndex = 4;
+            this.chkShadowNewGameStart.Text = "Auto start on new game";
+            this.chkShadowNewGameStart.UseVisualStyleBackColor = true;
+            // 
+            // chkShadowLevelEnterStart
+            // 
+            this.chkShadowLevelEnterStart.AutoSize = true;
+            this.chkShadowLevelEnterStart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkShadowLevelEnterStart.Location = new System.Drawing.Point(10, 15);
+            this.chkShadowLevelEnterStart.Name = "chkShadowLevelEnterStart";
+            this.chkShadowLevelEnterStart.Size = new System.Drawing.Size(51, 17);
+            this.chkShadowLevelEnterStart.TabIndex = 4;
+            this.chkShadowLevelEnterStart.Text = "Auto start on level entry";
+            this.chkShadowLevelEnterStart.UseVisualStyleBackColor = true;
             // 
             // autosplitterVersion
             // 
@@ -2700,7 +2715,7 @@
             this.groupBox22.Controls.Add(this.chkTokio1_2);
             this.groupBox22.Controls.Add(this.chkTokio1_1);
             this.groupBox22.Controls.Add(this.chkTokio1);
-            this.groupBox22.Location = new System.Drawing.Point(3, 271);
+            this.groupBox22.Location = new System.Drawing.Point(3, 280);
             this.groupBox22.Name = "groupBox22";
             this.groupBox22.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox22.Size = new System.Drawing.Size(421, 53);
@@ -2999,7 +3014,8 @@
         private System.Windows.Forms.CheckBox chkRadicalHighway1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.CheckBox chkShadowReset;
-        private System.Windows.Forms.CheckBox chkShadowStart;
+        private System.Windows.Forms.CheckBox chkShadowNewGameStart;
+        private System.Windows.Forms.CheckBox chkShadowLevelEnterStart;
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.CheckBox chkBlackDoom;
         private System.Windows.Forms.CheckBox chkMephiles_Hard;
