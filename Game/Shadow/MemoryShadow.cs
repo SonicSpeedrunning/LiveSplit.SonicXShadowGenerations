@@ -315,7 +315,7 @@ internal class MemoryShadow : Memory
         {
             return true;
         }
-        else if (settings.ShadowNewGameStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening")
+        else if (settings.ShadowLevelEnterStart && LevelID.Old == Shadow.LevelID.WhiteWorld && LevelID.Changed && GameMode.Current != "GameModeTitle")
         {
             levelStartTriggered = true;
             return true;
