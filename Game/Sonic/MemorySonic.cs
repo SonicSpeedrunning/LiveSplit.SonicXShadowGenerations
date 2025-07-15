@@ -58,12 +58,12 @@ internal class MemorySonic : Memory
         };
 
         // Find the base address for loading state in memory
-        baseLoading = process.MainModule.ScanAll(new MemoryScanPattern(3, "48 8B 15 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B 45 AF") { OnFound = (addr) => addr + 0x4 + process.Read<int>(addr) }).First();
+        baseLoading = process.MainModule.ScanAll(new ScanPattern(3, "48 8B 15 ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8B 45 AF") { OnFound = (addr) => addr + 0x4 + process.Read<int>(addr) }).First();
 
         // Find the base address for level data in memory.
         IntPtr level = process
             .MainModule
-            .ScanAll(new MemoryScanPattern(3, "48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 15 ?? ?? ?? ?? 8B 0D"))
+            .ScanAll(new ScanPattern(3, "48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 15 ?? ?? ?? ?? 8B 0D"))
             .First(addr =>
             {
                 IntPtr ptr = addr + 12;

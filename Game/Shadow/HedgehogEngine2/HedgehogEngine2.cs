@@ -59,12 +59,12 @@ internal class HedgehogEngine2
         // Perform memory scan to find GameManager base address.
         pGameManager = process
             .MainModule
-            .ScanAll(new MemoryScanPattern(7, "48 89 41 18 48 89 2D") { OnFound = addr => addr + 0x4 + process.Read<int>(addr) })
+            .ScanAll(new ScanPattern(7, "48 89 41 18 48 89 2D") { OnFound = addr => addr + 0x4 + process.Read<int>(addr) })
             .First();
 
         HWndAddress = process
             .MainModule
-            .ScanAll(new MemoryScanPattern(0, "?? 4A C0 E8 03"))
+            .ScanAll(new ScanPattern(0, "?? 4A C0 E8 03"))
             .First();
 
         // Initialize RTTI for type information.
