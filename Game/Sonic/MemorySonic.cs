@@ -304,7 +304,7 @@ internal class MemorySonic : Memory
     /// </summary>
     /// <param name="settings">The settings used to initialize tracking.</param>
     /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
-    internal override bool NewGameStart(Settings settings)
+    internal override bool Start(Settings settings)
     {
         return settings.SonicStart && LevelID.Old == Sonic.LevelID.MainMenu && LevelID.Current == Sonic.LevelID.GreenHill_Act1;
     }
@@ -439,18 +439,6 @@ internal class MemorySonic : Memory
             _ => false,
         });
     }
-
-    /// <summary>
-    /// Determines if game is in White Space
-    /// </summary>
-    /// <returns>True if in White Space; otherwise, false.</returns>
-    internal override bool isWhiteWorld(Settings settings, bool WhiteSpacePause) => false;
-
-    /// <summary>
-    /// Determines if the game has transitioned from White Space to a level.
-    /// </summary>
-    /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
-    internal override bool LevelEntryStart(Settings settings) => false;
 
     /// <summary>
     /// Determines if the game is currently loading.

@@ -15,13 +15,7 @@ internal abstract class Memory
     /// Determines if the game has transitioned from the title screen and should start LiveSplit's timer.
     /// </summary>
     /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
-    internal abstract bool NewGameStart(Settings settings);
-
-    /// <summary>
-    /// Determines if the game has transitioned from White Space to a level.
-    /// </summary>
-    /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
-    internal abstract bool LevelEntryStart(Settings settings);
+    internal abstract bool Start(Settings settings);
 
     /// <summary>
     /// Determines if a split should occur based on game conditions.
@@ -40,12 +34,6 @@ internal abstract class Memory
     /// </summary>
     /// <returns>True if the game is loading; otherwise, false.</returns>
     internal abstract bool? IsLoading(Settings settings);
-
-    /// <summary>
-    /// Determines if game is in White Space
-    /// </summary>
-    /// <returns>True if in White Space; otherwise, false.</returns>
-    internal abstract bool isWhiteWorld(Settings settings, bool WhiteSpacePause);
 
     /// <summary>
     /// Sets the autosplitter's game time.
