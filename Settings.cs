@@ -124,8 +124,8 @@ public partial class Settings : UserControl
     public bool Silver { get; set; }
     public bool EggDragoon { get; set; }
     public bool TimeEater { get; set; }
-    public bool ShadowLoadless { get; set; }
-    public bool ShadowStart { get; set; }
+    public bool ShadowNewGameStart { get; set; }
+    public bool ShadowLevelEnterStart { get; set; }
     public bool ShadowReset { get; set; }
     public bool SpacecolonyArk1 { get; set; }
     public bool SpacecolonyArk1_1 { get; set; }
@@ -304,7 +304,6 @@ public partial class Settings : UserControl
         chkSilver.DataBindings.Add("Checked", this, "Silver", false, DataSourceUpdateMode.OnPropertyChanged);
         chkEggDragoon.DataBindings.Add("Checked", this, "EggDragoon", false, DataSourceUpdateMode.OnPropertyChanged);
         chkTimeEater.DataBindings.Add("Checked", this, "TimeEater", false, DataSourceUpdateMode.OnPropertyChanged);
-        chkShadowLoadless.DataBindings.Add("Checked", this, "ShadowLoadless", false, DataSourceUpdateMode.OnPropertyChanged);
         chkSpaceColonyArk1.DataBindings.Add("Checked", this, "SpaceColonyArk1", false, DataSourceUpdateMode.OnPropertyChanged);
         chkSpaceColonyArk1_1.DataBindings.Add("Checked", this, "SpaceColonyArk1_1", false, DataSourceUpdateMode.OnPropertyChanged);
         chkSpaceColonyArk1_2.DataBindings.Add("Checked", this, "SpaceColonyArk1_2", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -347,7 +346,8 @@ public partial class Settings : UserControl
         chkChaosIsland2_Hard.DataBindings.Add("Checked", this, "ChaosIsland2_Hard", false, DataSourceUpdateMode.OnPropertyChanged);
         chkRadicalHighway1.DataBindings.Add("Checked", this, "RadicalHighway1", false, DataSourceUpdateMode.OnPropertyChanged);
         chkRadicalHighway2.DataBindings.Add("Checked", this, "RadicalHighway2", false, DataSourceUpdateMode.OnPropertyChanged);
-        chkShadowStart.DataBindings.Add("Checked", this, "ShadowStart", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowNewGameStart.DataBindings.Add("Checked", this, "ShadowNewGameStart", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkShadowLevelEnterStart.DataBindings.Add("Checked", this, "ShadowLevelEnterStart", false, DataSourceUpdateMode.OnPropertyChanged);
         chkShadowReset.DataBindings.Add("Checked", this, "ShadowReset", false, DataSourceUpdateMode.OnPropertyChanged);
         chkShadowFocusPatch.DataBindings.Add("Checked", this, "ShadowFocusPatch", false, DataSourceUpdateMode.OnPropertyChanged);
         chkBiolizard.DataBindings.Add("Checked", this, "Biolizard", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -390,7 +390,6 @@ public partial class Settings : UserControl
         Silver = true;
         EggDragoon = true;
         TimeEater = true;
-        ShadowLoadless = true;
         SpacecolonyArk1 = SpacecolonyArk1_1 = SpacecolonyArk1_2 = SpacecolonyArk1_Hard = true;
         SpacecolonyArk2 = SpacecolonyArk2_1 = SpacecolonyArk2_2 = SpacecolonyArk2_Hard = true;
         RailCanyon1 = RailCanyon1_1 = RailCanyon1_2 = RailCanyon1_Hard = true;
@@ -402,7 +401,8 @@ public partial class Settings : UserControl
         ChaosIsland1 = ChaosIsland1_1 = ChaosIsland1_2 = ChaosIsland1_Hard = true;
         ChaosIsland2 = ChaosIsland2_1 = ChaosIsland2_2 = ChaosIsland2_Hard = true;
         RadicalHighway1 = RadicalHighway2 = true;
-        ShadowStart = ShadowReset = true;
+        ShadowNewGameStart = ShadowReset = true;
+        ShadowLevelEnterStart = false;
         Biolizard = Biolizard_Hard = true;
         MetalOverlord = MetalOverlord_Hard = true;
         Mephiles = Mephiles_Hard = true;
@@ -531,7 +531,6 @@ public partial class Settings : UserControl
         settingsNode.AppendChild(ToElement(doc, "Silver", Silver));
         settingsNode.AppendChild(ToElement(doc, "EggDragoon", EggDragoon));
         settingsNode.AppendChild(ToElement(doc, "TimeEater", TimeEater));
-        settingsNode.AppendChild(ToElement(doc, "ShadowLoadless", ShadowLoadless));
         settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1", SpacecolonyArk1));
         settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1_1", SpacecolonyArk1_1));
         settingsNode.AppendChild(ToElement(doc, "SpacecolonyArk1_2", SpacecolonyArk1_2));
@@ -574,7 +573,8 @@ public partial class Settings : UserControl
         settingsNode.AppendChild(ToElement(doc, "ChaosIsland2_Hard", ChaosIsland2_Hard));
         settingsNode.AppendChild(ToElement(doc, "RadicalHighway1", RadicalHighway1));
         settingsNode.AppendChild(ToElement(doc, "RadicalHighway2", RadicalHighway2));
-        settingsNode.AppendChild(ToElement(doc, "ShadowStart", ShadowStart));
+        settingsNode.AppendChild(ToElement(doc, "ShadowNewGameStart", ShadowNewGameStart));
+        settingsNode.AppendChild(ToElement(doc, "ShadowLevelEnterStart", ShadowLevelEnterStart));
         settingsNode.AppendChild(ToElement(doc, "ShadowReset", ShadowReset));
         settingsNode.AppendChild(ToElement(doc, "ShadowFocusPatch", ShadowFocusPatch));
         settingsNode.AppendChild(ToElement(doc, "Biolizard", Biolizard));
@@ -708,7 +708,6 @@ public partial class Settings : UserControl
         PlanetWisp2_5 = ParseBool(settings, "PlanetWisp2_5", true);
         EggDragoon = ParseBool(settings, "EggDragoon", true);
         TimeEater = ParseBool(settings, "TimeEater", true);
-        ShadowLoadless = ParseBool(settings, "ShadowLoadless", true);
         SpacecolonyArk1 = ParseBool(settings, "SpacecolonyArk1", true);
         SpacecolonyArk1_1 = ParseBool(settings, "SpacecolonyArk1_1", true);
         SpacecolonyArk1_2 = ParseBool(settings, "SpacecolonyArk1_2", true);
@@ -751,7 +750,8 @@ public partial class Settings : UserControl
         ChaosIsland2_Hard = ParseBool(settings, "ChaosIsland2_Hard", true);
         RadicalHighway1 = ParseBool(settings, "RadicalHighway1", true);
         RadicalHighway2 = ParseBool(settings, "RadicalHighway2", true);
-        ShadowStart = ParseBool(settings, "ShadowStart", true);
+        ShadowNewGameStart = ParseBool(settings, "ShadowNewGameStart", true);
+        ShadowLevelEnterStart = ParseBool(settings, "ShadowLevelEnterStart", false);
         ShadowReset = ParseBool(settings, "ShadowReset", true);
         ShadowFocusPatch = ParseBool(settings, "ShadowFocusPatch", true);
         Biolizard = ParseBool(settings, "Biolizard", true);
@@ -824,9 +824,9 @@ public partial class Settings : UserControl
 
     private void ShadowMiscButton_Click(object sender, EventArgs e)
     {
-        chkShadowStart.Checked = chkShadowReset.Checked = true;
+        chkShadowNewGameStart.Checked = chkShadowReset.Checked = true;
+        chkShadowLevelEnterStart.Checked = false;
         chkShadowFocusPatch.Checked = false;
-        chkShadowLoadless.Checked = true;
         chkBiolizard.Checked = chkBiolizard_Hard.Checked = true;
         chkMetalOverlord.Checked = chkMetalOverlord_Hard.Checked = true;
         chkMephiles.Checked = chkMephiles_Hard.Checked = true;

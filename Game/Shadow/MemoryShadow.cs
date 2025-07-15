@@ -53,6 +53,12 @@ internal class MemoryShadow : Memory
     public LazyWatcher<int> FinalQTECount { get; }
 
     /// <summary>
+    /// Local variable used to store whether the autosplitter timer was
+    /// started using the level entry trigger.
+    /// </summary>
+    private bool levelStartTriggered = false;
+
+    /// <summary>
     /// Constructor initializing game engine, version, and various game state watchers.
     /// </summary>
     /// <param name="process">The current game process.</param>
@@ -292,16 +298,29 @@ internal class MemoryShadow : Memory
     /// <returns>True if the game is loading; otherwise, false.</returns>
     internal override bool? IsLoading(Settings settings)
     {
-        return settings.ShadowLoadless && Is_Loading.Current;
+        return Is_Loading.Current || (levelStartTriggered && LevelID.Current == Shadow.LevelID.WhiteWorld);
     }
 
     /// <summary>
-    /// Determines if the game has transitioned from the title screen to the opening cutscene.
+    /// Determines if the game transitioned into a state when the timer should be started.
+    /// For new games, this corresponds to the transition from the title screen to the opening cutscene.
+    /// For the levelentryStart, this corresponds to the transition from while space to any level.
     /// </summary>
     /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
     internal override bool Start(Settings settings)
     {
-        return settings.ShadowStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening";
+        levelStartTriggered = false;
+
+        if (settings.ShadowNewGameStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening")
+        {
+            return true;
+        }
+        else if (settings.ShadowLevelEnterStart && LevelID.Old == Shadow.LevelID.WhiteWorld && LevelID.Changed && GameMode.Current != "GameModeTitle")
+        {
+            levelStartTriggered = true;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

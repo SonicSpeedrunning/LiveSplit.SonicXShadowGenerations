@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <updates>
+    <update version="1.0.0.8">
+		<files>
+			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Added support for pausing in White Space</change>
+            <change>Added auto start support for All Stages and All Challenges runs</change>
+		</changelog>
+	</update>
 	<update version="1.0.0.7">
 		<files>
 			<file path="Components/LiveSplit.SonicXShadowGenerations.dll" status="changed"/>
