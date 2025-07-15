@@ -309,9 +309,10 @@ internal class MemoryShadow : Memory
     /// <returns>True if the autosplitter timer should be started; otherwise, false.</returns>
     internal override bool Start(Settings settings)
     {
+        levelStartTriggered = false;
+
         if (settings.ShadowNewGameStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening")
         {
-            levelStartTriggered = false;
             return true;
         }
         else if (settings.ShadowNewGameStart && GameMode.Old == "GameModeTitle" && GameMode.Current == "GameModeOpening")
