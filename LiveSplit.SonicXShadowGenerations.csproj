@@ -7,7 +7,7 @@
     <RootNamespace>LiveSplit.SonicXShadowGenerations</RootNamespace>
     <Nullable>enable</Nullable>
     <Version></Version>
-    <AssemblyVersion>1.0.0.7</AssemblyVersion>
+    <AssemblyVersion>1.0.0.8</AssemblyVersion>
     <OutputType>Library</OutputType>
     <ImplicitUsings>disable</ImplicitUsings>
     <PlatformTarget>AnyCPU</PlatformTarget>
