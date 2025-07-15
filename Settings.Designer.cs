@@ -218,6 +218,10 @@ namespace LiveSplit.SonicXShadowGenerations
             this.chkSpaceColonyArk2 = new System.Windows.Forms.CheckBox();
             this.chkSpaceColonyArk1 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.chkTokio1_2 = new System.Windows.Forms.CheckBox();
+            this.chkTokio1_1 = new System.Windows.Forms.CheckBox();
+            this.chkTokio1 = new System.Windows.Forms.CheckBox();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.chkShadowFocusPatch = new System.Windows.Forms.CheckBox();
             this.ShadowMiscButton = new System.Windows.Forms.Button();
@@ -230,16 +234,11 @@ namespace LiveSplit.SonicXShadowGenerations
             this.chkBiolizard_Hard = new System.Windows.Forms.CheckBox();
             this.chkBiolizard = new System.Windows.Forms.CheckBox();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
-            this.chkShadowLoadless = new System.Windows.Forms.CheckBox();
             this.chkShadowReset = new System.Windows.Forms.CheckBox();
             this.chkShadowNewGameStart = new System.Windows.Forms.CheckBox();
             this.chkShadowLevelEnterStart = new System.Windows.Forms.CheckBox();
             this.autosplitterVersion = new System.Windows.Forms.Label();
             this.DiscordLink = new System.Windows.Forms.LinkLabel();
-            this.groupBox22 = new System.Windows.Forms.GroupBox();
-            this.chkTokio1_1 = new System.Windows.Forms.CheckBox();
-            this.chkTokio1 = new System.Windows.Forms.CheckBox();
-            this.chkTokio1_2 = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -265,10 +264,10 @@ namespace LiveSplit.SonicXShadowGenerations
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox22.SuspendLayout();
             this.groupBox21.SuspendLayout();
             this.groupBox20.SuspendLayout();
             this.groupBox24.SuspendLayout();
-            this.groupBox22.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -2498,6 +2497,52 @@ namespace LiveSplit.SonicXShadowGenerations
             this.tabPage3.Text = "Shadow Generations (Bosses and Misc.)";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.chkTokio1_2);
+            this.groupBox22.Controls.Add(this.chkTokio1_1);
+            this.groupBox22.Controls.Add(this.chkTokio1);
+            this.groupBox22.Location = new System.Drawing.Point(3, 280);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox22.Size = new System.Drawing.Size(421, 53);
+            this.groupBox22.TabIndex = 35;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "DLCs";
+            // 
+            // chkTokio1_2
+            // 
+            this.chkTokio1_2.AutoSize = true;
+            this.chkTokio1_2.Location = new System.Drawing.Point(249, 23);
+            this.chkTokio1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkTokio1_2.Name = "chkTokio1_2";
+            this.chkTokio1_2.Size = new System.Drawing.Size(82, 17);
+            this.chkTokio1_2.TabIndex = 12;
+            this.chkTokio1_2.Text = "Challenge 2";
+            this.chkTokio1_2.UseVisualStyleBackColor = true;
+            // 
+            // chkTokio1_1
+            // 
+            this.chkTokio1_1.AutoSize = true;
+            this.chkTokio1_1.Location = new System.Drawing.Point(161, 23);
+            this.chkTokio1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.chkTokio1_1.Name = "chkTokio1_1";
+            this.chkTokio1_1.Size = new System.Drawing.Size(82, 17);
+            this.chkTokio1_1.TabIndex = 11;
+            this.chkTokio1_1.Text = "Challenge 1";
+            this.chkTokio1_1.UseVisualStyleBackColor = true;
+            // 
+            // chkTokio1
+            // 
+            this.chkTokio1.AutoSize = true;
+            this.chkTokio1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chkTokio1.Location = new System.Drawing.Point(10, 23);
+            this.chkTokio1.Name = "chkTokio1";
+            this.chkTokio1.Size = new System.Drawing.Size(401, 17);
+            this.chkTokio1.TabIndex = 8;
+            this.chkTokio1.Text = "[EXTRA] Tokyo - Act 1";
+            this.chkTokio1.UseVisualStyleBackColor = true;
+            // 
             // groupBox21
             // 
             this.groupBox21.AutoSize = true;
@@ -2632,7 +2677,6 @@ namespace LiveSplit.SonicXShadowGenerations
             // groupBox24
             // 
             this.groupBox24.AutoSize = true;
-            this.groupBox24.Controls.Add(this.chkShadowLoadless);
             this.groupBox24.Controls.Add(this.chkShadowReset);
             this.groupBox24.Controls.Add(this.chkShadowNewGameStart);
             this.groupBox24.Controls.Add(this.chkShadowLevelEnterStart);
@@ -2644,22 +2688,11 @@ namespace LiveSplit.SonicXShadowGenerations
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "General Options";
             // 
-            // chkShadowLoadless
-            // 
-            this.chkShadowLoadless.AutoSize = true;
-            this.chkShadowLoadless.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowLoadless.Location = new System.Drawing.Point(10, 55);
-            this.chkShadowLoadless.Name = "chkShadowLoadless";
-            this.chkShadowLoadless.Size = new System.Drawing.Size(201, 17);
-            this.chkShadowLoadless.TabIndex = 0;
-            this.chkShadowLoadless.Text = "Enable loadless timing";
-            this.chkShadowLoadless.UseVisualStyleBackColor = true;
-            // 
             // chkShadowReset
             // 
             this.chkShadowReset.AutoSize = true;
             this.chkShadowReset.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowReset.Location = new System.Drawing.Point(10, 33);
+            this.chkShadowReset.Location = new System.Drawing.Point(10, 57);
             this.chkShadowReset.Name = "chkShadowReset";
             this.chkShadowReset.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.chkShadowReset.Size = new System.Drawing.Size(201, 22);
@@ -2671,9 +2704,9 @@ namespace LiveSplit.SonicXShadowGenerations
             // 
             this.chkShadowNewGameStart.AutoSize = true;
             this.chkShadowNewGameStart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowNewGameStart.Location = new System.Drawing.Point(10, 20);
+            this.chkShadowNewGameStart.Location = new System.Drawing.Point(10, 40);
             this.chkShadowNewGameStart.Name = "chkShadowNewGameStart";
-            this.chkShadowNewGameStart.Size = new System.Drawing.Size(51, 17);
+            this.chkShadowNewGameStart.Size = new System.Drawing.Size(201, 17);
             this.chkShadowNewGameStart.TabIndex = 4;
             this.chkShadowNewGameStart.Text = "Auto start on new game";
             this.chkShadowNewGameStart.UseVisualStyleBackColor = true;
@@ -2682,9 +2715,9 @@ namespace LiveSplit.SonicXShadowGenerations
             // 
             this.chkShadowLevelEnterStart.AutoSize = true;
             this.chkShadowLevelEnterStart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkShadowLevelEnterStart.Location = new System.Drawing.Point(10, 15);
+            this.chkShadowLevelEnterStart.Location = new System.Drawing.Point(10, 23);
             this.chkShadowLevelEnterStart.Name = "chkShadowLevelEnterStart";
-            this.chkShadowLevelEnterStart.Size = new System.Drawing.Size(51, 17);
+            this.chkShadowLevelEnterStart.Size = new System.Drawing.Size(201, 17);
             this.chkShadowLevelEnterStart.TabIndex = 4;
             this.chkShadowLevelEnterStart.Text = "Auto start on level entry";
             this.chkShadowLevelEnterStart.UseVisualStyleBackColor = true;
@@ -2709,52 +2742,6 @@ namespace LiveSplit.SonicXShadowGenerations
             this.DiscordLink.TabStop = true;
             this.DiscordLink.Text = "Need help setting this up? Ask on Discord";
             this.DiscordLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DiscordLink_LinkClicked);
-            // 
-            // groupBox22
-            // 
-            this.groupBox22.Controls.Add(this.chkTokio1_2);
-            this.groupBox22.Controls.Add(this.chkTokio1_1);
-            this.groupBox22.Controls.Add(this.chkTokio1);
-            this.groupBox22.Location = new System.Drawing.Point(3, 280);
-            this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox22.Size = new System.Drawing.Size(421, 53);
-            this.groupBox22.TabIndex = 35;
-            this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "DLCs";
-            // 
-            // chkTokio1_1
-            // 
-            this.chkTokio1_1.AutoSize = true;
-            this.chkTokio1_1.Location = new System.Drawing.Point(161, 23);
-            this.chkTokio1_1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.chkTokio1_1.Name = "chkTokio1_1";
-            this.chkTokio1_1.Size = new System.Drawing.Size(82, 17);
-            this.chkTokio1_1.TabIndex = 11;
-            this.chkTokio1_1.Text = "Challenge 1";
-            this.chkTokio1_1.UseVisualStyleBackColor = true;
-            // 
-            // chkTokio1
-            // 
-            this.chkTokio1.AutoSize = true;
-            this.chkTokio1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chkTokio1.Location = new System.Drawing.Point(10, 23);
-            this.chkTokio1.Name = "chkTokio1";
-            this.chkTokio1.Size = new System.Drawing.Size(401, 17);
-            this.chkTokio1.TabIndex = 8;
-            this.chkTokio1.Text = "[EXTRA] Tokyo - Act 1";
-            this.chkTokio1.UseVisualStyleBackColor = true;
-            // 
-            // chkTokio1_2
-            // 
-            this.chkTokio1_2.AutoSize = true;
-            this.chkTokio1_2.Location = new System.Drawing.Point(249, 23);
-            this.chkTokio1_2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.chkTokio1_2.Name = "chkTokio1_2";
-            this.chkTokio1_2.Size = new System.Drawing.Size(82, 17);
-            this.chkTokio1_2.TabIndex = 12;
-            this.chkTokio1_2.Text = "Challenge 2";
-            this.chkTokio1_2.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -2813,14 +2800,14 @@ namespace LiveSplit.SonicXShadowGenerations
             this.groupBox14.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
             this.groupBox21.ResumeLayout(false);
             this.groupBox21.PerformLayout();
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
-            this.groupBox22.ResumeLayout(false);
-            this.groupBox22.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2838,7 +2825,6 @@ namespace LiveSplit.SonicXShadowGenerations
         private System.Windows.Forms.CheckBox chkGreenHill1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox24;
-        private System.Windows.Forms.CheckBox chkShadowLoadless;
         private System.Windows.Forms.CheckBox chkGreenHill2_5;
         private System.Windows.Forms.CheckBox chkGreenHill2_4;
         private System.Windows.Forms.CheckBox chkGreenHill2_3;
